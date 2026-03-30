@@ -1,0 +1,27 @@
+@use "@shared/ui/mixins";
+
+.btn {
+  @include mixins.flex-center;
+  box-sizing: border-box;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &--primary {
+    color: white;
+    background-color: #003cff;
+    font-weight: 700;
+
+    &:hover,
+    :disabled {
+      background-color: #7796c0;
+    }
+  }
+
+  &--md {
+    padding: 1rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    width: min-content;
+  }
+}

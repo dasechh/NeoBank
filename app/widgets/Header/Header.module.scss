@@ -1,0 +1,33 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  line-height: 112%;
+  letter-spacing: 0.02em;
+  width: 100%;
+
+  &__logo {
+    font-weight: 700;
+    font-style: bold;
+    font-size: 1.5rem;
+    color: #b4387a;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+    gap: 2rem;
+    margin: 0.8125rem 0;
+
+    & a {
+      padding: 0.625rem;
+      transition: color 0.1s;
+      &:active,
+      .active {
+        color: #b2a35f;
+      }
+    }
+  }
+}

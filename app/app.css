@@ -75,6 +75,12 @@ h3 {
   font-size: 1.875rem;
 }
 
+h4 {
+  font-weight: 500;
+  font-style: medium;
+  font-size: 1.25rem;
+}
+
 p {
   margin: 0;
   padding: 0;

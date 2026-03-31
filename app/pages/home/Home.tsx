@@ -8,6 +8,8 @@ import particlesImg from "./assets/cards/blue-particles-card.jpg";
 import featuresImg from "./assets/features/features-illustration.svg";
 import checkIcon from "./assets/features/check.svg";
 
+import ExchangeRates from "@widgets/ExchangeRates";
+
 interface iCardProps {
   id: string;
   src: string;
@@ -53,7 +55,7 @@ const LIST_ITEMS: string[] = [
 
 function createFeatureItem(text: string) {
   return (
-    <li key={crypto.randomUUID()}>
+    <li key={text}>
       <img src={checkIcon} alt="check" aria-hidden="true" />
       {text}
     </li>
@@ -85,6 +87,7 @@ export default function home() {
     <main className={styles.main}>
       <CardDesignPromo />
       <Features />
+      <ExchangeRates />
     </main>
   );
 }

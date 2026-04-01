@@ -97,3 +97,15 @@
     text-align: center;
   }
 }
+
+.support {
+  text-align: center;
+
+  &__heading {
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 147%;
+    letter-spacing: 0.02rem;
+    color: #eb801d;
+  }
+}

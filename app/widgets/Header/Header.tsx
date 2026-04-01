@@ -16,7 +16,7 @@ export default function Header() {
           <NavLink to="">Account</NavLink>
           <NavLink to="">Resources</NavLink>
         </div>
-        <Button>Online Bank</Button>
+        <Button size="md">Online Bank</Button>
       </nav>
     </header>
   );

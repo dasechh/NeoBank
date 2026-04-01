@@ -82,3 +82,18 @@
     }
   }
 }
+
+.map {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  line-height: 3.125rem;
+  justify-content: center;
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+}

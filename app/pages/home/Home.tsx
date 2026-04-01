@@ -109,13 +109,15 @@ function Support() {
 
 export default function home() {
   return (
-    <main className={styles.main}>
-      <CardDesignPromo />
-      <Features />
-      <ExchangeRates />
-      <Map />
-      <Support />
-      <NewsletterSubscription subscriptionName="Bank News" />
+    <main>
+      <div className={styles.main + " container"}>
+        <CardDesignPromo />
+        <Features />
+        <ExchangeRates />
+        <Map />
+        <Support />
+        <NewsletterSubscription subscriptionName="Bank News" />
+      </div>
     </main>
   );
 }

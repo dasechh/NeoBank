@@ -1,9 +1,10 @@
+@use "@shared/styles/variables" as *;
+
 .exchange {
   display: flex;
   flex-direction: row;
   height: min-content;
   width: 100%;
-  max-width: 1300px;
   height: 22.5rem;
   background:
     linear-gradient(
@@ -24,7 +25,7 @@
 
   &__title {
     text-wrap: balance;
-    line-height: 3.125rem;
+    line-height: $line-height-lg;
     margin-bottom: 1.5rem;
   }
 
@@ -35,7 +36,7 @@
   }
 
   &__subtitle {
-    line-height: 3.125rem;
+    line-height: $line-height-lg;
     margin-bottom: 2rem;
   }
 
@@ -64,8 +65,8 @@
     color: #808080;
     font-weight: 700;
     font-size: 1.25rem;
-    line-height: 112%;
-    letter-spacing: 0.02rem;
+    line-height: $line-height-small;
+    letter-spacing: $letter-spacing-base;
 
     span {
       color: black;
@@ -94,8 +95,8 @@
   &__link {
     font-weight: 700;
     font-style: bold;
-    line-height: 112%;
-    letter-spacing: 0.02rem;
+    line-height: $line-height-small;
+    letter-spacing: $line-height-base;
     color: white;
     margin-top: auto;
     font-size: 1.25rem;
@@ -105,7 +106,7 @@
     font-weight: 500;
     font-style: medium;
     font-size: 1rem;
-    line-height: 3.125rem;
+    line-height: $line-height-lg;
     position: absolute;
     right: 2rem;
     top: 2rem;

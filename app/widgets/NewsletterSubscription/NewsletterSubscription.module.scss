@@ -1,3 +1,5 @@
+@use "@shared/styles/variables" as *;
+
 .subscribe {
   display: flex;
   flex-direction: column;
@@ -10,7 +12,7 @@
     flex-direction: column;
     gap: 1lh;
     line-height: 120%;
-    letter-spacing: 0.02rem;
+    letter-spacing: $letter-spacing-base;
     font-weight: 700;
   }
 
@@ -18,7 +20,7 @@
     display: block;
     font-weight: 500;
     font-size: 2rem;
-    line-height: 147%;
+    line-height: $line-height-base;
   }
 
   &__form {
@@ -37,8 +39,8 @@
   &__input {
     font-weight: 400;
     font-size: 1.25rem;
-    line-height: 147%;
-    letter-spacing: 0.02rem;
+    line-height: $line-height-base;
+    letter-spacing: $letter-spacing-base;
     background: transparent;
     border: none;
     outline: none;

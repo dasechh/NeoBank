@@ -1,10 +1,12 @@
+@use "@shared/styles/variables" as *;
+
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
-  line-height: 112%;
-  letter-spacing: 0.02em;
+  line-height: $line-height-small;
+  letter-spacing: $letter-spacing-base;
   width: 100%;
 
   &__logo {

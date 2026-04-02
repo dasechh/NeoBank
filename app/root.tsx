@@ -5,12 +5,14 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useNavigation,
 } from "react-router";
 
 import type { Route } from "./+types/root";
 import "./app.css";
-import Header from "./widgets/Header";
-import Footer from "./widgets/Footer";
+import Header from "@widgets/Header";
+import Footer from "@widgets/Footer";
+import Spinner from "@shared/ui/spinner/Spinner";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -26,20 +28,27 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const navigation = useNavigation();
+  const isNavigating = Boolean(navigation.location);
+
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1"
+        />
         <Meta />
         <Links />
       </head>
       <body>
+        {isNavigating && <Spinner />}
         <Header />
         {children}
+        <Footer />
         <ScrollRestoration />
         <Scripts />
-        <Footer />
       </body>
     </html>
   );

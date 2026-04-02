@@ -1,3 +1,5 @@
+import { useFetcher } from "react-router";
+
 import styles from "./NewsletterSubscription.module.scss";
 import Button from "@shared/ui/button";
 
@@ -12,6 +14,8 @@ export default function NewsletterSubscription({
   onAction,
   subscriptionName,
 }: iNewsletterSubscriptionProps) {
+  const fetcher = useFetcher();
+
   return (
     <section className={styles.subscribe || ""}>
       <h3 className={styles.subscribe__heading || ""}>
@@ -33,7 +37,9 @@ export default function NewsletterSubscription({
           placeholder="Your email"
           className={styles.subscribe__input || ""}
         />
-        <Button variant="newsletter">Subscribe</Button>
+        <Button variant="newsletter">
+          {fetcher.state === "submitting" ? "Submitting..." : "Subscribe"}
+        </Button>
       </form>
     </section>
   );

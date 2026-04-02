@@ -9,30 +9,17 @@
   font-family: "Ubuntu", sans-serif;
 }
 
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
 button,
 input,
 textarea,
 select {
   font-family: inherit;
-}
-
-html,
-body {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
-}
-
-header,
-main,
-footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
 }
 
 img,
@@ -98,5 +85,33 @@ p {
 .container {
   box-sizing: border-box;
   max-width: 1300px;
-  width: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (max-width: 1300px) {
+  h2 {
+    font-weight: 700;
+    font-style: bold;
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 920px) {
+  :root {
+    font-size: 14px;
+  }
+
+  @media (max-width: 500px) {
+    :root {
+      font-size: 12px;
+    }
+
+    .container {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
 }

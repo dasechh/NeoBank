@@ -10,9 +10,9 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@shared": path.resolve(__dirname, "./app/shared"),
-      "@widgets": path.resolve(__dirname, "./app/widgets"),
-      "@pages": path.resolve(__dirname, "./app/pages"),
+      "@shared": path.resolve(__dirname, "app/shared"),
+      "@widgets": path.resolve(__dirname, "app/widgets"),
+      "@pages": path.resolve(__dirname, "app/pages"),
     },
   },
 });

@@ -4,7 +4,7 @@ import { fetchCurrency } from "@shared/api/fetchCurrency";
 import type { iCurrencyParams } from "@shared/api/fetchCurrency";
 import { useEffect, useState } from "react";
 
-import bankIcon from "./bank.svg";
+import bankIcon from "./assets/bank.svg";
 
 const currency: iCurrencyParams = {
   from: "RUB",
@@ -66,16 +66,18 @@ export default function ExchangeRates() {
           All courses
         </Link>
       </article>
-      <figure className={styles.exchange__figure || ""}>
-        <img
-          src={bankIcon}
-          alt="Exchange"
-          className={styles.exchange__image || ""}
-        />
-      </figure>
-      <span className={styles.exchange__date || ""} key={date}>
-        Update every 15 minutes, MSC {date}
-      </span>
+      <div className={styles.exchange__decorations || ""}>
+        <span className={styles.exchange__date || ""} key={date}>
+          Update every 15 minutes, MSC {date}
+        </span>
+        <figure className={styles.exchange__figure || ""}>
+          <img
+            src={bankIcon}
+            alt="Exchange"
+            className={styles.exchange__image || ""}
+          />
+        </figure>
+      </div>
     </section>
   );
 }

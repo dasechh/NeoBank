@@ -7,7 +7,7 @@
   flex-direction: row;
   line-height: $line-height-small;
   letter-spacing: $letter-spacing-base;
-  width: 100%;
+  max-width: 100%;
 
   &__logo {
     font-weight: 700;
@@ -29,6 +29,34 @@
       &:active,
       .active {
         color: #b2a35f;
+      }
+    }
+  }
+
+  @media #{$tablet} {
+    &__button {
+      display: none !important;
+    }
+
+    &__links {
+      gap: 0;
+
+      & a {
+        padding: 1ch;
+      }
+    }
+
+    &__logo {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media #{$mobile} {
+    &__links {
+      gap: 0;
+
+      & a {
+        padding: 1ch;
       }
     }
   }

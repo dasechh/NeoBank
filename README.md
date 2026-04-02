@@ -1,87 +1,85 @@
-# Welcome to React Router!
+# NeoBank
 
-A modern, production-ready template for building full-stack React applications using React Router.
+A web application built with React Router 7, SSR, TypeScript, and SCSS.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+## Requirements
 
-## Features
+- Node.js 18+
+- npm or yarn
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+## Installation and Setup
 
-## Getting Started
-
-### Installation
-
-Install the dependencies:
+### Install Dependencies
 
 ```bash
 npm install
 ```
 
-### Development
-
-Start the development server with HMR:
+### Development Mode
 
 ```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+The application will be available at `http://localhost:5173`
 
-## Building for Production
+### Type Checking
 
-Create a production build:
+```bash
+npm run typecheck
+```
+
+### Build for Production
 
 ```bash
 npm run build
 ```
 
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
+### Run Production Build
 
 ```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
+npm start
 ```
 
-The containerized application can be deployed to any platform that supports Docker, including:
+## Project Structure
 
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
+```text
+app/
+├── pages/
+│   └── home/
+├── widgets/
+│   ├── Header/
+│   ├── Footer/
+│   ├── ExchangeRates/
+│   └── NewsletterSubscription/
+├── shared/
+│   ├── api/
+│   ├── ui/
+│   └── styles/
+├── routes/
+└── root.tsx
 ```
 
-## Styling
+## Tech Stack
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+- React 19.2.4
+- React Router 7.13.2
+- TypeScript 5.9.3
+- Vite 7.1.7
+- SASS 1.98.0
+- Axios 1.14.0
 
----
+## Path Aliases
 
-Built with ❤️ using React Router.
+```bash
+@shared  → app/shared
+@widgets → app/widgets
+@pages   → app/pages
+```
+
+## Docker
+
+```bash
+docker build -t neobank:latest .
+docker run -p 3000:3000 neobank:latest
+```

@@ -39,7 +39,7 @@ export default function Footer() {
       <div className={`${styles.footer__wrapper || ""} container`}>
         <div className={styles.footer__header || ""}>
           <Link to="">
-            <img src={NeoLogo} alt="Neoflex" />
+            <img src={NeoLogo} alt="Neoflex" className={styles.footer__logo} />
           </Link>
           <address className={styles.footer__address || ""}>
             <a href="tel:+74959842513 " className={styles.footer__number}>

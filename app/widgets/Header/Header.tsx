@@ -17,7 +17,9 @@ export default function Header() {
             <NavLink to="">Account</NavLink>
             <NavLink to="">Resources</NavLink>
           </div>
-          <Button size="md">Online Bank</Button>
+          <Button size="md" className={styles.nav__button || ""}>
+            Online Bank
+          </Button>
         </nav>
       </div>
     </header>

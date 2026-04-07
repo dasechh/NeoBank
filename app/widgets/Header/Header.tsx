@@ -14,7 +14,7 @@ const NAV_LINKS: INavLink[] = [
   { title: "Resources", path: "" },
 ];
 
-export function Header() {
+export const Header = () => {
   return (
     <header>
       <div className="container">
@@ -36,4 +36,4 @@ export function Header() {
       </div>
     </header>
   );
-}
+};

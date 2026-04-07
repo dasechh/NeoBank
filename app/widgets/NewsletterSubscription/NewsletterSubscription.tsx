@@ -10,10 +10,10 @@ interface INewsletterSubscriptionProps {
   subscriptionName?: string;
 }
 
-export function NewsletterSubscription({
+export const NewsletterSubscription = ({
   onAction,
   subscriptionName,
-}: INewsletterSubscriptionProps) {
+}: INewsletterSubscriptionProps) => {
   const fetcher = useFetcher();
 
   return (
@@ -43,4 +43,4 @@ export function NewsletterSubscription({
       </form>
     </section>
   );
-}
+};

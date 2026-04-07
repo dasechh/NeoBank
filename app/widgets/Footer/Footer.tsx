@@ -21,7 +21,7 @@ const FOOTER_LINKS: IFooterLink[] = [
   { title: "Compliance and business ethics", path: "" },
 ];
 
-export function Footer() {
+export const Footer = () => {
   return (
     <footer className={styles.footer || ""}>
       <div className={`${styles.footer__wrapper || ""} container`}>
@@ -58,4 +58,4 @@ export function Footer() {
       </div>
     </footer>
   );
-}
+};

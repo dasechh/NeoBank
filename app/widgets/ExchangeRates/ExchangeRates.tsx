@@ -17,15 +17,7 @@ function normalizeRate(rate: number): string {
   return (1 / rate).toFixed(2);
 }
 
-function exchangeItem(currency: string, value: number) {
-  return (
-    <li key={currency} className={styles.exchange__item}>
-      {currency}:<span>{normalizeRate(value)}</span>
-    </li>
-  );
-}
-
-export function ExchangeRates() {
+export const ExchangeRates = () => {
   const [rates, setRates] = useState<Record<string, number> | null>(null);
   const [date, setDate] = useState<string>("");
 
@@ -58,9 +50,11 @@ export function ExchangeRates() {
         <h4 className={styles.exchange__subtitle || ""}>Currency</h4>
         <ul className={styles.exchange__list || ""}>
           {rates &&
-            Object.entries(rates).map(([currency, value]) =>
-              exchangeItem(currency, value),
-            )}
+            Object.entries(rates).map(([currency, value]) => (
+              <li key={currency} className={styles.exchange__item}>
+                {currency}:<span>{normalizeRate(value)}</span>
+              </li>
+            ))}
         </ul>
         <Link to="" className={styles.exchange__link || ""}>
           All courses
@@ -80,4 +74,4 @@ export function ExchangeRates() {
       </div>
     </section>
   );
-}
+};

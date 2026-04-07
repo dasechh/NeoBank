@@ -6,17 +6,18 @@ interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: "sm" | "md" | "lg" | "default";
 }
 
-export function Button({
+export const Button = ({
   className,
   variant = "primary",
   size = "default",
   ...props
-}: IButtonProps) {
+}: IButtonProps) => {
   const classes =
     `${styles.btn || ""} ${styles[`btn--${variant}`] || ""} ${styles[`btn--${size}`] || ""} ${className || ""}`.trim();
+
   return (
     <button className={classes} {...props}>
       {props.children}
     </button>
   );
-}
+};

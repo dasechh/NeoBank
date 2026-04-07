@@ -1,117 +1,20 @@
 import styles from './Home.module.scss';
 
-import waveImg from '@assets/images/blue-particles-card.jpg';
-import sphereImg from '@assets/images/blue-sphere-card.jpg';
-import neonImg from '@assets/images/neon-lines-card.jpg';
-import particlesImg from '@assets/images/blue-particles-card.jpg';
-import featuresImg from '@assets/images/features-illustration.svg';
-import checkIcon from '@assets/icons/check.svg';
-import mapImg from '@assets/images/map-image.svg';
-
-import { Button } from '~/components/Button';
-import { ExchangeRates } from 'app/components/ExchangeRates';
-import { NewsletterSubscription } from 'app/components/NewsletterSubscription';
-import { Link } from 'react-router';
-
-interface ICardProps {
-  id: string;
-  src: string;
-  title: string;
-}
-
-const CARD_DESIGNS: ICardProps[] = [
-  { id: 'wave', src: waveImg, title: 'Blue wave card' },
-  { id: 'sphere', src: sphereImg, title: 'Blue sphere card' },
-  { id: 'neon', src: neonImg, title: 'Neon lines card' },
-  { id: 'particles', src: particlesImg, title: 'Blue particles card' },
-];
-
-function CardDesignPromo() {
-  return (
-    <section className={styles.cardsPromo || ''}>
-      <div className={styles.cardsPromo__content || ''}>
-        <h2 className={styles.cardsPromo__heading || ''}>
-          Choose the design you like and apply for card right now
-        </h2>
-        <Button size="md">Choose the Card</Button>
-      </div>
-      <div className={styles.cardsPromo__list || ''}>
-        {CARD_DESIGNS.map((card) => (
-          <img
-            src={card.src}
-            key={card.id}
-            alt={card.title}
-            className={styles.cardsPromo__image || ''}
-          ></img>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-const LIST_ITEMS: string[] = [
-  'Powerfull online protection.',
-  'Cashback without borders.',
-  'Personal design.',
-  'Work anywhere in the world',
-];
-
-function createFeatureItem(text: string) {
-  return (
-    <li key={text}>
-      <img src={checkIcon} alt="check" aria-hidden="true" />
-      {text}
-    </li>
-  );
-}
-
-function Features() {
-  return (
-    <section className={styles.features || ''}>
-      <img src={featuresImg} alt="" className={styles.features__image || ''} />
-      <div className={styles.features__content}>
-        <h3 className={styles.features__heading || ''}>We Provide Many Features You Can Use</h3>
-        <p className={styles.features__text}>
-          You can explore the features we provide with fun and have their own functions each feature
-        </p>
-        <ul className={styles.features__items}>
-          {LIST_ITEMS.map((text) => createFeatureItem(text))}
-        </ul>
-      </div>
-    </section>
-  );
-}
-
-function Map() {
-  return (
-    <section className={styles.map || ''}>
-      <div className={styles.map__text || ''}>
-        <h3>You can use our services anywhere in the world</h3>
-        <p>Withdraw and transfer money online through our application</p>
-      </div>
-      <img src={mapImg} alt="Map" />
-    </section>
-  );
-}
-
-function Support() {
-  return (
-    <section className={styles.support || ''}>
-      <h3 className={styles.support__heading || ''}>
-        <Link to="">Support</Link>
-      </h3>
-    </section>
-  );
-}
+import { ExchangeRates } from '@components/sections/ExchangeRates';
+import { NewsletterSubscription } from '@components/sections/NewsletterSubscription';
+import { CardDesignPromo } from '@components/sections/CardDesignPromo';
+import { ProvidingFeatures } from '@components/sections/ProvidingFeatures';
+import { ServiceMap } from '@components/sections/ServiceMap';
+import { Support } from '@components/sections/Support';
 
 export function Home() {
   return (
     <main>
       <div className={styles.main + ' container'}>
         <CardDesignPromo />
-        <Features />
+        <ProvidingFeatures />
         <ExchangeRates />
-        <Map />
+        <ServiceMap />
         <Support />
         <NewsletterSubscription subscriptionName="Bank News" />
       </div>

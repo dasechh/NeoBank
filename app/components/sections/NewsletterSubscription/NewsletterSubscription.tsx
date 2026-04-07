@@ -1,7 +1,7 @@
 import styles from './NewsletterSubscription.module.scss';
 
 import { useFetcher } from 'react-router';
-import { Button } from '~/components/Button';
+import { Button } from '~/components/ui/Button';
 
 import letterIcon from '@assets/icons/letter.svg';
 

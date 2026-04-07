@@ -1,17 +1,16 @@
 import styles from './ExchangeRates.module.scss';
 import { Link } from 'react-router';
-import { fetchCurrency } from '@services/fetchCurrency';
-import type { ICurrencyParams } from '@services/fetchCurrency';
+import { fetchCurrency } from '@services/fetchCurrencies';
+import type { ICurrenciesParams } from '@services/fetchCurrencies';
 import { useEffect, useState } from 'react';
+import { updateTimer } from '~/config';
 
 import bankIcon from '@assets/icons/bank.svg';
 
-const CURRENCIES: ICurrencyParams = {
+const CURRENCIES: ICurrenciesParams = {
   from: 'RUB',
-  to: 'EUR,RSD,AUD,CAD,USD,CNY',
+  to: ['EUR', 'RSD', 'AUD', 'CAD', 'USD', 'CNY'],
 };
-
-const timer: number = 15 * 60 * 1000;
 
 function normalizeRate(rate: number): string {
   return (1 / rate).toFixed(2);
@@ -24,8 +23,9 @@ export const ExchangeRates = () => {
   async function loadRates() {
     try {
       const data = await fetchCurrency(CURRENCIES);
-      setRates(data.result);
-      setDate(data.date.replace(/-/g, '.'));
+      setRates(data.conversion_rates || null);
+      const now = new Date();
+      setDate(now.toLocaleDateString());
     } catch (error: unknown) {
       throw new Error(String(error));
     }
@@ -36,7 +36,7 @@ export const ExchangeRates = () => {
 
     const interval = setInterval(() => {
       loadRates();
-    }, timer);
+    }, updateTimer);
 
     return () => clearInterval(interval);
   }, []);
@@ -60,7 +60,7 @@ export const ExchangeRates = () => {
       </article>
       <div className={styles.exchange__decorations || ''}>
         <span className={styles.exchange__date || ''} key={date}>
-          Update every 15 minutes, MSC {date}
+          Update every {updateTimer / 60000} minutes, MSC {date}
         </span>
         <figure className={styles.exchange__figure || ''}>
           <img src={bankIcon} alt="Exchange" className={styles.exchange__image || ''} />

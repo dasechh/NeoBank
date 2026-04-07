@@ -11,9 +11,9 @@ import {
 import type { Route } from './+types/root';
 import './app.css';
 
-import { Header } from '@widgets/Header';
-import { Footer } from '@widgets/Footer';
-import { Spinner } from '@shared/ui/spinner/Spinner';
+import { Header } from 'app/layouts/Header';
+import { Footer } from 'app/layouts/Footer';
+import { Spinner } from 'app/components/spinner/Spinner';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },

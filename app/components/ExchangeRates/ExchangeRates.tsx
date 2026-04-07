@@ -1,10 +1,10 @@
 import styles from './ExchangeRates.module.scss';
 import { Link } from 'react-router';
-import { fetchCurrency } from '@shared/api/fetchCurrency';
-import type { ICurrencyParams } from '@shared/api/fetchCurrency';
+import { fetchCurrency } from '@services/fetchCurrency';
+import type { ICurrencyParams } from '@services/fetchCurrency';
 import { useEffect, useState } from 'react';
 
-import bankIcon from './assets/bank.svg';
+import bankIcon from '@assets/icons/bank.svg';
 
 const CURRENCIES: ICurrencyParams = {
   from: 'RUB',

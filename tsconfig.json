@@ -10,10 +10,12 @@
     "rootDirs": [".", "./.react-router/types"],
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./app/*"],
-      "@shared/*": ["app/shared/*"],
-      "@widgets/*": ["app/widgets/*"],
-      "@pages/*": ["app/pages/*"]
+      "~/*": ["app/*"],
+      "@styles/*": ["app/styles/*"],
+      "@components/*": ["app/components/*"],
+      "@pages/*": ["app/pages/*"],
+      "@services/*": ["app/services/*"],
+      "@assets/*": ["app//assets/*"]
     },
     "esModuleInterop": true,
     "verbatimModuleSyntax": true,

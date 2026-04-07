@@ -1,19 +1,19 @@
-import type React from "react";
-import styles from "./button.module.scss";
+import type React from 'react';
+import styles from './button.module.scss';
 
 interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "newsletter";
-  size?: "sm" | "md" | "lg" | "default";
+  variant?: 'primary' | 'secondary' | 'newsletter';
+  size?: 'sm' | 'md' | 'lg' | 'default';
 }
 
 export const Button = ({
   className,
-  variant = "primary",
-  size = "default",
+  variant = 'primary',
+  size = 'default',
   ...props
 }: IButtonProps) => {
   const classes =
-    `${styles.btn || ""} ${styles[`btn--${variant}`] || ""} ${styles[`btn--${size}`] || ""} ${className || ""}`.trim();
+    `${styles.btn || ''} ${styles[`btn--${variant}`] || ''} ${styles[`btn--${size}`] || ''} ${className || ''}`.trim();
 
   return (
     <button className={classes} {...props}>

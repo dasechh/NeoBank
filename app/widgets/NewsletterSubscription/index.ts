@@ -1,1 +1,1 @@
-export { NewsletterSubscription } from "./NewsletterSubscription";
+export { NewsletterSubscription } from './NewsletterSubscription';

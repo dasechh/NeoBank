@@ -1,7 +1,7 @@
-import styles from "./Footer.module.scss";
-import { Link } from "react-router";
+import styles from './Footer.module.scss';
+import { Link } from 'react-router';
 
-import NeoLogo from "./assets/neoflex.png";
+import NeoLogo from './assets/neoflex.png';
 
 interface IFooterLink {
   title: string;
@@ -9,27 +9,27 @@ interface IFooterLink {
 }
 
 const FOOTER_LINKS: IFooterLink[] = [
-  { title: "About bank", path: "" },
-  { title: "Ask a Question", path: "" },
-  { title: "Quality of service", path: "" },
-  { title: "Requsities", path: "" },
-  { title: "Press center", path: "" },
-  { title: "Bank carreer", path: "" },
-  { title: "Investors", path: "" },
-  { title: "Analytics", path: "" },
-  { title: "Business and processes", path: "" },
-  { title: "Compliance and business ethics", path: "" },
+  { title: 'About bank', path: '' },
+  { title: 'Ask a Question', path: '' },
+  { title: 'Quality of service', path: '' },
+  { title: 'Requsities', path: '' },
+  { title: 'Press center', path: '' },
+  { title: 'Bank carreer', path: '' },
+  { title: 'Investors', path: '' },
+  { title: 'Analytics', path: '' },
+  { title: 'Business and processes', path: '' },
+  { title: 'Compliance and business ethics', path: '' },
 ];
 
 export const Footer = () => {
   return (
-    <footer className={styles.footer || ""}>
-      <div className={`${styles.footer__wrapper || ""} container`}>
-        <div className={styles.footer__header || ""}>
+    <footer className={styles.footer || ''}>
+      <div className={`${styles.footer__wrapper || ''} container`}>
+        <div className={styles.footer__header || ''}>
           <Link to="">
             <img src={NeoLogo} alt="Neoflex" className={styles.footer__logo} />
           </Link>
-          <address className={styles.footer__address || ""}>
+          <address className={styles.footer__address || ''}>
             <a href="tel:+74959842513 " className={styles.footer__number}>
               +7 (495) 984 25 13
             </a>
@@ -49,11 +49,10 @@ export const Footer = () => {
 
         <hr className={styles.footer__line} />
 
-        <p className={styles.footer__footer || ""}>
-          We use cookies to personalize our services and improve the user
-          experience of our website. Cookies are small files containing
-          information about previous visits to a website. If you do not want to
-          use cookies, please change your browser settings
+        <p className={styles.footer__footer || ''}>
+          We use cookies to personalize our services and improve the user experience of our website.
+          Cookies are small files containing information about previous visits to a website. If you
+          do not want to use cookies, please change your browser settings
         </p>
       </div>
     </footer>

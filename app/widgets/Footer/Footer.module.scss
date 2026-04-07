@@ -1,9 +1,7 @@
-@use "@shared/styles/variables" as *;
+@use '@shared/styles/variables' as *;
 
 .footer {
-  background:
-    linear-gradient(0deg, rgba(178, 178, 178, 0.2), rgba(178, 178, 178, 0.2)),
-    #f4f4f4;
+  background: linear-gradient(0deg, rgba(178, 178, 178, 0.2), rgba(178, 178, 178, 0.2)), #f4f4f4;
   line-height: $line-height-base;
   letter-spacing: $letter-spacing-base;
 

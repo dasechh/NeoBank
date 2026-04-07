@@ -1,4 +1,4 @@
-import styles from "./Spinner.module.scss";
+import styles from './Spinner.module.scss';
 
 export const Spinner = () => {
   return (
@@ -11,15 +11,7 @@ export const Spinner = () => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <rect
-          x="1"
-          y="1"
-          width="68"
-          height="68"
-          rx="34"
-          stroke="#808080"
-          strokeWidth="2"
-        />
+        <rect x="1" y="1" width="68" height="68" rx="34" stroke="#808080" strokeWidth="2" />
       </svg>
 
       <svg

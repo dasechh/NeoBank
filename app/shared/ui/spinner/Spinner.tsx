@@ -1,6 +1,6 @@
 import styles from "./Spinner.module.scss";
 
-export default function Spinner() {
+export function Spinner() {
   return (
     <div className={styles.spinner}>
       <svg

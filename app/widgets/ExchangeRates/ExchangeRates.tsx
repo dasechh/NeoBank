@@ -1,12 +1,12 @@
 import styles from "./ExchangeRates.module.scss";
 import { Link } from "react-router";
 import { fetchCurrency } from "@shared/api/fetchCurrency";
-import type { iCurrencyParams } from "@shared/api/fetchCurrency";
+import type { ICurrencyParams } from "@shared/api/fetchCurrency";
 import { useEffect, useState } from "react";
 
 import bankIcon from "./assets/bank.svg";
 
-const currency: iCurrencyParams = {
+const CURRENCIES: ICurrencyParams = {
   from: "RUB",
   to: "EUR,RSD,AUD,CAD,USD,CNY",
 };
@@ -25,13 +25,13 @@ function exchangeItem(currency: string, value: number) {
   );
 }
 
-export default function ExchangeRates() {
+export function ExchangeRates() {
   const [rates, setRates] = useState<Record<string, number> | null>(null);
   const [date, setDate] = useState<string>("");
 
   async function loadRates() {
     try {
-      const data = await fetchCurrency(currency);
+      const data = await fetchCurrency(CURRENCIES);
       setRates(data.result);
       setDate(data.date.replace(/-/g, "."));
     } catch (error: unknown) {

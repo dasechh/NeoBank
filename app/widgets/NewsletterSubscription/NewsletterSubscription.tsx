@@ -1,19 +1,19 @@
-import { useFetcher } from "react-router";
-
 import styles from "./NewsletterSubscription.module.scss";
-import Button from "@shared/ui/button";
+
+import { useFetcher } from "react-router";
+import { Button } from "@shared/ui/button";
 
 import letterIcon from "./assets/letter.svg";
 
-interface iNewsletterSubscriptionProps {
+interface INewsletterSubscriptionProps {
   onAction?: string;
   subscriptionName?: string;
 }
 
-export default function NewsletterSubscription({
+export function NewsletterSubscription({
   onAction,
   subscriptionName,
-}: iNewsletterSubscriptionProps) {
+}: INewsletterSubscriptionProps) {
   const fetcher = useFetcher();
 
   return (

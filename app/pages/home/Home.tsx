@@ -1,5 +1,4 @@
 import styles from "./Home.module.scss";
-import Button from "@shared/ui/button";
 
 import waveImg from "./assets/cards/blue-particles-card.jpg";
 import sphereImg from "./assets/cards/blue-sphere-card.jpg";
@@ -9,17 +8,18 @@ import featuresImg from "./assets/features/features-illustration.svg";
 import checkIcon from "./assets/features/check.svg";
 import mapImg from "./assets/map/map-image.svg";
 
-import ExchangeRates from "@widgets/ExchangeRates";
-import NewsletterSubscription from "@widgets/NewsletterSubscription";
+import { Button } from "@shared/ui/button";
+import { ExchangeRates } from "@widgets/ExchangeRates";
+import { NewsletterSubscription } from "@widgets/NewsletterSubscription";
 import { Link } from "react-router";
 
-interface iCardProps {
+interface ICardProps {
   id: string;
   src: string;
   title: string;
 }
 
-const CARD_DESIGNS: iCardProps[] = [
+const CARD_DESIGNS: ICardProps[] = [
   { id: "wave", src: waveImg, title: "Blue wave card" },
   { id: "sphere", src: sphereImg, title: "Blue sphere card" },
   { id: "neon", src: neonImg, title: "Neon lines card" },
@@ -107,7 +107,7 @@ function Support() {
   );
 }
 
-export default function home() {
+export function Home() {
   return (
     <main>
       <div className={styles.main + " container"}>

@@ -3,12 +3,12 @@ import { Link } from "react-router";
 
 import NeoLogo from "./assets/neoflex.png";
 
-interface iFooterLink {
+interface IFooterLink {
   title: string;
   path: string;
 }
 
-const footerLinks: iFooterLink[] = [
+const FOOTER_LINKS: IFooterLink[] = [
   { title: "About bank", path: "" },
   { title: "Ask a Question", path: "" },
   { title: "Quality of service", path: "" },
@@ -21,19 +21,7 @@ const footerLinks: iFooterLink[] = [
   { title: "Compliance and business ethics", path: "" },
 ];
 
-function FooterBody() {
-  return (
-    <ul className={styles.footer__main}>
-      {footerLinks.map(({ title, path }, index) => (
-        <li key={index}>
-          <Link to={path}>{title}</Link>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-export default function Footer() {
+export function Footer() {
   return (
     <footer className={styles.footer || ""}>
       <div className={`${styles.footer__wrapper || ""} container`}>
@@ -51,7 +39,13 @@ export default function Footer() {
           </address>
         </div>
 
-        <FooterBody />
+        <ul className={styles.footer__main}>
+          {FOOTER_LINKS.map(({ title, path }) => (
+            <li key={title}>
+              <Link to={path}>{title}</Link>
+            </li>
+          ))}
+        </ul>
 
         <hr className={styles.footer__line} />
 

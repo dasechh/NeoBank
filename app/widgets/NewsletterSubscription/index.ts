@@ -1,1 +1,1 @@
-export { default } from "./NewsletterSubscription";
+export { NewsletterSubscription } from "./NewsletterSubscription";

@@ -1,8 +1,20 @@
-import { NavLink } from "react-router";
 import styles from "./Header.module.scss";
-import Button from "@shared/ui/button";
+import { NavLink } from "react-router";
+import { Button } from "@shared/ui/button";
 
-export default function Header() {
+interface INavLink {
+  title: string;
+  path: string;
+}
+
+const NAV_LINKS: INavLink[] = [
+  { title: "Credit Card", path: "" },
+  { title: "Product", path: "" },
+  { title: "Account", path: "" },
+  { title: "Resources", path: "" },
+];
+
+export function Header() {
   return (
     <header>
       <div className="container">
@@ -10,12 +22,12 @@ export default function Header() {
           <NavLink to="/" className={styles.nav__logo || ""}>
             Neobank
           </NavLink>
-
           <div className={styles.nav__links || ""}>
-            <NavLink to="">Credit Card</NavLink>
-            <NavLink to="">Product</NavLink>
-            <NavLink to="">Account</NavLink>
-            <NavLink to="">Resources</NavLink>
+            {NAV_LINKS.map(({ title, path }) => (
+              <NavLink to={path} key={title}>
+                {title}
+              </NavLink>
+            ))}
           </div>
           <Button size="md" className={styles.nav__button || ""}>
             Online Bank

@@ -10,9 +10,11 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@shared': path.resolve(__dirname, 'app/shared'),
-      '@widgets': path.resolve(__dirname, 'app/widgets'),
+      '@styles': path.resolve(__dirname, 'app/styles'),
+      '@components': path.resolve(__dirname, 'app/components'),
       '@pages': path.resolve(__dirname, 'app/pages'),
+      '@services': path.resolve(__dirname, 'app/services'),
+      '@assets': path.resolve(__dirname, 'app/assets')
     },
   },
 });

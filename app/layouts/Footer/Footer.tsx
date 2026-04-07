@@ -1,7 +1,7 @@
 import styles from './Footer.module.scss';
 import { Link } from 'react-router';
 
-import NeoLogo from './assets/neoflex.png';
+import NeoLogo from '@assets/images/neoflex.png';
 
 interface IFooterLink {
   title: string;

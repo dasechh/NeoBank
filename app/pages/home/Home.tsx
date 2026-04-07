@@ -1,16 +1,16 @@
 import styles from './Home.module.scss';
 
-import waveImg from './assets/cards/blue-particles-card.jpg';
-import sphereImg from './assets/cards/blue-sphere-card.jpg';
-import neonImg from './assets/cards/neon-lines-card.jpg';
-import particlesImg from './assets/cards/blue-particles-card.jpg';
-import featuresImg from './assets/features/features-illustration.svg';
-import checkIcon from './assets/features/check.svg';
-import mapImg from './assets/map/map-image.svg';
+import waveImg from '@assets/images/blue-particles-card.jpg';
+import sphereImg from '@assets/images/blue-sphere-card.jpg';
+import neonImg from '@assets/images/neon-lines-card.jpg';
+import particlesImg from '@assets/images/blue-particles-card.jpg';
+import featuresImg from '@assets/images/features-illustration.svg';
+import checkIcon from '@assets/icons/check.svg';
+import mapImg from '@assets/images/map-image.svg';
 
-import { Button } from '@shared/ui/button';
-import { ExchangeRates } from '@widgets/ExchangeRates';
-import { NewsletterSubscription } from '@widgets/NewsletterSubscription';
+import { Button } from '~/components/Button';
+import { ExchangeRates } from 'app/components/ExchangeRates';
+import { NewsletterSubscription } from 'app/components/NewsletterSubscription';
 import { Link } from 'react-router';
 
 interface ICardProps {

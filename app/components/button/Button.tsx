@@ -1,5 +1,5 @@
 import type React from 'react';
-import styles from './button.module.scss';
+import styles from './Button.module.scss';
 
 interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'newsletter';

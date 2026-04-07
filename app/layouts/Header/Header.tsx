@@ -1,6 +1,6 @@
 import styles from './Header.module.scss';
 import { NavLink } from 'react-router';
-import { Button } from '@shared/ui/button';
+import { Button } from '~/components/Button';
 
 interface INavLink {
   title: string;

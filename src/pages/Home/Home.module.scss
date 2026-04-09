@@ -1,0 +1,14 @@
+@use '~/styles/variables' as *;
+
+.main {
+  display: flex;
+  flex-direction: column;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  box-sizing: border-box;
+  gap: 3rem 0;
+
+  @media #{$desktop} {
+    padding-top: 1rem;
+  }
+}

@@ -8,12 +8,20 @@
   line-height: $line-height-small;
   letter-spacing: $letter-spacing-base;
   max-width: 100%;
+  position: relative;
 
   &__logo {
     font-weight: 700;
     font-style: bold;
     font-size: 1.5rem;
     color: #b4387a;
+  }
+
+  &__burger {
+    display: none;
+    position: absolute;
+    top: 1rem;
+    right: 0;
   }
 
   &__links {
@@ -34,15 +42,22 @@
   }
 
   @media #{$tablet} {
+    flex-direction: column;
+    padding: 1rem 0;
+
     &__button {
       display: none !important;
     }
 
-    &__links {
-      gap: 0;
+    &__burger {
+      display: flex;
+    }
 
-      & a {
-        padding: 1ch;
+    &__links {
+      display: none;
+
+      &_opened {
+        display: flex;
       }
     }
 

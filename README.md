@@ -1,13 +1,13 @@
 # NeoBank
 
-A web application built with React Router 7, SSR, TypeScript, and SCSS.
+A modern banking web application built with React, TypeScript, and Vite. NeoBank provides users with a seamless interface for financial services including currency exchange rates, newsletter subscriptions, and comprehensive banking features.
 
 ## Requirements
 
 - Node.js 18+
-- npm or yarn
+- npm
 
-## Installation and Setup
+## Quick Start
 
 ### Install Dependencies
 
@@ -23,63 +23,68 @@ npm run dev
 
 The application will be available at `http://localhost:5173`
 
-### Type Checking
-
-```bash
-npm run typecheck
-```
-
 ### Build for Production
 
 ```bash
 npm run build
 ```
 
-### Run Production Build
+### Preview Production Build
 
 ```bash
-npm start
+npm run preview
 ```
 
 ## Project Structure
 
 ```text
-app/
-├── pages/
-│   └── home/
-├── widgets/
-│   ├── Header/
-│   ├── Footer/
-│   ├── ExchangeRates/
-│   └── NewsletterSubscription/
-├── shared/
-│   ├── api/
-│   ├── ui/
-│   └── styles/
-├── routes/
-└── root.tsx
+src/
+├── components/              # Reusable UI components
+│   ├── Button/             # Button component
+│   ├── Header/             # Header navigation
+│   ├── Footer/             # Footer section
+│   ├── ExchangeRates/       # Currency exchange display
+│   ├── NewsletterSubscription/
+│   ├── ProvidingFeatures/   # Features showcase
+│   ├── ServiceMap/          # Service locations map
+│   ├── CardDesignPromo/     # Promotional cards
+│   ├── Support/             # Support section
+│   └── Spinner/             # Loading spinner
+├── layouts/                 # Layout components
+│   └── MainLayout.tsx       # Main app layout
+├── pages/                   # Page components
+│   └── Home/                # Home page
+├── services/                # API services
+│   └── fetchCurrencies.ts   # Currency data fetching
+├── styles/                  # Global styles
+│   └── _variables.scss      # SCSS variables
+├── config.ts                # Configuration
+├── index.tsx                # App entry point
+└── index.css                # Global styles
 ```
 
 ## Tech Stack
 
-- React 19.2.4
-- React Router 7.13.2
-- TypeScript 5.9.3
-- Vite 7.1.7
-- SASS 1.98.0
-- Axios 1.14.0
+- **React** 19.2.5 - UI library
+- **React Router** 7.14.0 - Client-side routing
+- **TypeScript** 6.0.2 - Type safety
+- **Vite** 8.0.8 - Build tool and dev server
+- **SASS** 1.98.0 - CSS preprocessing
+- **Axios** 1.14.0 - HTTP client
+- **Prettier** 3.8.1 - Code formatter
 
-## Path Aliases
+## Key Features
 
-```bash
-@shared  → app/shared
-@widgets → app/widgets
-@pages   → app/pages
-```
+- 🏦 Modern banking interface
+- 💱 Real-time currency exchange rates
+- 📧 Newsletter subscription
+- 🎨 Responsive design with SCSS modules
+- ⚡ Fast development with Vite
+- 🔒 TypeScript for type safety
+- 🎯 Component-based architecture
 
-## Docker
+## Scripts
 
-```bash
-docker build -t neobank:latest .
-docker run -p 3000:3000 neobank:latest
-```
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build locally

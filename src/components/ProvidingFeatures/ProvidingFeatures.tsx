@@ -12,10 +12,10 @@ const FEATURES_LIST: string[] = [
 
 export const ProvidingFeatures = () => {
   return (
-    <section className={styles.features || ''}>
-      <img src={featuresImg} alt="" className={styles.features__image || ''} />
+    <section className={styles.features}>
+      <img src={featuresImg} alt="" className={styles.features__image} />
       <div className={styles.features__content}>
-        <h3 className={styles.features__heading || ''}>We Provide Many Features You Can Use</h3>
+        <h3 className={styles.features__heading}>We Provide Many Features You Can Use</h3>
         <p className={styles.features__text}>
           You can explore the features we provide with fun and have their own functions each feature
         </p>

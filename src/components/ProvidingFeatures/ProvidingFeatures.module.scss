@@ -34,16 +34,30 @@
     gap: 1rem;
     font-weight: 400;
     color: #4f5665;
+    width: fit-content;
 
     & li {
       display: flex;
       flex-direction: row;
       gap: 1rem;
       align-items: center;
+      width: fit-content;
 
       & img {
         padding: 2px;
       }
+    }
+  }
+  @media #{$tablet} {
+    flex-direction: column;
+    text-align: center;
+
+    &__image {
+      max-width: 75%;
+    }
+
+    &__content {
+      align-items: center;
     }
   }
 }

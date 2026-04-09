@@ -1,0 +1,72 @@
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-direction: row;
+
+  &_primary {
+    color: white;
+    background-color: #003cff;
+    font-weight: 700;
+
+    &:hover,
+    :disabled {
+      background-color: #7796c0;
+    }
+  }
+
+  &__burgerLine {
+    width: 20px;
+    height: 2px;
+    background: rgb(0, 0, 0);
+    transition: 0.3s ease;
+    transform: none;
+  }
+
+  &_burger {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 9.5px;
+    justify-content: center;
+    height: min-content;
+    background: none;
+  }
+
+  &_newsletter {
+    color: white;
+    background-color: #686df1;
+    gap: 0.625rem;
+    padding: 1.25rem 2rem;
+    font-weight: 700;
+    line-height: 127%;
+    border-radius: 1.25rem;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 127%;
+  }
+
+  &_md {
+    padding: 1rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    width: min-content;
+  }
+
+  &_default {
+    height: 100%;
+    width: min-content;
+  }
+}
+
+:global(.open) .btn__burgerLine:first-child {
+  transform: translateY(6px) rotate(-45deg);
+}
+
+:global(.open) .btn__burgerLine:last-child {
+  transform: translateY(-6px) rotate(45deg);
+}

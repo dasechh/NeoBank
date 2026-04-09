@@ -1,0 +1,113 @@
+@use '~/styles/variables' as *;
+
+.exchange {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 100%;
+  min-height: fit-content;
+  background:
+    linear-gradient(358.2deg, rgba(178, 178, 178, 0.8) 8.06%, rgba(178, 178, 178, 0) 67.93%),
+    rgba(244, 244, 244, 0.9);
+  mix-blend-mode: normal;
+  box-shadow:
+    0px 0px 4px rgba(0, 0, 0, 0.08),
+    0px 2px 4px rgba(187, 187, 187, 0.2);
+  border-radius: 1.75rem;
+  padding: 2rem;
+  box-sizing: border-box;
+  gap: 1rem;
+
+  &__title {
+    text-wrap: balance;
+    line-height: $line-height-lg;
+    margin-bottom: 1.5rem;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__subtitle {
+    line-height: $line-height-lg;
+    margin-bottom: 2rem;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, min-content);
+    gap: 2ch;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 3rem;
+
+    @media (max-width: 920px) {
+      grid-template-columns: repeat(2, min-content);
+    }
+
+    @media (max-width: 500px) {
+      grid-template-columns: repeat(1, min-content);
+    }
+  }
+
+  &__item {
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+    gap: 1ch;
+    color: #808080;
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: $line-height-small;
+    letter-spacing: $letter-spacing-base;
+
+    span {
+      color: black;
+    }
+  }
+
+  &__figure {
+    width: 100%;
+    max-width: 100px;
+    margin: auto 0 auto auto;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  &__link {
+    font-weight: 700;
+    font-style: bold;
+    line-height: $line-height-small;
+    letter-spacing: $line-height-base;
+    color: white;
+    margin-top: auto;
+    font-size: 1.25rem;
+  }
+
+  &__date {
+    font-weight: 500;
+    font-style: medium;
+    font-size: 1rem;
+    line-height: $line-height-lg;
+    text-align: right;
+  }
+
+  &__decorations {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media #{$tablet} {
+    &__date {
+      line-height: $line-height-base;
+    }
+  }
+}

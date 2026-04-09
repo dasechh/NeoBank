@@ -1,0 +1,53 @@
+@use '~/styles/variables' as *;
+
+.cardsPromo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin: 5rem 0;
+  gap: 2.25rem;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+    flex: 1;
+  }
+
+  &__heading {
+    line-height: $line-height-lg;
+  }
+
+  &__list {
+    display: grid;
+    max-width: 50%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    justify-items: center;
+    height: fit-content;
+  }
+
+  &__image {
+    width: auto;
+    max-height: 10rem;
+    object-fit: contain;
+  }
+
+  @media #{$tablet} {
+    align-items: center;
+    margin: 2rem 0;
+  }
+
+  @media #{$mobile} {
+    gap: 1rem;
+
+    &__list {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    &__image {
+      max-height: 7rem;
+    }
+  }
+}

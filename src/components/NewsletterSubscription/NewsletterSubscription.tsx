@@ -1,9 +1,9 @@
 import styles from './NewsletterSubscription.module.scss';
 
 import { useFetcher } from 'react-router';
-import { Button } from '~/components/Button';
-import letterIconSrc from '~/assets/icons/letter.svg';
-import sendIconSrc from '~/assets/icons/send.svg';
+import { Button } from '@/components';
+import letterIconSrc from '@icons/letter.svg';
+import sendIconSrc from '@icons/send.svg';
 
 interface INewsletterSubscriptionProps {
   onAction?: string;

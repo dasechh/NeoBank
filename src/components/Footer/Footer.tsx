@@ -1,24 +1,25 @@
 import styles from './Footer.module.scss';
 import { Link } from 'react-router';
 
-import NeoLogo from '~/assets/images/neoflex.png';
+import NeoLogo from '@images/neoflex.png';
 
 interface IFooterLink {
   title: string;
   path: string;
+  id: number;
 }
 
 const FOOTER_LINKS: IFooterLink[] = [
-  { title: 'About bank', path: '' },
-  { title: 'Ask a Question', path: '' },
-  { title: 'Quality of service', path: '' },
-  { title: 'Requsities', path: '' },
-  { title: 'Press center', path: '' },
-  { title: 'Bank carreer', path: '' },
-  { title: 'Investors', path: '' },
-  { title: 'Analytics', path: '' },
-  { title: 'Business and processes', path: '' },
-  { title: 'Compliance and business ethics', path: '' },
+  { title: 'About bank', path: '', id: 1 },
+  { title: 'Ask a Question', path: '', id: 2 },
+  { title: 'Quality of service', path: '', id: 3 },
+  { title: 'Requsities', path: '', id: 4 },
+  { title: 'Press center', path: '', id: 5 },
+  { title: 'Bank carreer', path: '', id: 6 },
+  { title: 'Investors', path: '', id: 7 },
+  { title: 'Analytics', path: '', id: 8 },
+  { title: 'Business and processes', path: '', id: 9 },
+  { title: 'Compliance and business ethics', path: '', id: 10 },
 ];
 
 export const Footer = () => {
@@ -40,8 +41,8 @@ export const Footer = () => {
         </div>
 
         <ul className={styles.footer__main}>
-          {FOOTER_LINKS.map(({ title, path }) => (
-            <li key={title}>
+          {FOOTER_LINKS.map(({ title, path, id }) => (
+            <li key={id}>
               <Link to={path}>{title}</Link>
             </li>
           ))}

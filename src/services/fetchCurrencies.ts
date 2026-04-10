@@ -1,23 +1,7 @@
 import axios from 'axios';
-import { currencyExchangeUrl } from '../config';
-
-export interface ICurrenciesParams {
-  from: string;
-  to?: string[];
-}
-
-interface ICurrenciesRates {
-  result: 'success' | 'error';
-  documentation?: string;
-  terms_of_use?: string;
-  time_last_update_unix?: number;
-  time_last_update_utc?: string;
-  time_next_update_unix?: number;
-  time_next_update_utc?: string;
-  base_code?: string;
-  conversion_rates?: Record<string, number>;
-  'error-type'?: string;
-}
+import { currencyExchangeUrl } from '@/constants';
+import { normalizeRate } from '@/utils';
+import type { ICurrenciesParams, ICurrenciesRates } from '@/types';
 
 export async function fetchCurrency({ from, to }: ICurrenciesParams): Promise<ICurrenciesRates> {
   try {
@@ -33,7 +17,7 @@ export async function fetchCurrency({ from, to }: ICurrenciesParams): Promise<IC
       const filteredRates: Record<string, number> = {};
       to.forEach((currency) => {
         if (currency in rates) {
-          filteredRates[currency] = rates[currency];
+          filteredRates[currency] = normalizeRate(rates[currency]);
         }
       });
       data.conversion_rates = filteredRates;

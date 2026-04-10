@@ -1,9 +1,9 @@
 import { useNavigation, Outlet } from 'react-router';
-import { Spinner } from '~/components/Spinner/Spinner';
-import { Header } from '~/components/Header';
-import { Footer } from '~/components/Footer';
+import { Spinner } from '@/components/Spinner/Spinner';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
 
-export const Layout = () => {
+export const MainLayout = () => {
   const navigation = useNavigation();
   const isNavigating = Boolean(navigation.location);
 

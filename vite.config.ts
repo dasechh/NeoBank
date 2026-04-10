@@ -2,7 +2,7 @@ import path from 'path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-const __dirname = path.dirname(__filename)
+const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   plugins: [react()],
@@ -11,7 +11,9 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '~': path.resolve(__dirname, 'src'),
+      '@': path.resolve(__dirname, 'src'),
+      '@images': path.resolve(__dirname, 'src/assets/images'),
+      '@icons': path.resolve(__dirname, 'src/assets/icons'),
     },
   },
 });

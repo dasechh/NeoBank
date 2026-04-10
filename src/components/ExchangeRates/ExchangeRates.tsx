@@ -1,46 +1,9 @@
 import styles from './ExchangeRates.module.scss';
 import { Link } from 'react-router';
-import { fetchCurrency } from '~/services/fetchCurrencies';
-import type { ICurrenciesParams } from '~/services/fetchCurrencies';
-import { useEffect, useState } from 'react';
-import { updateTimer } from '~/config';
+import bankIcon from '@icons/bank.svg';
+import type { IExchangeRatesProps } from '@/types';
 
-import bankIcon from '~/assets/icons/bank.svg';
-
-const CURRENCIES: ICurrenciesParams = {
-  from: 'RUB',
-  to: ['EUR', 'RSD', 'AUD', 'CAD', 'USD', 'CNY'],
-};
-
-function normalizeRate(rate: number): string {
-  return (1 / rate).toFixed(2);
-}
-
-export const ExchangeRates = () => {
-  const [rates, setRates] = useState<Record<string, number> | null>(null);
-  const [date, setDate] = useState<string>('');
-
-  async function loadRates() {
-    try {
-      const data = await fetchCurrency(CURRENCIES);
-      setRates(data.conversion_rates || null);
-      const now = new Date();
-      setDate(now.toLocaleDateString());
-    } catch (error: unknown) {
-      throw new Error(String(error));
-    }
-  }
-
-  useEffect(() => {
-    loadRates();
-
-    const interval = setInterval(() => {
-      loadRates();
-    }, updateTimer);
-
-    return () => clearInterval(interval);
-  }, []);
-
+export const ExchangeRates = ({ rates, date, updateInterval }: IExchangeRatesProps) => {
   return (
     <section className={styles.exchange}>
       <article className={styles.exchange__wrapper}>
@@ -50,7 +13,7 @@ export const ExchangeRates = () => {
           {rates &&
             Object.entries(rates).map(([currency, value]) => (
               <li key={currency} className={styles.exchange__item}>
-                {currency}:<span>{normalizeRate(value)}</span>
+                {currency}:<span>{value}</span>
               </li>
             ))}
         </ul>
@@ -59,8 +22,8 @@ export const ExchangeRates = () => {
         </Link>
       </article>
       <div className={styles.exchange__decorations}>
-        <span className={styles.exchange__date} key={date}>
-          Update every {updateTimer / 60000} minutes, MSC {date}
+        <span className={styles.exchange__date}>
+          Update every {updateInterval} minutes, MSC {date}
         </span>
         <figure className={styles.exchange__figure}>
           <img src={bankIcon} alt="Exchange" className={styles.exchange__image} />

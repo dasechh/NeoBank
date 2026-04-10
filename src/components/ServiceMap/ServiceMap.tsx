@@ -1,5 +1,5 @@
 import styles from './ServiceMap.module.scss';
-import mapImg from '~/assets/images/map-image.svg';
+import mapImg from '@images/map-image.svg';
 
 export const ServiceMap = () => {
   return (

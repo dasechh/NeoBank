@@ -7,6 +7,7 @@
   cursor: pointer;
   white-space: nowrap;
   flex-direction: row;
+  background: transparent;
 
   &_primary {
     color: white;
@@ -17,24 +18,6 @@
     :disabled {
       background-color: #7796c0;
     }
-  }
-
-  &__burgerLine {
-    width: 20px;
-    height: 2px;
-    background: rgb(0, 0, 0);
-    transition: 0.3s ease;
-    transform: none;
-  }
-
-  &_burger {
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 9.5px;
-    justify-content: center;
-    height: min-content;
-    background: none;
   }
 
   &_newsletter {
@@ -50,6 +33,12 @@
     line-height: 127%;
   }
 
+  &_icon {
+    padding: 6px;
+    height: 32px;
+    width: 32px;
+  }
+
   &_md {
     padding: 1rem;
     border-radius: 1rem;
@@ -59,14 +48,6 @@
 
   &_default {
     height: 100%;
-    width: min-content;
+    width: fit-content;
   }
-}
-
-:global(.open) .btn__burgerLine:first-child {
-  transform: translateY(6px) rotate(-45deg);
-}
-
-:global(.open) .btn__burgerLine:last-child {
-  transform: translateY(-6px) rotate(45deg);
 }

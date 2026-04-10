@@ -1,0 +1,10 @@
+export { Button } from './Button';
+export { CardDesignPromo } from './CardDesignPromo';
+export { ExchangeRates } from './ExchangeRates';
+export { Footer } from './Footer';
+export { Header } from './Header';
+export { NewsletterSubscription } from './NewsletterSubscription';
+export { ProvidingFeatures } from './ProvidingFeatures';
+export { ServiceMap } from './ServiceMap';
+export { Support } from './Support';
+export { Spinner } from './Spinner';

@@ -1,13 +1,18 @@
 import styles from './ProvidingFeatures.module.scss';
 
-import featuresImg from '~/assets/images/features-illustration.svg';
-import checkIcon from '~/assets/icons/check.svg';
+import featuresImg from '@images/features-illustration.svg';
+import checkIcon from '@icons/check.svg';
 
-const FEATURES_LIST: string[] = [
-  'Powerfull online protection.',
-  'Cashback without borders.',
-  'Personal design.',
-  'Work anywhere in the world',
+interface IFeature {
+  text: string;
+  id: number;
+}
+
+const FEATURES_LIST: IFeature[] = [
+  { text: 'Powerfull online protection.', id: 1 },
+  { text: 'Cashback without borders.', id: 2 },
+  { text: 'Personal design.', id: 3 },
+  { text: 'Work anywhere in the world', id: 4 },
 ];
 
 export const ProvidingFeatures = () => {
@@ -20,10 +25,10 @@ export const ProvidingFeatures = () => {
           You can explore the features we provide with fun and have their own functions each feature
         </p>
         <ul className={styles.features__items}>
-          {FEATURES_LIST.map((text) => (
-            <li key={text}>
+          {FEATURES_LIST.map((feature) => (
+            <li key={feature.id}>
               <img src={checkIcon} alt="check" aria-hidden="true" />
-              {text}
+              {feature.text}
             </li>
           ))}
         </ul>

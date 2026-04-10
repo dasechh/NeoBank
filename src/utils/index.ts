@@ -1,0 +1,1 @@
+export { normalizeRate } from './normalizeRate';

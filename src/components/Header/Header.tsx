@@ -42,7 +42,7 @@ export const Header = () => {
           <Button
             variant="icon"
             size=""
-            className={clsx(styles.nav__burger, menuOpen && 'open')}
+            className={styles.nav__burger}
             onClick={() => setMenuOpen(!menuOpen)}
           >
             <img src={menuOpen ? burgerButtonCloseSrc : burgerButtonSrc} alt="Menu" />

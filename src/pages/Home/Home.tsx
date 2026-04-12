@@ -1,5 +1,12 @@
 import styles from './Home.module.scss';
-import { ExchangeRates, NewsletterSubscription, CardDesignPromo, ProvidingFeatures, ServiceMap, Support } from '@/components';
+import {
+  ExchangeRates,
+  NewsletterSubscription,
+  CardDesignPromo,
+  ProvidingFeatures,
+  ServiceMap,
+  Support,
+} from '@/components';
 import { useExchangeRates } from '@/hooks';
 
 const CURRENCIES = {

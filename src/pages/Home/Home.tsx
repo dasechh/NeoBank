@@ -1,12 +1,6 @@
 import styles from './Home.module.scss';
-
-import { ExchangeRates } from '@/components/ExchangeRates';
-import { NewsletterSubscription } from '@/components/NewsletterSubscription';
-import { CardDesignPromo } from '@/components/CardDesignPromo';
-import { ProvidingFeatures } from '@/components/ProvidingFeatures';
-import { ServiceMap } from '@/components/ServiceMap';
-import { Support } from '@/components/Support';
-import { useExchangeRates } from '@/hooks/useExchangeRates';
+import { ExchangeRates, NewsletterSubscription, CardDesignPromo, ProvidingFeatures, ServiceMap, Support } from '@/components';
+import { useExchangeRates } from '@/hooks';
 
 const CURRENCIES = {
   from: 'RUB',

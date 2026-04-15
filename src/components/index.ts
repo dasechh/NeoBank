@@ -8,3 +8,5 @@ export { ProvidingFeatures } from './ProvidingFeatures';
 export { ServiceMap } from './ServiceMap';
 export { Support } from './Support';
 export { Spinner } from './Spinner';
+export { Slider } from './Slider';
+export { NewsCard } from './NewsCard';

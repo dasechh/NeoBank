@@ -1,0 +1,48 @@
+.slider {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  &__header {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__description {
+    color: #2d3748;
+    text-wrap: balance;
+  }
+
+  &__list {
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin: 0;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__controls {
+    display: flex;
+    gap: 20px;
+    margin-left: auto;
+    width: fit-content;
+  }
+}

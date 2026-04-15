@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import styles from './Button.module.scss';
 
 interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'newsletter' | '' | 'icon';
+  variant?: 'primary' | 'secondary' | 'newsletter' | '' | 'icon' | 'arrow-left' | 'arrow-right';
   size?: 'sm' | 'md' | 'lg' | 'default' | '';
 }
 

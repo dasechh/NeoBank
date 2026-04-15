@@ -50,4 +50,32 @@
     height: 100%;
     width: fit-content;
   }
+
+  &_arrow-left,
+  &_arrow-right {
+    cursor: pointer;
+    height: 64px;
+    width: 64px;
+
+    background: #003cff;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+    &:disabled {
+      background: white;
+      outline: 1px solid #003cff;
+      outline-offset: -1px;
+      cursor: not-allowed;
+      color: #222222;
+    }
+  }
+
+  &_arrow-left {
+    transform: rotate(180deg);
+  }
 }

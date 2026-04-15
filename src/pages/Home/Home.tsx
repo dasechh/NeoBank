@@ -6,16 +6,32 @@ import {
   ProvidingFeatures,
   ServiceMap,
   Support,
+  Slider,
+  NewsCard,
 } from '@/components';
-import { useExchangeRates } from '@/hooks';
+import { msIn15Minutes, msInMinute, cardSize } from '@/constants';
+import { useExchangeRates, useNews } from '@/hooks';
+import type { IFetchNewsParams } from '@/types';
 
 const CURRENCIES = {
   from: 'RUB',
   to: ['EUR', 'RSD', 'AUD', 'CAD', 'USD', 'CNY'],
 };
 
+const NEWS: IFetchNewsParams = {
+  country: 'us',
+  category: 'business',
+  pageSize: 20,
+};
+
+const { sliderName, sliderDescription } = {
+  sliderName: 'Current news from the world of finance',
+  sliderDescription: `We update the news feed every ${msIn15Minutes / msInMinute} minutes. You can learn more by clicking on the news you are interested in.`,
+};
+
 export const Home = () => {
   const { rates, date, updateInterval } = useExchangeRates(CURRENCIES);
+  const { news } = useNews(NEWS);
   return (
     <main>
       <div className={styles.main + ' container'}>
@@ -23,6 +39,13 @@ export const Home = () => {
         <ProvidingFeatures />
         <ExchangeRates rates={rates} date={date} updateInterval={updateInterval} />
         <ServiceMap />
+        <Slider sliderName={sliderName} sliderDescription={sliderDescription}>
+          {news.map((article) => (
+            <li key={article.id} style={{ width: `${cardSize}px` }}>
+              <NewsCard {...article} />
+            </li>
+          ))}
+        </Slider>
         <Support />
         <NewsletterSubscription subscriptionName="Bank News" />
       </div>

@@ -1,6 +1,5 @@
 import type { INewsArticle } from '@/types';
 import styles from './NewsCard.module.scss';
-import failedImageSrc from '@/assets/icons/failed.svg';
 import { useState } from 'react';
 
 export const NewsCard = ({ url, urlToImage, title, description }: INewsArticle) => {

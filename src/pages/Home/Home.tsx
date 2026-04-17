@@ -21,7 +21,7 @@ const CURRENCIES = {
 const NEWS: IFetchNewsParams = {
   country: 'us',
   category: 'business',
-  pageSize: 20,
+  pageSize: 80,
 };
 
 const { sliderName, sliderDescription } = {
@@ -41,9 +41,7 @@ export const Home = () => {
         <ServiceMap />
         <Slider sliderName={sliderName} sliderDescription={sliderDescription}>
           {news.map((article) => (
-            <li key={article.id}>
-              <NewsCard {...article} />
-            </li>
+            <NewsCard {...article} key={article.id} />
           ))}
         </Slider>
         <Support />

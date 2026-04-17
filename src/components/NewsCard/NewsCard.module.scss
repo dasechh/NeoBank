@@ -22,11 +22,6 @@
     height: 7.5rem;
     object-fit: cover;
     background-color: #d0d0d0;
-
-    &_failed {
-      max-height: 7.5rem;
-      object-fit: contain;
-    }
   }
 
   &__title {

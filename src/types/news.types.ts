@@ -8,9 +8,9 @@ export type TNewsCategory =
   | 'technology';
 
 export interface IFetchNewsParams {
-  country?: string;
-  category?: TNewsCategory;
-  pageSize?: number;
+  country: string;
+  category: TNewsCategory;
+  pageSize: number;
 }
 
 export type TNewsApiResponse =
@@ -26,7 +26,7 @@ export type TNewsApiResponse =
 
 export interface INewsArticle {
   url: string | null;
-  urlToImage: string | null;
+  urlToImage: string;
   title: string | null;
   description: string | null;
   id: string;

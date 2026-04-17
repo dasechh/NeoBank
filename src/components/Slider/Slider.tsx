@@ -1,7 +1,7 @@
 import styles from './Slider.module.scss';
 import { useSliderNavigation } from '@/hooks';
 import { useRef, type ReactNode } from 'react';
-import { Button } from '@/components';
+import { Button, Spinner } from '@/components';
 import Arrow from '@/assets/icons/arrow.svg?react';
 
 interface ISliderProps {
@@ -18,7 +18,7 @@ export const Slider = ({ sliderName, sliderDescription, children, newsLoading }:
   if (!hasChildren) {
     content = (
       <div className={styles.slider__loading}>
-        <span>{newsLoading ? 'Loading' : 'No news available at the moment.'}</span>
+        {newsLoading ? <Spinner /> : 'No news available at the moment.'}
       </div>
     );
   } else {

@@ -12,29 +12,34 @@ interface ISliderProps {
 }
 
 export const Slider = ({ sliderName, sliderDescription, children, newsLoading }: ISliderProps) => {
-  const listRef = useRef<HTMLUListElement>(null);
   const hasChildren = Array.isArray(children) ? children.length > 0 : Boolean(children);
-  const showList = !newsLoading && hasChildren;
-  const { isAtStart, isAtEnd, scrollToNext, scrollToPrev } = useSliderNavigation({ listRef });
   let content;
 
-  if (newsLoading) {
+  if (!hasChildren) {
     content = (
       <div className={styles.slider__loading}>
-        <span>Loading...</span>
+        <span>{newsLoading ? 'Loading' : 'No news available at the moment.'}</span>
       </div>
-    );
-  } else if (hasChildren) {
-    content = (
-      <ul className={styles.slider__list} ref={listRef}>
-        {children}
-      </ul>
     );
   } else {
+    const listRef = useRef<HTMLUListElement>(null);
+    const { isAtStart, isAtEnd, scrollToNext, scrollToPrev } = useSliderNavigation({ listRef });
     content = (
-      <div className={styles.slider__empty}>
-        <span>No news available at the moment.</span>
-      </div>
+      <>
+        <ul className={styles.slider__list} ref={listRef}>
+          {children}
+        </ul>
+
+        <div className={styles.slider__controls}>
+          <Button variant="arrow-left" disabled={isAtStart} onClick={scrollToPrev}>
+            <Arrow />
+          </Button>
+
+          <Button variant="arrow-right" disabled={isAtEnd} onClick={scrollToNext}>
+            <Arrow />
+          </Button>
+        </div>
+      </>
     );
   }
 
@@ -44,18 +49,7 @@ export const Slider = ({ sliderName, sliderDescription, children, newsLoading }:
         {sliderName && <h3>{sliderName}</h3>}
         {sliderDescription && <p className={styles.slider__description}>{sliderDescription}</p>}
       </div>
-
       {content}
-
-      <div className={styles.slider__controls}>
-        <Button variant="arrow-left" disabled={!showList || isAtStart} onClick={scrollToPrev}>
-          <Arrow />
-        </Button>
-
-        <Button variant="arrow-right" disabled={!showList || isAtEnd} onClick={scrollToNext}>
-          <Arrow />
-        </Button>
-      </div>
     </section>
   );
 };

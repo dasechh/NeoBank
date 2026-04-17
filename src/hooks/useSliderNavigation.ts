@@ -40,7 +40,7 @@ export function useSliderNavigation({ listRef }: IUseSliderNavigation) {
     mo.observe(list, { childList: true, subtree: true });
 
     list.addEventListener('scroll', update);
-
+    update();
     return () => {
       list.removeEventListener('scroll', update);
       mo.disconnect();

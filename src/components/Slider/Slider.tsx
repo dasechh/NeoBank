@@ -2,7 +2,6 @@ import styles from './Slider.module.scss';
 import { useSliderNavigation } from '@/hooks';
 import { useRef, type ReactNode } from 'react';
 import { Button } from '@/components';
-import { sliderGap } from '@/constants';
 import Arrow from '@/assets/icons/arrow.svg?react';
 
 interface ISliderProps {
@@ -24,7 +23,7 @@ export const Slider = ({ sliderName, sliderDescription, children }: ISliderProps
         {sliderName && <h3>{sliderName}</h3>}
         {sliderDescription && <p className={styles.slider__description}>{sliderDescription}</p>}
       </div>
-      <ul className={styles.slider__list} ref={listRef} style={{ gap: `${sliderGap}px` }}>
+      <ul className={styles.slider__list} ref={listRef}>
         {children}
       </ul>
       <div className={styles.slider__controls}>

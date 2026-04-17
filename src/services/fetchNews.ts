@@ -1,6 +1,7 @@
 import axios from 'axios';
 import type { IFetchNewsParams, TNewsApiResponse } from '@/types';
 import { newsApiKey, newsApiUrl } from '@/constants';
+import { markupToText } from '@/utils';
 
 export async function fetchNews({
   country,
@@ -32,6 +33,8 @@ export async function fetchNews({
 
     const articles = data.articles.map((article) => ({
       ...article,
+      title: markupToText(article.title || ''),
+      description: markupToText(article.description || ''),
       id: crypto.randomUUID(),
     }));
 

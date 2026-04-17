@@ -9,7 +9,7 @@ import {
   Slider,
   NewsCard,
 } from '@/components';
-import { msIn15Minutes, msInMinute, cardSize } from '@/constants';
+import { msIn15Minutes, msInMinute } from '@/constants';
 import { useExchangeRates, useNews } from '@/hooks';
 import type { IFetchNewsParams } from '@/types';
 
@@ -41,7 +41,7 @@ export const Home = () => {
         <ServiceMap />
         <Slider sliderName={sliderName} sliderDescription={sliderDescription}>
           {news.map((article) => (
-            <li key={article.id} style={{ width: `${cardSize}px` }}>
+            <li key={article.id}>
               <NewsCard {...article} />
             </li>
           ))}

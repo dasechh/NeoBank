@@ -11,6 +11,10 @@ export const NewsCard = ({ url, urlToImage, title, description }: INewsArticle) 
         loading="lazy"
         aria-hidden="true"
         className={urlToImage ? styles.newsCard__image : styles.newsCard__image_failed}
+        onError={(e) => {
+          e.currentTarget.src = failedImageSrc;
+          e.currentTarget.onerror = null;
+        }}
       />
 
       {title && (

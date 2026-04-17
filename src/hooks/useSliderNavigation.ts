@@ -1,4 +1,3 @@
-import { scrollAmount } from '@/constants';
 import { useCallback, useLayoutEffect, useState } from 'react';
 
 interface IUseSliderNavigation {
@@ -8,6 +7,19 @@ interface IUseSliderNavigation {
 export function useSliderNavigation({ listRef }: IUseSliderNavigation) {
   const [isAtStart, setIsAtStart] = useState(true);
   const [isAtEnd, setIsAtEnd] = useState(true);
+
+  const getStep = () => {
+    const list = listRef.current;
+    if (!list) return 0;
+
+    const firstChild = list.firstElementChild as HTMLElement | null;
+    if (!firstChild) return 0;
+
+    const styles = getComputedStyle(list);
+    const gap = parseFloat(styles.gap || '0') || 0;
+
+    return firstChild.offsetWidth + gap;
+  };
 
   const update = useCallback(() => {
     const list = listRef.current;
@@ -36,10 +48,12 @@ export function useSliderNavigation({ listRef }: IUseSliderNavigation) {
   }, [update]);
 
   const scrollToNext = () => {
-    listRef.current?.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    const step = getStep();
+    listRef.current?.scrollBy({ left: step, behavior: 'smooth' });
   };
   const scrollToPrev = () => {
-    listRef.current?.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    const step = getStep();
+    listRef.current?.scrollBy({ left: -step, behavior: 'smooth' });
   };
 
   return { isAtStart, isAtEnd, scrollToNext, scrollToPrev };

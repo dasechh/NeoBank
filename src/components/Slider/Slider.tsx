@@ -8,10 +8,18 @@ interface ISliderProps {
   sliderName?: string;
   sliderDescription?: string;
   children?: ReactNode;
+  newsLoading?: boolean;
 }
 
-export const Slider = ({ sliderName, sliderDescription, children }: ISliderProps) => {
+export const Slider = ({ sliderName, sliderDescription, children, newsLoading }: ISliderProps) => {
   const listRef = useRef<HTMLUListElement>(null);
+  if (!children) {
+    children = (
+      <div>
+        <span>No news available at the moment.</span>
+      </div>
+    );
+  }
 
   const { isAtStart, isAtEnd, scrollToNext, scrollToPrev } = useSliderNavigation({
     listRef,
@@ -23,9 +31,15 @@ export const Slider = ({ sliderName, sliderDescription, children }: ISliderProps
         {sliderName && <h3>{sliderName}</h3>}
         {sliderDescription && <p className={styles.slider__description}>{sliderDescription}</p>}
       </div>
-      <ul className={styles.slider__list} ref={listRef}>
-        {children}
-      </ul>
+      {newsLoading ? (
+        <li className={styles.slider__loading}>
+          <span>Loading...</span>
+        </li>
+      ) : (
+        <ul className={styles.slider__list} ref={listRef}>
+          {children}
+        </ul>
+      )}
       <div className={styles.slider__controls}>
         <Button
           variant="arrow-left"

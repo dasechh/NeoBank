@@ -45,6 +45,12 @@
     }
   }
 
+  &__loading {
+    text-align: center;
+    width: 100%;
+    margin: 1lh;
+  }
+
   &__controls {
     display: flex;
     gap: 20px;

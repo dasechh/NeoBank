@@ -30,16 +30,25 @@ const { sliderName, sliderDescription } = {
 };
 
 export const Home = () => {
-  const { rates, date, updateInterval } = useExchangeRates(CURRENCIES);
-  const { news } = useNews(NEWS);
+  const { rates, date, updateInterval, ratesLoading } = useExchangeRates(CURRENCIES);
+  const { news, loading: newsLoading } = useNews(NEWS);
   return (
     <main>
       <div className={styles.main + ' container'}>
         <CardDesignPromo />
         <ProvidingFeatures />
-        <ExchangeRates rates={rates} date={date} updateInterval={updateInterval} />
+        <ExchangeRates
+          rates={rates}
+          date={date}
+          updateInterval={updateInterval}
+          ratesLoading={ratesLoading}
+        />
         <ServiceMap />
-        <Slider sliderName={sliderName} sliderDescription={sliderDescription}>
+        <Slider
+          sliderName={sliderName}
+          sliderDescription={sliderDescription}
+          newsLoading={newsLoading}
+        >
           {news.map((article) => (
             <NewsCard {...article} key={article.id} />
           ))}

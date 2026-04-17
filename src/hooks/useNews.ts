@@ -5,8 +5,11 @@ import { msIn15Minutes } from '@/constants';
 
 export function useNews(params: IFetchNewsParams) {
   const [news, setNews] = useState<INewsArticle[]>([]);
+  const [loading, setLoading] = useState(true);
 
   async function loadNews() {
+    setLoading(true);
+
     try {
       const data = await fetchNews(params);
       if (data.status === 'ok') {
@@ -16,6 +19,8 @@ export function useNews(params: IFetchNewsParams) {
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -25,5 +30,5 @@ export function useNews(params: IFetchNewsParams) {
     return () => clearInterval(interval);
   }, []);
 
-  return { news };
+  return { news, loading };
 }

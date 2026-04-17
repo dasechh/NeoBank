@@ -17,4 +17,5 @@ export interface IExchangeRatesProps {
   rates: Record<string, number> | null;
   date: string;
   updateInterval: number;
+  ratesLoading: boolean;
 }

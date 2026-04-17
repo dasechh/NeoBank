@@ -6,8 +6,10 @@ import { msIn15Minutes, msInMinute } from '@/constants';
 export function useExchangeRates(currencies: ICurrenciesParams): IExchangeRatesProps {
   const [rates, setRates] = useState<Record<string, number> | null>(null);
   const [date, setDate] = useState<string>('');
+  const [loading, setLoading] = useState(true);
 
   async function loadRates() {
+    setLoading(true);
     try {
       const data = await fetchCurrency(currencies);
       if (data.result === 'error') {
@@ -17,6 +19,8 @@ export function useExchangeRates(currencies: ICurrenciesParams): IExchangeRatesP
       setDate(new Date().toLocaleDateString());
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -26,5 +30,5 @@ export function useExchangeRates(currencies: ICurrenciesParams): IExchangeRatesP
     return () => clearInterval(interval);
   }, []);
 
-  return { rates, date, updateInterval: msIn15Minutes / msInMinute };
+  return { rates, date, ratesLoading: loading, updateInterval: msIn15Minutes / msInMinute };
 }

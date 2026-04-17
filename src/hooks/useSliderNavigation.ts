@@ -12,13 +12,15 @@ export function useSliderNavigation({ listRef }: IUseSliderNavigation) {
     const list = listRef.current;
     if (!list) return 0;
 
-    const firstChild = list.firstElementChild as HTMLElement | null;
-    if (!firstChild) return 0;
+    const first = list.children[0] as HTMLElement;
+    const second = list.children[1] as HTMLElement;
 
-    const styles = getComputedStyle(list);
-    const gap = parseFloat(styles.gap || '0') || 0;
+    if (!first || !second) return first?.offsetWidth || 0;
 
-    return firstChild.offsetWidth + gap;
+    const firstRect = first.getBoundingClientRect();
+    const secondRect = second.getBoundingClientRect();
+
+    return secondRect.left - firstRect.left;
   };
 
   const update = useCallback(() => {

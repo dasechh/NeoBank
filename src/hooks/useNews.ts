@@ -15,15 +15,13 @@ export function useNews({ params, checkImage }: { params: IFetchNewsParams; chec
       const data = await fetchNews(params);
       if (data.status === 'ok') {
         if (checkImage) {
-          const filtered = (
-            await Promise.all(
-              data.articles.map(async (article) => {
-                const isValid = await validateImage(article.urlToImage || '');
-                return isValid ? article : null;
-              }),
-            )
-          ).filter(Boolean);
-          setNews(filtered as INewsArticle[]);
+          const results = await Promise.allSettled(
+            data.articles.map((article) => {
+              return validateImage(article.urlToImage || '');
+            }),
+          );
+          const filtered = data.articles.filter((_, i) => results[i].status === 'fulfilled');
+          setNews(filtered);
         } else setNews(data.articles);
       } else {
         throw new Error(data.message || 'Failed to fetch news');

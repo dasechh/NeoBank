@@ -1,8 +1,9 @@
-export function validateImage(imgSrc: string): Promise<boolean> {
-  return new Promise((resolve) => {
+export function validateImage(imgSrc: string): Promise<void> {
+  return new Promise((resolve, reject) => {
     const img = new Image();
-    img.onload = () => resolve(true);
-    img.onerror = () => resolve(false);
+
+    img.onload = () => resolve();
+    img.onerror = () => reject();
 
     img.src = imgSrc;
   });

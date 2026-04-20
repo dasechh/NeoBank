@@ -21,7 +21,7 @@ const CURRENCIES = {
 const NEWS: IFetchNewsParams = {
   country: 'us',
   category: 'business',
-  pageSize: 80,
+  pageSize: 30,
 };
 
 const { sliderName, sliderDescription } = {
@@ -31,7 +31,7 @@ const { sliderName, sliderDescription } = {
 
 export const Home = () => {
   const { rates, date, updateInterval, ratesLoading } = useExchangeRates(CURRENCIES);
-  const { news, loading: newsLoading } = useNews(NEWS);
+  const { news, loading: newsLoading } = useNews({ params: NEWS, checkImage: true });
   return (
     <main>
       <div className={styles.main + ' container'}>

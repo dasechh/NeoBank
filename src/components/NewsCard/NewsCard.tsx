@@ -1,14 +1,8 @@
 import type { INewsArticle } from '@/types';
 import styles from './NewsCard.module.scss';
-import { useState } from 'react';
+import failedImage from '@/assets/icons/failed.svg';
 
 export const NewsCard = ({ url, urlToImage, title, description }: INewsArticle) => {
-  const [isValidImg, setIsValidImg] = useState(true);
-
-  if (!isValidImg || !urlToImage) {
-    return null;
-  }
-
   return (
     <li className={styles.newsCard}>
       <img
@@ -17,7 +11,9 @@ export const NewsCard = ({ url, urlToImage, title, description }: INewsArticle) 
         loading="lazy"
         aria-hidden="true"
         className={styles.newsCard__image}
-        onError={() => setIsValidImg(false)}
+        onError={(e) => {
+          e.currentTarget.src = failedImage;
+        }}
       />
 
       {title && (

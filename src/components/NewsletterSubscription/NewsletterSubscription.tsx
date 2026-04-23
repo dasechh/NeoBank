@@ -1,20 +1,16 @@
 import styles from './NewsletterSubscription.module.scss';
-
-import { useFetcher } from 'react-router';
 import { Button } from '@/components';
+import { useNewsletterSubscribe } from '@/hooks';
 import letterIconSrc from '@icons/letter.svg';
 import sendIconSrc from '@icons/send.svg';
 
 interface INewsletterSubscriptionProps {
-  onAction?: string;
   subscriptionName?: string;
 }
 
-export const NewsletterSubscription = ({
-  onAction,
-  subscriptionName,
-}: INewsletterSubscriptionProps) => {
-  const fetcher = useFetcher();
+export const NewsletterSubscription = ({ subscriptionName }: INewsletterSubscriptionProps) => {
+  const { isSubscribed, newsletterSubscribeLoading, submitSubscription, subscriptionStatus } =
+    useNewsletterSubscribe('Newsletter');
 
   return (
     <section className={styles.subscribe}>
@@ -27,14 +23,31 @@ export const NewsletterSubscription = ({
           </>
         )}
       </h3>
-      <form action={onAction} className={styles.subscribe__form}>
-        <img src={letterIconSrc} alt="Your email" aria-hidden="true" />
-        <input type="email" placeholder="Your email" className={styles.subscribe__input} />
-        <Button variant="newsletter">
-          <img src={sendIconSrc} alt="Send" />
-          {fetcher.state === 'submitting' ? 'Submitting...' : 'Subscribe'}
-        </Button>
-      </form>
+      {isSubscribed && (
+        <p className={styles.subscribe__success}>
+          You are already subscribed to the bank's newsletter
+        </p>
+      )}
+      {!isSubscribed && (
+        <form onSubmit={submitSubscription} className={styles.subscribe__form}>
+          <img src={letterIconSrc} alt="Your email" aria-hidden="true" />
+          <input
+            type="email"
+            placeholder="Your email"
+            className={styles.subscribe__input}
+            name="email"
+            disabled={newsletterSubscribeLoading}
+            required
+          />
+          <Button variant="newsletter" disabled={newsletterSubscribeLoading} type="submit">
+            <img src={sendIconSrc} alt="Send" />
+            {newsletterSubscribeLoading ? 'Submitting...' : 'Subscribe'}
+          </Button>
+          {subscriptionStatus === 'error' && (
+            <p className={styles.subscribe__error}>Failed to subscribe to newsletter.</p>
+          )}
+        </form>
+      )}
     </section>
   );
 };

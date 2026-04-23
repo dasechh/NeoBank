@@ -6,6 +6,7 @@
   text-align: center;
   align-items: center;
   gap: 3rem;
+  position: relative;
 
   &__heading {
     display: flex;
@@ -51,5 +52,18 @@
     &::placeholder {
       color: #9092b0;
     }
+
+    &:focus {
+      background: transparent;
+    }
+  }
+
+  &__error {
+    display: block;
+    position: absolute;
+    color: red;
+    bottom: 0.75rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(50%);
   }
 }

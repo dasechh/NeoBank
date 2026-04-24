@@ -30,14 +30,16 @@
     white-space: nowrap;
     gap: 2rem;
     margin: 0.8125rem 0;
+  }
 
-    & a {
+  &__link {
+    padding: 0.625rem;
+    transition: color 0.1s;
+
+    &_active {
       padding: 0.625rem;
       transition: color 0.1s;
-      &:active,
-      .active {
-        color: #b2a35f;
-      }
+      color: #b2a35f;
     }
   }
 

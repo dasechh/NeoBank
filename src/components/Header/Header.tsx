@@ -13,10 +13,10 @@ interface INavLink {
 }
 
 const NAV_LINKS: INavLink[] = [
-  { title: 'Credit Card', path: '', id: 1 },
-  { title: 'Product', path: '', id: 2 },
-  { title: 'Account', path: '', id: 3 },
-  { title: 'Resources', path: '', id: 4 },
+  { title: 'Credit Card', path: '/loan', id: 1 },
+  { title: 'Product', path: '/product', id: 2 },
+  { title: 'Account', path: '/account', id: 3 },
+  { title: 'Resources', path: '/resources', id: 4 },
 ];
 
 export const Header = () => {
@@ -31,7 +31,13 @@ export const Header = () => {
           </NavLink>
           <div className={clsx(styles.nav__links, menuOpen && styles['nav__links_opened'])}>
             {NAV_LINKS.map(({ title, path, id }) => (
-              <NavLink to={path} key={id}>
+              <NavLink
+                to={path}
+                key={id}
+                className={({ isActive }) =>
+                  isActive ? styles.nav__link_active : styles.nav__link
+                }
+              >
                 {title}
               </NavLink>
             ))}

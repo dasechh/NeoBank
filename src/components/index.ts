@@ -11,3 +11,5 @@ export { Spinner } from './Spinner';
 export { Slider } from './Slider';
 export { NewsCard } from './NewsCard';
 export { CardPromo } from './CardPromo';
+export { CardBenefits } from './CardBenefits';
+export { Tabs } from './Tabs';

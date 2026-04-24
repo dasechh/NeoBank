@@ -1,6 +1,7 @@
-import { Tabs } from '@/components/Tabs';
+import { Tabs } from '@/components';
 import styles from './Loan.module.scss';
 import { CardPromo } from '@/components';
+
 export const Loan = () => {
   return (
     <main>

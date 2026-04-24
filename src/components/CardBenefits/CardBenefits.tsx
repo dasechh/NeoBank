@@ -1,12 +1,12 @@
 import styles from './CardBenefits.module.scss';
-import { CardBenefitsItem, type IBenefitProps } from './CardBenefitsItem';
+import { CardBenefitsItem, type ICardBenefitsItemProps } from './CardBenefitsItem';
 import moneyIconSrc from '@icons/money_duotone.svg';
 import calendarIconSrc from '@icons/calendar_duotone.svg';
 import clockIconSrc from '@icons/clock_duotone.svg';
 import bagIconSrc from '@icons/bag_duotone.svg';
 import cardIconSrc from '@icons/credit-card_duotone.svg';
 
-const benefitsData: IBenefitProps[] = [
+const benefitsData: ICardBenefitsItemProps[] = [
   {
     iconSrc: moneyIconSrc,
     title: 'Up to 50 000 ₽',
@@ -45,7 +45,7 @@ export const CardBenefits = () => {
     <div className={styles.benefits}>
       {benefitsData.map((benefit) => (
         <CardBenefitsItem
-          id={benefit.id}
+          key={benefit.id}
           iconSrc={benefit.iconSrc}
           title={benefit.title}
           description={benefit.description}

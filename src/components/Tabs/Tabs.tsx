@@ -1,6 +1,6 @@
 import styles from './Tabs.module.scss';
 import { useState } from 'react';
-import { Button, CardBenefits } from '@/components';
+import { Button, CardBenefits, CardRates } from '@/components';
 
 interface ITabsChildren {
   title: string;
@@ -16,7 +16,7 @@ const tabsChildren: ITabsChildren[] = [
   },
   {
     title: 'Rates and conditions',
-    content: <div>Support Content 3</div>,
+    content: <CardRates />,
     id: 1,
   },
   {

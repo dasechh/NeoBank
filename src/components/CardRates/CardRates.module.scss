@@ -1,0 +1,36 @@
+@use '@/styles' as *;
+
+.rates {
+  display: flex;
+  flex-direction: column;
+  letter-spacing: $letter-spacing-base;
+  margin-top: 1rem;
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+    > :not(:last-child) {
+      border-bottom: 1px solid #7f92ac;
+    }
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 1.5rem 0;
+  }
+
+  &__label {
+    display: flex;
+    width: 20.375rem;
+  }
+
+  &__value {
+    display: flex;
+    flex-direction: column;
+    color: #434343;
+  }
+}

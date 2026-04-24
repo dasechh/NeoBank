@@ -12,4 +12,5 @@ export { Slider } from './Slider';
 export { NewsCard } from './NewsCard';
 export { CardPromo } from './CardPromo';
 export { CardBenefits } from './CardBenefits';
+export { CardRates } from './CardRates';
 export { Tabs } from './Tabs';

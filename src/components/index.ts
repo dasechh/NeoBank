@@ -10,3 +10,4 @@ export { Support } from './Support';
 export { Spinner } from './Spinner';
 export { Slider } from './Slider';
 export { NewsCard } from './NewsCard';
+export { CardPromo } from './CardPromo';

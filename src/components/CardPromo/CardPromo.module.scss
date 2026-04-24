@@ -1,0 +1,86 @@
+@use '@/styles' as *;
+
+.cardPromo {
+  display: flex;
+  flex: 1;
+  box-sizing: border-box;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 3rem 2rem;
+  gap: 2rem;
+  border-radius: 1.75rem;
+  background: linear-gradient(
+    180.8deg,
+    rgba(203, 213, 224, 0.624) 34.33%,
+    rgba(254, 235, 200, 0.56) 64.27%
+  );
+  box-shadow:
+    0px 0px 8px rgba(0, 0, 0, 0.08),
+    0px 2px 4px rgba(0, 0, 0, 0.2);
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__title {
+    color: white;
+    letter-spacing: $letter-spacing-base;
+    margin-bottom: 0.5rem;
+  }
+
+  &__title,
+  &__description {
+    max-width: 40.625rem;
+  }
+
+  &__description {
+    line-height: $line-height-small;
+    letter-spacing: $letter-spacing-base;
+    color: #2d3748;
+  }
+
+  &__features {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem 5rem;
+    color: #3d3d3d;
+    line-height: $line-height-small;
+    letter-spacing: $letter-spacing-base;
+    flex-wrap: wrap;
+  }
+
+  &__feature {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__featureTitle {
+    font-weight: 700;
+    font-style: bold;
+    white-space: nowrap;
+    font-size: 1.25rem;
+  }
+
+  &__featureDescription {
+    font-weight: 500;
+    font-size: 1rem;
+    font-style: medium;
+    white-space: nowrap;
+  }
+
+  &__image {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      display: flex;
+      flex: 0 0 auto;
+      border-radius: 1.25rem;
+    }
+  }
+}

@@ -1,43 +1,25 @@
 import styles from './Tabs.module.scss';
 import { useState } from 'react';
-import { Button, CardBenefits, CardRates } from '@/components';
+import { Button } from '@/components';
 
 interface ITabsChildren {
   title: string;
-  content: React.ReactNode;
+  component: React.ComponentType<any>;
   id: number;
+  props?: Record<string, unknown>;
 }
 
-const tabsChildren: ITabsChildren[] = [
-  {
-    title: 'About card',
-    content: <CardBenefits />,
-    id: 0,
-  },
-  {
-    title: 'Rates and conditions',
-    content: <CardRates />,
-    id: 1,
-  },
-  {
-    title: 'Cashback',
-    content: <div>Support Content 4</div>,
-    id: 2,
-  },
-  {
-    title: 'FAQ',
-    content: <div>Support Content 5</div>,
-    id: 3,
-  },
-];
+export const Tabs = ({ data }: { data: ITabsChildren[] }) => {
+  const [activeTab, setActiveTab] = useState<number>(data[0].id);
+  const active = data.find((t) => t.id === activeTab);
+  if (!active) return null;
 
-export const Tabs = () => {
-  const [activeTab, setActiveTab] = useState<number>(tabsChildren[0].id);
+  const Component = active.component;
 
   return (
     <section className={styles.tabs}>
       <div className={styles.tabs__list}>
-        {tabsChildren.map((tab) => {
+        {data.map((tab) => {
           return (
             <Button
               key={tab.id}
@@ -51,7 +33,7 @@ export const Tabs = () => {
         })}
       </div>
       <div className={styles.tabs__content}>
-        {tabsChildren.find((tab) => tab.id === activeTab)?.content}
+        <Component {...active.props} />
       </div>
     </section>
   );

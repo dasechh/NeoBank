@@ -1,12 +1,10 @@
 import styles from './CardBenefits.module.scss';
 
-interface IBenefitProps {
+export interface IBenefitProps {
   iconSrc: string;
   title: string;
   description: string;
-}
-export interface ICardBenefitsItemProps extends IBenefitProps {
-  id: number;
+  id?: string | number;
 }
 
 export const CardBenefitsItem = ({ iconSrc, title, description }: IBenefitProps) => {

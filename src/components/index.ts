@@ -13,4 +13,7 @@ export { NewsCard } from './NewsCard';
 export { CardPromo } from './CardPromo';
 export { CardBenefits } from './CardBenefits';
 export { CardRates } from './CardRates';
-export { Tabs } from './Tabs';
+export { CardCashback } from './CardCashback';
+export { Accordion } from './Accordion';
+export { CardFAQ } from './CardFAQ';
+export { Tabs, benefitsData, ratesData, cashbackData, FAQchildren } from './Tabs';

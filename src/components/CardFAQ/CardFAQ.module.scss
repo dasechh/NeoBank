@@ -1,0 +1,14 @@
+@use '@/styles' as *;
+
+.FAQ {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0;
+  line-height: $line-height-base;
+
+  &__heading {
+    font-weight: 700;
+    font-style: bold;
+    margin-bottom: 2rem;
+  }
+}

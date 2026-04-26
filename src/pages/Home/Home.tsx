@@ -29,7 +29,7 @@ const { sliderName, sliderDescription } = {
   sliderDescription: `We update the news feed every ${msIn15Minutes / msInMinute} minutes. You can learn more by clicking on the news you are interested in.`,
 };
 
-export const Home = () => {
+const Home = () => {
   const { rates, date, updateInterval, ratesLoading } = useExchangeRates(CURRENCIES);
   const { news, loading: newsLoading } = useNews({ params: NEWS, checkImage: true });
   return (
@@ -59,3 +59,5 @@ export const Home = () => {
     </main>
   );
 };
+
+export default Home

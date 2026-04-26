@@ -48,7 +48,7 @@ const tabsChildren: TTabItem<
   },
 ];
 
-export const Loan = () => {
+const Loan = () => {
   return (
     <main>
       <div className={styles.main + ' container'}>
@@ -58,3 +58,5 @@ export const Loan = () => {
     </main>
   );
 };
+
+export default Loan

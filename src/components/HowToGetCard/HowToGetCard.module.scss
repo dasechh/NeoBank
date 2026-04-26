@@ -1,0 +1,57 @@
+@use '@/styles' as *;
+
+.HowToGetCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  align-items: center;
+  line-height: $line-height-base;
+  margin-top: 3rem;
+
+  &__heading {
+    font-weight: 700;
+    font-style: bold;
+    width: fit-content;
+    font-size: 1.875rem;
+  }
+
+  &__steps {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+.HowToGetCardItem {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  justify-content: center;
+  width: 20.875rem;
+
+  &__top {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  &__number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #d9d9d9;
+    font-style: bold;
+    font-weight: 700;
+    font-size: 1.25rem;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    flex: 0 0 auto;
+  }
+
+  &__text {
+    text-align: center;
+  }
+}

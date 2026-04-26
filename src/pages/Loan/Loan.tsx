@@ -10,6 +10,7 @@ import {
   ratesData,
   cashbackData,
   FAQchildren,
+  HowToGetCard,
 } from '@/components';
 
 type TTabItem<T extends React.ComponentType<any>> = {
@@ -54,9 +55,10 @@ const Loan = () => {
       <div className={styles.main + ' container'}>
         <CardPromo />
         <Tabs data={tabsChildren} />
+        <HowToGetCard />
       </div>
     </main>
   );
 };
 
-export default Loan
+export default Loan;

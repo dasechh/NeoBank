@@ -1,4 +1,6 @@
 export { Button } from './Button';
+export { Divider } from './Divider';
+export { HowToGetCard } from './HowToGetCard';
 export { CardDesignPromo } from './CardDesignPromo';
 export { ExchangeRates } from './ExchangeRates';
 export { Footer } from './Footer';

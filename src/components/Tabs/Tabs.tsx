@@ -1,6 +1,6 @@
 import styles from './Tabs.module.scss';
 import { useState } from 'react';
-import { Button } from '@/components';
+import { Button, Divider } from '@/components';
 
 interface ITabsChildren {
   title: string;
@@ -32,6 +32,7 @@ export const Tabs = ({ data }: { data: ITabsChildren[] }) => {
           );
         })}
       </div>
+      <Divider />
       <div className={styles.tabs__content}>
         <Component {...active.props} />
       </div>

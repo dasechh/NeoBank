@@ -6,6 +6,8 @@
     "module": "ES2022",
     "moduleResolution": "bundler",
     "jsx": "react-jsx",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "rootDir": ".",
     "paths": {
       "@/*": ["./src/*"],

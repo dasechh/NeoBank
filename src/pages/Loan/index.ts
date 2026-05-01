@@ -1,1 +1,1 @@
-export { Loan } from './Loan.lazy';
+export { Loan } from './Loan';

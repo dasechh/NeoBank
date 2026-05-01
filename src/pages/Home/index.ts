@@ -1,1 +1,1 @@
-export { Home } from './Home.lazy';
+export { Home } from './Home';

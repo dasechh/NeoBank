@@ -185,7 +185,7 @@ export const Prescoring = () => {
                       errorText={getError('term')}
                       valid={isSubmitted ? !getError('term') : undefined}
                       onChange={(e) => {
-                        field.onChange(e);
+                        field.onChange(Number(e.target.value));
                       }}
                       options={[
                         { value: 6, label: '6 month' },
@@ -246,6 +246,7 @@ export const Prescoring = () => {
                       value={field.value || ''}
                       inputMode="numeric"
                       required
+                      type='number'
                       label="Your passport series"
                       placeholder="0000"
                       errorText={getError('passportSeries')}
@@ -266,6 +267,7 @@ export const Prescoring = () => {
                       value={field.value || ''}
                       inputMode="numeric"
                       required
+                         type='number'
                       label="Your passport number"
                       placeholder="000000"
                       errorText={getError('passportNumber')}

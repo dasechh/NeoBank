@@ -89,13 +89,15 @@ $primary: #5b35d5;
 
   &__text,
   &__email,
-  &__date {
+  &__date,
+  &__number {
     display: flex;
     flex-direction: column;
     position: relative;
 
     &__primary {
       flex: 1 0 $input-width-primary;
+
       &__name {
         margin-bottom: 0.5rem;
       }
@@ -138,8 +140,7 @@ $primary: #5b35d5;
     }
   }
 
-  &__date,
-  &__number {
+  &__date {
     &__primary {
       display: flex;
       flex-direction: column;
@@ -161,7 +162,26 @@ $primary: #5b35d5;
         @include hidden-overlay;
       }
     }
+  }
 
+  &__number {
+    &__primary {
+      &__input {
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          appearance: none;
+          margin: 0;
+        }
+      }
+
+      &__field {
+        display: none;
+      }
+    }
+  }
+
+  &__date,
+  &__number {
     &__empty {
       width: fit-content;
       &__wrapper {
@@ -185,7 +205,6 @@ $primary: #5b35d5;
         &::-webkit-outer-spin-button,
         &::-webkit-inner-spin-button {
           appearance: none;
-
           margin: 0;
         }
         &:focus {

@@ -96,6 +96,10 @@ export const FormInput = ({
             if (inputType === 'date') e.currentTarget.showPicker();
           }}
           onChange={(e) => {
+            if (inputType === 'number') {
+              const onlyNums = e.target.value.replace(/[^0-9]/g, '');
+              e.target.value = onlyNums;
+            }
             onChange?.(e);
             if (inputType === 'range') setRangeProgress(e.currentTarget);
           }}

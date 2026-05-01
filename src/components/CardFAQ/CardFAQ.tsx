@@ -1,36 +1,35 @@
 import styles from './CardFAQ.module.scss';
 import { Accordion } from '@/components';
 
-export interface IFAQAccordion {
-  id?: number | string;
+interface IFAQAccordion {
   title: string;
   description: string;
+  id: number;
 }
 
-export interface IFAQProps {
+interface IFAQProps {
   title: string;
+  id: number;
   accordionsData: IFAQAccordion[];
-  id?: number | string;
 }
 
 export const CardFAQ = ({ data }: { data: IFAQProps[] }) => {
   return (
     <>
-      {data.map((section, index) => (
-        <section className={styles.FAQ} key={section.id || index}>
+      {data.map((section) => (
+        <article className={styles.FAQ} key={section.id}>
           <h3 className={styles.FAQ__heading}>{section.title}</h3>
-          {section.accordionsData.map((item, index) => {
-            const id: string = `${section.id}-${item.id ?? index}`;
+          {section.accordionsData.map((item) => {
             return (
               <Accordion
                 title={item.title}
                 description={item.description}
-                key={id}
+                key={item.id}
                 name="FAQAccordion"
               />
             );
           })}
-        </section>
+        </article>
       ))}
     </>
   );

@@ -1,12 +1,12 @@
 import styles from './Tabs.module.scss';
-import { useState } from 'react';
+import { useState, type ComponentProps, type ElementType } from 'react';
 import { Button, Divider } from '@/components';
 
-interface ITabsChildren {
+export interface ITabsChildren<T extends ElementType = ElementType> {
   title: string;
-  component: React.ComponentType<any>;
+  component: T;
   id: number;
-  props?: Record<string, unknown>;
+  props: ComponentProps<T>;
 }
 
 export const Tabs = ({ data }: { data: ITabsChildren[] }) => {

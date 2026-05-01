@@ -7,15 +7,14 @@
   margin-top: 3rem;
   gap: 2.5rem;
 
-  > .benefit:nth-child(odd) {
+  > *:nth-child(odd) {
     background-color: #eaecee;
   }
 
-  > .benefit:nth-child(even) {
+  > *:nth-child(even) {
     background-color: #7f92acb2;
   }
 }
-
 .benefit {
   display: flex;
   flex-direction: column;

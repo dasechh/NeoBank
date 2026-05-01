@@ -20,6 +20,7 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    gap: 1.25rem;
   }
 }
 
@@ -27,8 +28,8 @@
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  justify-content: center;
-  width: 20.875rem;
+  max-width: 20.875rem;
+  width: 100%;
 
   &__top {
     display: flex;
@@ -53,5 +54,13 @@
 
   &__text {
     text-align: center;
+  }
+}
+
+@media #{$mobile} {
+  .HowToGetCardItem {
+    &__top {
+      flex-direction: column;
+    }
   }
 }

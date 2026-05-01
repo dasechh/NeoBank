@@ -4,11 +4,7 @@ import { useNewsletterSubscribe } from '@/hooks';
 import letterIconSrc from '@icons/letter.svg';
 import sendIconSrc from '@icons/send.svg';
 
-interface INewsletterSubscriptionProps {
-  subscriptionName?: string;
-}
-
-export const NewsletterSubscription = ({ subscriptionName }: INewsletterSubscriptionProps) => {
+export const NewsletterSubscription = ({ subscriptionName }: { subscriptionName?: string }) => {
   const { isSubscribed, newsletterSubscribeLoading, submitSubscription, subscriptionStatus } =
     useNewsletterSubscribe('Newsletter');
 

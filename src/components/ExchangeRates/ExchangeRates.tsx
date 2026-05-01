@@ -1,8 +1,8 @@
 import styles from './ExchangeRates.module.scss';
 import { Link } from 'react-router';
-import bankIcon from '@icons/bank.svg';
 import type { IExchangeRatesProps } from '@/types';
-import { Spinner } from '../Spinner';
+import bankIcon from '@icons/bank.svg';
+import { Spinner } from '@/components';
 
 export const ExchangeRates = ({
   rates,

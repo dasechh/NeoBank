@@ -26,6 +26,8 @@
   &__label {
     display: flex;
     width: 20.375rem;
+    max-width: 30%;
+    padding-right: 1rem;
   }
 
   &__value {

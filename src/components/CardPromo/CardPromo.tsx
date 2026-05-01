@@ -1,28 +1,16 @@
 import styles from './CardPromo.module.scss';
-import { Button } from '@/components';
+import { Button, Tooltip } from '@/components';
+import { scrollToElement } from '@/utils';
 import cardImage from '@images/blue-wave-card-large.jpg';
 
 interface ICardPromoFeature {
   title: string;
   description: string;
+  Tooltip?: string;
   id: number;
 }
 
-const cardPromoFeatures: ICardPromoFeature[] = [
-  { title: 'Up to 160 days', description: 'No percent', id: 1 },
-  {
-    title: 'Up to 600 000 ₽',
-    description: 'Credit limit',
-    id: 2,
-  },
-  {
-    title: '0 ₽',
-    description: 'Card service is free',
-    id: 3,
-  },
-];
-
-export const CardPromo = () => {
+export const CardPromo = ({ data }: { data: ICardPromoFeature[] }) => {
   return (
     <section className={styles.cardPromo}>
       <div className={styles.cardPromo__content}>
@@ -32,14 +20,17 @@ export const CardPromo = () => {
           transfers without comission and interest.
         </p>
         <ul className={styles.cardPromo__features}>
-          {cardPromoFeatures.map((feature) => (
+          {data.map((feature) => (
             <li key={feature.id} className={styles.cardPromo__feature}>
               <span className={styles.cardPromo__featureTitle}>{feature.title}</span>
               <span className={styles.cardPromo__featureDescription}>{feature.description}</span>
+              {feature.Tooltip && (
+                <Tooltip text={feature.Tooltip} className={styles.cardPromo__Tooltip} />
+              )}
             </li>
           ))}
         </ul>
-        <Button variant="primary" size="sm">
+        <Button variant="primary" size="sm" onClick={() => scrollToElement('prescoring')}>
           Apply for card
         </Button>
       </div>

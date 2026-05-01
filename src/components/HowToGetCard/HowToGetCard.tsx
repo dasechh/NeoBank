@@ -1,19 +1,24 @@
 import styles from './HowToGetCard.module.scss';
-import { HowToGetCardItem } from './HowToGetCardItem';
+import { Divider } from '@/components';
 
-const stepsInfo = [
-  'Fill out an online application - you do not need to visit the bank',
-  "Find out the bank's decision immediately after filling out the application",
-  'The bank will deliver the card free of charge, wherever convenient, to your city',
-];
+interface IGetStep {
+  text: string;
+  stepNumber: number;
+}
 
-export const HowToGetCard = () => {
+export const HowToGetCard = ({ data }: { data: IGetStep[] }) => {
   return (
     <section className={styles.HowToGetCard}>
       <h3 className={styles.HowToGetCard__heading}>How to get a card</h3>
       <div className={styles.HowToGetCard__steps}>
-        {stepsInfo.map((text, index) => (
-          <HowToGetCardItem key={index} stepNumber={index + 1} text={text} />
+        {data.map((item) => (
+          <div className={styles.HowToGetCardItem} key={item.text}>
+            <div className={styles.HowToGetCardItem__top}>
+              <div className={styles.HowToGetCardItem__number}>{item.stepNumber}</div>
+              <Divider />
+            </div>
+            <p className={styles.HowToGetCardItem__text}>{item.text}</p>
+          </div>
         ))}
       </div>
     </section>

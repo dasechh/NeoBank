@@ -1,0 +1,1 @@
+export { RequiredStar } from './RequiredStar';

@@ -2,7 +2,7 @@ import styles from './Slider.module.scss';
 import { useSliderNavigation } from '@/hooks';
 import { useRef, type ReactNode } from 'react';
 import { Button, Spinner } from '@/components';
-import Arrow from '@/assets/icons/arrow.svg?react';
+import Arrow from '@icons/arrow.svg?react';
 
 interface ISliderProps {
   sliderName?: string;

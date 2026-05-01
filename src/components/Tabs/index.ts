@@ -1,2 +1,1 @@
-export { Tabs } from './Tabs';
-export { benefitsData, ratesData, cashbackData, FAQchildren } from './Tabs.data';
+export { Tabs, type ITabsChildren } from './Tabs';

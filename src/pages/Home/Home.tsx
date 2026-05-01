@@ -10,6 +10,7 @@ import {
   NewsCard,
 } from '@/components';
 import { msIn15Minutes, msInMinute } from '@/constants';
+import { cardDesigns, providingFeatures } from '@/data';
 import { useExchangeRates, useNews } from '@/hooks';
 import type { IFetchNewsParams } from '@/types';
 
@@ -29,14 +30,14 @@ const { sliderName, sliderDescription } = {
   sliderDescription: `We update the news feed every ${msIn15Minutes / msInMinute} minutes. You can learn more by clicking on the news you are interested in.`,
 };
 
-const Home = () => {
+export const Home = () => {
   const { rates, date, updateInterval, ratesLoading } = useExchangeRates(CURRENCIES);
   const { news, loading: newsLoading } = useNews({ params: NEWS, checkImage: true });
   return (
     <main>
       <div className={styles.main + ' container'}>
-        <CardDesignPromo />
-        <ProvidingFeatures />
+        <CardDesignPromo data={cardDesigns} />
+        <ProvidingFeatures data={providingFeatures} />
         <ExchangeRates
           rates={rates}
           date={date}

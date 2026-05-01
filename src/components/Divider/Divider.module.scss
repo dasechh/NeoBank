@@ -2,6 +2,14 @@
 
 .divider {
   width: 100%;
-  height: 2px;
-  background: #80808033;
+  outline: solid 1px #80808040;
+
+  &_dashed {
+    outline: dashed 1px #80808040;
+  }
+
+  &_vertical {
+    height: 100%;
+    width: 0;
+  }
 }

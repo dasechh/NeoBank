@@ -1,0 +1,205 @@
+@use '@/styles' as *;
+
+$text-muted: #808080;
+$primary: #5b35d5;
+
+@mixin input-base {
+  min-width: $input-width-primary;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 16px;
+  background: #f9f5e3;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  font-size: 0.875rem;
+  font-weight: 400;
+  box-shadow: inset 0 0 0 1px rgba(128, 128, 128, 0.2);
+}
+
+@mixin input-error {
+  box-shadow: inset 0 0 0 2px $input-error;
+  padding: 13px 48px 13px 16px;
+}
+
+@mixin input-valid {
+  padding: 13px 48px 13px 16px;
+}
+
+@mixin hidden-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.input {
+  &__range {
+    &__primary {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid $primary;
+      border-radius: 0.625rem;
+      padding: 1.5rem 1.5rem 2.625rem;
+
+      &__name {
+        margin-bottom: 1.25rem;
+      }
+
+      &__field {
+        margin-bottom: 0.625rem;
+      }
+
+      &__input {
+        width: 100%;
+        height: 4px;
+        appearance: none;
+        margin: 10px 0 12px;
+        @include range-fill($primary, #e2e8f0);
+
+        &::-webkit-slider-thumb {
+          appearance: none;
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          cursor: grab;
+          background-color: $primary;
+        }
+
+        &::-moz-range-thumb {
+          appearance: none;
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          cursor: grab;
+          background-color: $primary;
+        }
+      }
+
+      &__minmax {
+        display: flex;
+        justify-content: space-between;
+        color: #786d6d;
+      }
+    }
+  }
+
+  &__text,
+  &__email,
+  &__date {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    &__primary {
+      flex: 1 0 $input-width-primary;
+      &__name {
+        margin-bottom: 0.5rem;
+      }
+
+      &__wrapper {
+        position: relative;
+      }
+
+      &__input {
+        @include input-base;
+        margin-bottom: 2px;
+
+        &_valid {
+          @include input-valid();
+        }
+
+        &_error {
+          @include input-error;
+        }
+
+        &:focus {
+          box-shadow: inset 0 0 0 2px $primary;
+        }
+      }
+
+      &__icon {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &__error {
+        color: $input-error;
+      }
+
+      ::placeholder {
+        color: $text-muted;
+      }
+    }
+  }
+
+  &__date,
+  &__number {
+    &__primary {
+      display: flex;
+      flex-direction: column;
+      flex: 1 0 $input-width-primary;
+
+      &__field {
+        @include input-base;
+
+        &_empty {
+          color: $text-muted;
+        }
+
+        &_error {
+          @include input-error;
+        }
+      }
+
+      &__input {
+        @include hidden-overlay;
+      }
+    }
+
+    &__empty {
+      width: fit-content;
+      &__wrapper {
+        position: relative;
+      }
+
+      &__field {
+        width: 13.75rem;
+        border: none;
+        padding-bottom: 0.625rem;
+        border-bottom: 1px solid #80808033;
+        appearance: none;
+        box-shadow: none;
+        outline: none;
+      }
+
+      &__input {
+        @include hidden-overlay;
+        font: inherit;
+        color: inherit;
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          appearance: none;
+
+          margin: 0;
+        }
+        &:focus {
+          opacity: 1;
+          width: 13.75rem;
+          padding-bottom: 0.625rem;
+          border: none;
+          border-bottom: 1px solid #80808033;
+          box-shadow: none;
+          outline: none;
+          box-sizing: border-box;
+          text-align: inherit;
+        }
+      }
+    }
+  }
+}

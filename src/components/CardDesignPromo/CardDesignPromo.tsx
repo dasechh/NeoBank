@@ -1,26 +1,13 @@
 import styles from './CardDesignPromo.module.scss';
-
-import waveImg from '@images/blue-particles-card.jpg';
-import sphereImg from '@images/blue-sphere-card.jpg';
-import neonImg from '@images/neon-lines-card.jpg';
-import particlesImg from '@images/blue-particles-card.jpg';
-
 import { Button } from '@/components';
 
-interface ICardProps {
+interface ICardDesignPromoProps {
   id: string;
   src: string;
   title: string;
 }
 
-const CARD_DESIGNS: ICardProps[] = [
-  { id: 'wave', src: waveImg, title: 'Blue wave card' },
-  { id: 'sphere', src: sphereImg, title: 'Blue sphere card' },
-  { id: 'neon', src: neonImg, title: 'Neon lines card' },
-  { id: 'particles', src: particlesImg, title: 'Blue particles card' },
-];
-
-export const CardDesignPromo = () => {
+export const CardDesignPromo = ({ data }: { data: ICardDesignPromoProps[] }) => {
   return (
     <section className={styles.cardsPromo}>
       <div className={styles.cardsPromo__content}>
@@ -32,7 +19,7 @@ export const CardDesignPromo = () => {
         </Button>
       </div>
       <div className={styles.cardsPromo__list}>
-        {CARD_DESIGNS.map((card) => (
+        {data.map((card) => (
           <img src={card.src} key={card.id} alt={card.title} className={styles.cardsPromo__image} />
         ))}
       </div>

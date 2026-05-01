@@ -1,4 +1,4 @@
-import { subscribeToNewsletter } from '@/services';
+import { postData } from '@/services';
 import React, { useState } from 'react';
 
 type TSubscribeType = 'Newsletter';
@@ -15,10 +15,10 @@ export function useNewsletterSubscribe(type: TSubscribeType) {
     e.preventDefault();
     setNewsletterSubscribeLoading(true);
 
-    const formData = new FormData(e.currentTarget);
-    const subscribeResult = await subscribeToNewsletter(formData.get('email') as string);
+    const formData = new FormData(e.currentTarget).get('email');
+    const subscribeResult = await postData('/email', { formData });
 
-    if (subscribeResult && subscribeResult === true) {
+    if (subscribeResult && subscribeResult.statusText === 'OK') {
       setIsSubscribed(true);
       setSubscriptionStatus('success');
       localStorage.setItem(`${type}Subscribed`, 'true');

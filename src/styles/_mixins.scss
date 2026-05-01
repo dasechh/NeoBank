@@ -1,0 +1,9 @@
+@mixin range-fill($left, $right) {
+  background: linear-gradient(
+    to right,
+    #{$left} 0%,
+    #{$left} var(--progress, 0%),
+    #{$right} var(--progress, 0%),
+    #{$right} 100%
+  );
+}

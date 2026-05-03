@@ -53,7 +53,7 @@ export const FormInput = ({
     if (inputType === 'range' && inputRef.current) {
       setRangeProgress(inputRef.current);
     }
-  }, []);
+  }, [value]);
 
   return (
     <div
@@ -101,7 +101,6 @@ export const FormInput = ({
               e.target.value = onlyNums;
             }
             onChange?.(e);
-            if (inputType === 'range') setRangeProgress(e.currentTarget);
           }}
           className={clsx(
             classString('input'),

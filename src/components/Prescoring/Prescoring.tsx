@@ -43,7 +43,7 @@ export const Prescoring = () => {
       form.setError('form', { message: 'An error occured. Try again later.' });
       return;
     }
-  };
+  }; // По заданию пока больше не просят, поэтому для удобства сделано так, потом согласно заданию будет изменено
 
   return (
     <FormProvider {...form}>
@@ -246,7 +246,7 @@ export const Prescoring = () => {
                       value={field.value || ''}
                       inputMode="numeric"
                       required
-                      type='number'
+                      type="number"
                       label="Your passport series"
                       placeholder="0000"
                       errorText={getError('passportSeries')}
@@ -267,7 +267,7 @@ export const Prescoring = () => {
                       value={field.value || ''}
                       inputMode="numeric"
                       required
-                         type='number'
+                      type="number"
                       label="Your passport number"
                       placeholder="000000"
                       errorText={getError('passportNumber')}

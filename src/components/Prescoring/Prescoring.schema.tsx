@@ -4,12 +4,12 @@ import { z } from 'zod';
 export const prescoringSchema = z.object({
   lastName: z
     .string()
-    .min(3, 'Enter your last name')
+    .min(2, 'Enter your last name')
     .regex(/^[A-Za-z-]+$/, 'Only Latin letters are allowed'),
 
   firstName: z
     .string()
-    .min(3, 'Enter your first name')
+    .min(2, 'Enter your first name')
     .regex(/^[A-Za-z-]+$/, 'Only Latin letters are allowed'),
 
   middleName: z
@@ -41,8 +41,8 @@ export const prescoringSchema = z.object({
 
   passportSeries: z
     .string()
-    .length(4, 'The number must be 6 digits')
-    .regex(/^\d+$/, 'Numbers only'),
+    .length(4, 'The series must be 4 digits')
+    .regex(/^\d+$/, 'The series must be 4 digits'),
 
   passportNumber: z
     .string()

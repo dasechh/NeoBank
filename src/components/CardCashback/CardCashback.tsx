@@ -3,7 +3,7 @@ import styles from './CardCashback.module.scss';
 interface ICashbackItem {
   title: string;
   description: string;
-  id: number
+  id: number;
 }
 
 export const CardCashback = ({ data }: { data: ICashbackItem[] }) => {

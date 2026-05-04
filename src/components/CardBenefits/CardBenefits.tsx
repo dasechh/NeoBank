@@ -4,7 +4,7 @@ interface IBenefitProps {
   iconSrc: string;
   title: string;
   description: string;
-  id: number
+  id: number;
 }
 
 export const CardBenefits = ({ data }: { data: IBenefitProps[] }) => {

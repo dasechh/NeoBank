@@ -1,6 +1,5 @@
 import styles from './CardRates.module.scss';
 
-
 interface IRate {
   label: string;
   value: string[];

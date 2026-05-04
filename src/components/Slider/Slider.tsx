@@ -13,6 +13,8 @@ interface ISliderProps {
 
 export const Slider = ({ sliderName, sliderDescription, children, newsLoading }: ISliderProps) => {
   const hasChildren = Array.isArray(children) ? children.length > 0 : Boolean(children);
+  const listRef = useRef<HTMLUListElement>(null);
+  const { isAtStart, isAtEnd, scrollToNext, scrollToPrev } = useSliderNavigation({ listRef });
   let content;
 
   if (!hasChildren) {
@@ -22,8 +24,6 @@ export const Slider = ({ sliderName, sliderDescription, children, newsLoading }:
       </div>
     );
   } else {
-    const listRef = useRef<HTMLUListElement>(null);
-    const { isAtStart, isAtEnd, scrollToNext, scrollToPrev } = useSliderNavigation({ listRef });
     content = (
       <>
         <ul className={styles.slider__list} ref={listRef}>

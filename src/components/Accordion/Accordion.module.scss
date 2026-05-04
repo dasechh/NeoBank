@@ -5,8 +5,13 @@
   flex-direction: column;
   outline: 1px solid #e2e8f0;
 
-  &:open .accordion__expandArrow {
+  .accordion__expandArrow {
     transform: rotate(-180deg);
+    transition: transform 0.3s ease;
+  }
+
+  &:open .accordion__expandArrow {
+    transform: rotate(-360deg);
     transition: transform 0.3s ease;
   }
 

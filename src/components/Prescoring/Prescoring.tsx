@@ -1,10 +1,11 @@
 import styles from './Prescoring.module.scss';
 import { Controller, FormProvider, useForm, type SubmitHandler } from 'react-hook-form';
-import { Button, Divider, Spinner, FormInput, FormSelect, FormSlider } from '@/components';
+import { Button, Divider, Spinner, FormInput, FormSlider } from '@/components';
 import { postData } from '@/services';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { prescoringSchema, type TPrescoringSchemaInput } from './Prescoring.schema';
 import { normalizeNumber } from '@/utils';
+import { contactFields } from './PrescoringContacts';
 
 export const Prescoring = () => {
   const form = useForm<TPrescoringSchemaInput>({
@@ -113,166 +114,35 @@ export const Prescoring = () => {
             <div className={styles.contact}>
               <h4 className={styles.contact__heading}>Contact information</h4>
               <div className={styles.contact__inputs}>
-                <Controller
-                  name="lastName"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormInput
-                      {...field}
-                      value={field.value}
-                      required
-                      label="Your last name"
-                      placeholder="For example Doe"
-                      errorText={getError('lastName')}
-                      valid={isSubmitted ? !getError('lastName') : undefined}
-                      onChange={(e) => {
-                        field.onChange(e);
-                      }}
+                {contactFields.map(({ component, props, id }) => {
+                  const DynamicComponent = component as React.ElementType;
+                  return (
+                    <Controller
+                      key={id}
+                      name={props.name}
+                      control={form.control}
+                      render={({ field }) => (
+                        <DynamicComponent
+                          {...props}
+                          {...field}
+                          errorText={getError(props.name)}
+                          value={field.value || ''}
+                          valid={isSubmitted ? !getError(props.name) : undefined}
+                          onChange={(
+                            e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+                          ) => {
+                            const val = e.target.value;
+                            if (props.name === 'term') {
+                              field.onChange(Number(val));
+                            } else {
+                              field.onChange(val);
+                            }
+                          }}
+                        />
+                      )}
                     />
-                  )}
-                />
-
-                <Controller
-                  name="firstName"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormInput
-                      {...field}
-                      value={field.value}
-                      required
-                      label="Your first name"
-                      placeholder="For example John"
-                      errorText={getError('firstName')}
-                      valid={isSubmitted ? !getError('firstName') : undefined}
-                      onChange={(e) => {
-                        field.onChange(e);
-                      }}
-                    />
-                  )}
-                />
-
-                <Controller
-                  name="middleName"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormInput
-                      {...field}
-                      value={field.value || ''}
-                      label="Your patronymic"
-                      placeholder="For example Victorovich"
-                      errorText={getError('middleName')}
-                      valid={isSubmitted ? !getError('middleName') : undefined}
-                      onChange={(e) => {
-                        field.onChange(e);
-                      }}
-                    />
-                  )}
-                />
-
-                <Controller
-                  name="term"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormSelect
-                      label="Select term"
-                      value={field.value}
-                      required
-                      errorText={getError('term')}
-                      valid={isSubmitted ? !getError('term') : undefined}
-                      onChange={(e) => {
-                        field.onChange(Number(e.target.value));
-                      }}
-                      options={[
-                        { value: 6, label: '6 month', id: 6 },
-                        { value: 12, label: '12 month', id: 12 },
-                        { value: 18, label: '18 month', id: 18 },
-                        { value: 24, label: '24 month', id: 24 },
-                      ]}
-                    />
-                  )}
-                />
-
-                <Controller
-                  name="email"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormInput
-                      {...field}
-                      value={field.value || ''}
-                      type="email"
-                      required
-                      label="Your email"
-                      placeholder="test@gmail.com"
-                      errorText={getError('email')}
-                      valid={isSubmitted ? !getError('email') : undefined}
-                      onChange={(e) => {
-                        field.onChange(e);
-                      }}
-                    />
-                  )}
-                />
-
-                <Controller
-                  name="birthdate"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormInput
-                      {...field}
-                      value={field.value || ''}
-                      type="date"
-                      required
-                      label="Your date of birth"
-                      placeholder="Select date"
-                      errorText={getError('birthdate')}
-                      valid={isSubmitted ? !getError('birthdate') : undefined}
-                      onChange={(e) => {
-                        field.onChange(e);
-                      }}
-                    />
-                  )}
-                />
-
-                <Controller
-                  name="passportSeries"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormInput
-                      {...field}
-                      value={field.value || ''}
-                      inputMode="numeric"
-                      required
-                      type="number"
-                      label="Your passport series"
-                      placeholder="0000"
-                      errorText={getError('passportSeries')}
-                      valid={isSubmitted ? !getError('passportSeries') : undefined}
-                      onChange={(e) => {
-                        field.onChange(e);
-                      }}
-                    />
-                  )}
-                />
-
-                <Controller
-                  name="passportNumber"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormInput
-                      {...field}
-                      value={field.value || ''}
-                      inputMode="numeric"
-                      required
-                      type="number"
-                      label="Your passport number"
-                      placeholder="000000"
-                      errorText={getError('passportNumber')}
-                      valid={isSubmitted ? !getError('passportNumber') : undefined}
-                      onChange={(e) => {
-                        field.onChange(e);
-                      }}
-                    />
-                  )}
-                />
+                  );
+                })}
               </div>
             </div>
 

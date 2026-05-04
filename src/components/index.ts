@@ -2,7 +2,6 @@ export { Accordion } from './Accordion';
 export { Button } from './Button';
 export { Tooltip } from './Tooltip';
 export { Divider } from './Divider';
-export { RequiredStar } from './RequiredStar';
 export { FormSelect } from './FormSelect';
 export { FormInput } from './FormInput';
 export { Spinner } from './Spinner';

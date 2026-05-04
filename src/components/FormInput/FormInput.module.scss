@@ -35,6 +35,10 @@ $primary: #5b35d5;
 }
 
 .input {
+  &__star {
+    color: #ff0000;
+  }
+
   &__range {
     &__primary {
       display: flex;

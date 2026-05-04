@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import { useId, type SelectHTMLAttributes } from 'react';
 import styles from './FormSelect.module.scss';
 import expandIconSrc from '@icons/expand_down.svg';
-import { RequiredStar } from '@/components';
 
 interface ISelectOption {
   label: string;
@@ -34,7 +33,7 @@ export const FormSelect = ({
       {label && (
         <label htmlFor={id} className={styles.select__name}>
           {label}
-          {required && <RequiredStar />}
+          {required && <span className={styles.select__star}> *</span>}
         </label>
       )}
 

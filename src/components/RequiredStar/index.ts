@@ -1,1 +1,0 @@
-export { RequiredStar } from './RequiredStar';

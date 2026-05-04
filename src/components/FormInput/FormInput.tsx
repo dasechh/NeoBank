@@ -3,7 +3,6 @@ import { useEffect, useRef, type InputHTMLAttributes } from 'react';
 import styles from './FormInput.module.scss';
 import checkIconSrc from '@icons/check_fill.svg';
 import closeIconSrc from '@icons/close_fill.svg';
-import { RequiredStar } from '@/components';
 import { formatNumber, setRangeProgress } from '@/utils';
 
 interface IFormInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -66,7 +65,7 @@ export const FormInput = ({
       {label && (
         <label className={classString('name')}>
           {label}
-          {required && <RequiredStar />}
+          {required && <span className={styles.input__star}> *</span>}
         </label>
       )}
 

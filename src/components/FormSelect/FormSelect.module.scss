@@ -8,6 +8,10 @@
   color: black;
   flex: 1 0 $input-width-primary;
 
+  &__star {
+    color: #ff0000;
+  }
+
   &__name {
     margin-bottom: 0.5rem;
   }

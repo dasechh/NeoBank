@@ -1,6 +1,6 @@
 import styles from './Prescoring.module.scss';
 import { Controller, FormProvider, useForm, type SubmitHandler } from 'react-hook-form';
-import { Button, Divider, Spinner, FormInput, FormSelect } from '@/components';
+import { Button, Divider, Spinner, FormInput, FormSelect, FormSlider } from '@/components';
 import { postData } from '@/services';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { prescoringSchema, type TPrescoringSchemaInput } from './Prescoring.schema';
@@ -70,14 +70,13 @@ export const Prescoring = () => {
                   name="amount"
                   control={form.control}
                   render={({ field }) => (
-                    <FormInput
+                    <FormSlider
                       {...field}
-                      type="range"
                       label="Select amount"
                       min={15000}
                       max={600000}
                       step={1}
-                      value={field.value}
+                      value={field.value || 0}
                       onChange={(e) => {
                         field.onChange(e.target.valueAsNumber);
                       }}
@@ -101,12 +100,9 @@ export const Prescoring = () => {
                       inputMode="numeric"
                       value={field.value}
                       onChange={(e) => {
-                        field.onChange(e.target.valueAsNumber);
-                      }}
-                      onBlur={(e) => {
-                        const currentValue = e.target.value;
-                        const next = normalizeNumber(currentValue, 15000, 600000);
-                        field.onChange(next);
+                        let val = e.target.value;
+                        if (val === '') return field.onChange('');
+                        field.onChange(normalizeNumber(val, 0, 600000));
                       }}
                     />
                   )}
@@ -116,7 +112,6 @@ export const Prescoring = () => {
 
             <div className={styles.contact}>
               <h4 className={styles.contact__heading}>Contact information</h4>
-
               <div className={styles.contact__inputs}>
                 <Controller
                   name="lastName"

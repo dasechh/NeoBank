@@ -1,9 +1,9 @@
 import clsx from 'clsx';
-import { useEffect, useRef, type InputHTMLAttributes } from 'react';
+import { useRef, type InputHTMLAttributes } from 'react';
 import styles from './FormInput.module.scss';
 import checkIconSrc from '@icons/check_fill.svg';
 import closeIconSrc from '@icons/close_fill.svg';
-import { formatNumber, setRangeProgress } from '@/utils';
+import { formatNumber } from '@/utils';
 
 interface IFormInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -40,19 +40,13 @@ export const FormInput = ({
       return String(value).split('-').reverse().join('-');
     }
 
-    if (inputType === 'number' || inputType === 'range') {
+    if (inputType === 'number') {
       const formatted = formatNumber(Number(value));
       return inputType === 'number' ? `${formatted} ₽` : formatted;
     }
 
     return placeholder;
   };
-
-  useEffect(() => {
-    if (inputType === 'range' && inputRef.current) {
-      setRangeProgress(inputRef.current);
-    }
-  }, [value]);
 
   return (
     <div
@@ -70,7 +64,7 @@ export const FormInput = ({
       )}
 
       <div className={classString('wrapper')}>
-        {(inputType === 'date' || inputType === 'range' || inputType === 'number') && (
+        {(inputType === 'date' || inputType === 'number') && (
           <div
             className={clsx(
               classString('field'),
@@ -107,13 +101,6 @@ export const FormInput = ({
             valid === false && classString('input_error'),
           )}
         />
-
-        {(min || max) && (
-          <div className={classString('minmax')}>
-            {min && <span>{formatNumber(Number(min))}</span>}
-            {max && <span>{formatNumber(Number(max))}</span>}
-          </div>
-        )}
 
         {valid !== undefined && <img className={classString('icon')} src={iconSrc} alt="" />}
       </div>

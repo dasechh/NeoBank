@@ -22,4 +22,5 @@ export { CardRates } from './CardRates';
 export { CardCashback } from './CardCashback';
 export { CardFAQ } from './CardFAQ';
 export { Tabs, type ITabsChildren } from './Tabs';
+export { FormSlider } from './FormSlider';
 export { Prescoring } from './Prescoring';

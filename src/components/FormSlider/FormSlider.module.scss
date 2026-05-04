@@ -1,0 +1,69 @@
+@use '@/styles' as *;
+$primary: #5b35d5;
+
+.slider {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid $primary;
+  border-radius: 0.625rem;
+  padding: 1.5rem 1.5rem 2.625rem;
+
+  &__label {
+    display: block;
+    margin-bottom: 1.25rem;
+  }
+
+  &__wrapper {
+    position: relative;
+  }
+
+  &__value {
+    display: block;
+    margin-bottom: 0.625rem;
+  }
+
+  &__input {
+    width: 100%;
+    height: 4px;
+    appearance: none;
+    margin: 10px 0 20px;
+    @include range-fill($primary, #e2e8f0);
+
+    &::-webkit-slider-thumb {
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: grab;
+      background-color: $primary;
+    }
+
+    &::-moz-range-thumb {
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: grab;
+      background-color: $primary;
+    }
+  }
+
+  &__min {
+    position: absolute;
+    left: 0;
+    transform: translateY(50%);
+    bottom: 4px;
+    color: #786d6d;
+  }
+
+  &__max {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    bottom: 4px;
+    transform: translateY(50%);
+    color: #786d6d;
+  }
+}

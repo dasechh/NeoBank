@@ -58,13 +58,13 @@
     position: relative;
 
     &:hover {
-      .cardPromo__Tooltip {
+      .cardPromo__tooltip {
         display: block;
       }
     }
   }
 
-  &__Tooltip {
+  &__tooltip {
     position: absolute;
     top: calc(100% + 6px);
     left: 0;

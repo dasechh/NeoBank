@@ -6,7 +6,7 @@ import cardImage from '@images/blue-wave-card-large.jpg';
 interface ICardPromoFeature {
   title: string;
   description: string;
-  Tooltip?: string;
+  tooltip?: string;
   id: number;
 }
 
@@ -24,8 +24,8 @@ export const CardPromo = ({ data }: { data: ICardPromoFeature[] }) => {
             <li key={feature.id} className={styles.cardPromo__feature}>
               <span className={styles.cardPromo__featureTitle}>{feature.title}</span>
               <span className={styles.cardPromo__featureDescription}>{feature.description}</span>
-              {feature.Tooltip && (
-                <Tooltip text={feature.Tooltip} className={styles.cardPromo__Tooltip} />
+              {feature.tooltip && (
+                <Tooltip text={feature.tooltip} className={styles.cardPromo__tooltip} />
               )}
             </li>
           ))}

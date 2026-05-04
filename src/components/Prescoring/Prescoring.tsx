@@ -188,10 +188,10 @@ export const Prescoring = () => {
                         field.onChange(Number(e.target.value));
                       }}
                       options={[
-                        { value: 6, label: '6 month' },
-                        { value: 12, label: '12 month' },
-                        { value: 18, label: '18 month' },
-                        { value: 24, label: '24 month' },
+                        { value: 6, label: '6 month', id: 6 },
+                        { value: 12, label: '12 month', id: 12 },
+                        { value: 18, label: '18 month', id: 18 },
+                        { value: 24, label: '24 month', id: 24 },
                       ]}
                     />
                   )}

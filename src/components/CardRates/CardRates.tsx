@@ -1,8 +1,10 @@
 import styles from './CardRates.module.scss';
 
+
 interface IRate {
   label: string;
   value: string[];
+  id: number;
 }
 
 export const CardRates = ({ data }: { data: IRate[] }) => {
@@ -10,7 +12,7 @@ export const CardRates = ({ data }: { data: IRate[] }) => {
     <table className={styles.rates}>
       <tbody className={styles.rates__body}>
         {data.map((rate) => (
-          <tr key={rate.label} className={styles.rates__row}>
+          <tr key={rate.id} className={styles.rates__row}>
             <th scope="row" className={styles.rates__label}>
               {rate.label}
             </th>

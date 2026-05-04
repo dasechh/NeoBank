@@ -7,6 +7,7 @@ import { RequiredStar } from '@/components';
 interface ISelectOption {
   label: string;
   value: string | number;
+  id: number;
 }
 
 interface IFormSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
@@ -49,7 +50,7 @@ export const FormSelect = ({
           )}
         >
           {options.map((opt) => (
-            <option key={opt.value} value={opt.value}>
+            <option key={opt.id} value={opt.value}>
               {opt.label}
             </option>
           ))}

@@ -4,6 +4,7 @@ import { Divider } from '@/components';
 interface IGetStep {
   text: string;
   stepNumber: number;
+  id: number;
 }
 
 export const HowToGetCard = ({ data }: { data: IGetStep[] }) => {
@@ -12,7 +13,7 @@ export const HowToGetCard = ({ data }: { data: IGetStep[] }) => {
       <h3 className={styles.HowToGetCard__heading}>How to get a card</h3>
       <div className={styles.HowToGetCard__steps}>
         {data.map((item) => (
-          <div className={styles.HowToGetCardItem} key={item.text}>
+          <div className={styles.HowToGetCardItem} key={item.id}>
             <div className={styles.HowToGetCardItem__top}>
               <div className={styles.HowToGetCardItem__number}>{item.stepNumber}</div>
               <Divider />

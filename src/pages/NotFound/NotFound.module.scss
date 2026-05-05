@@ -1,0 +1,43 @@
+@use '@/styles' as *;
+
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  line-height: $line-height-small;
+  padding-top: 1.5rem;
+  padding-bottom: 6rem;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+  }
+
+  &__oops {
+    font-weight: 700;
+    font-size: 1.875rem;
+    color: #1c1c1e;
+    font-style: bold;
+  }
+
+  &__error {
+    font-weight: 500;
+    font-size: 1.875rem;
+    color: black;
+    font-style: medium;
+  }
+
+  &__description {
+    font-weight: 500;
+    font-size: 1rem;
+    color: #4b4b4b;
+  }
+
+  &__button {
+    width: 12rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+  }
+}

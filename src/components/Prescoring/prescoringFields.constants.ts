@@ -3,7 +3,7 @@ import { FormInput, FormSelect } from '@/components';
 import type { TFormField } from '@/types';
 import type { TPrescoringSchemaInput } from './Prescoring.schema';
 
-export const contactFields = [
+export const prescoringFields = [
   {
     component: FormInput,
     id: 1,

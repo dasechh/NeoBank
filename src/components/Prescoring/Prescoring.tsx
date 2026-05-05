@@ -5,7 +5,7 @@ import { postData } from '@/services';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { prescoringSchema, type TPrescoringSchemaInput } from './Prescoring.schema';
 import { normalizeNumber } from '@/utils';
-import { contactFields } from './PrescoringContacts';
+import { prescoringFields } from './prescoringFields.constants';
 
 export const Prescoring = () => {
   const form = useForm<TPrescoringSchemaInput>({
@@ -103,7 +103,7 @@ export const Prescoring = () => {
                       onChange={(e) => {
                         let val = e.target.value;
                         if (val === '') return field.onChange('');
-                        field.onChange(normalizeNumber(val, 0, 600000));
+                        field.onChange(normalizeNumber(val, 15000, 600000));
                       }}
                     />
                   )}
@@ -114,7 +114,7 @@ export const Prescoring = () => {
             <div className={styles.contact}>
               <h4 className={styles.contact__heading}>Contact information</h4>
               <div className={styles.contact__inputs}>
-                {contactFields.map(({ component, props, id }) => {
+                {prescoringFields.map(({ component, props, id }) => {
                   const DynamicComponent = component as React.ElementType;
                   return (
                     <Controller

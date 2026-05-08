@@ -5,6 +5,7 @@ import styles from './Button.module.scss';
 interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?:
     | 'primary'
+    | 'deny'
     | 'secondary'
     | 'newsletter'
     | ''
@@ -16,7 +17,13 @@ interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button = ({ className, variant = '', size = '', ...props }: IButtonProps) => {
-  const classes = clsx(styles.btn, styles[`btn_${variant}`], styles[`btn_${size}`], className);
+  const classes = clsx(
+    styles.btn,
+    styles[`btn_${variant}`],
+    styles[`btn_${size}`],
+    props.disabled && styles.btn_disabled,
+    className,
+  );
 
   return (
     <button className={classes} {...props}>

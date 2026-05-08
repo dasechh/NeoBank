@@ -1,11 +1,15 @@
 import styles from './Prescoring.module.scss';
 import { Controller, FormProvider, useForm, type SubmitHandler } from 'react-hook-form';
-import { Button, Divider, Spinner, FormInput, FormSlider } from '@/components';
-import { postData } from '@/services';
+import { Button, Divider, Spinner, FormInput, FormSlider, FormLabel } from '@/components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { prescoringSchema, type TPrescoringSchemaInput } from './Prescoring.schema';
 import { normalizeNumber } from '@/utils';
 import { prescoringFields } from './prescoringFields.constants';
+import { postData } from '@/services';
+import type { IApplicationOffer } from '@/types';
+import { useDispatch } from 'react-redux';
+import { setOffers, setStatus } from '@/store';
+import { getOffersURL } from '@/constants';
 
 export const Prescoring = () => {
   const form = useForm<TPrescoringSchemaInput>({
@@ -24,7 +28,7 @@ export const Prescoring = () => {
       passportNumber: '',
     },
   });
-
+  const dispatch = useDispatch();
   const isSubmitted = form.formState.isSubmitted;
   const getError = (name: keyof TPrescoringSchemaInput) => {
     return form.formState.errors[name]?.message;
@@ -32,19 +36,22 @@ export const Prescoring = () => {
 
   const onSubmit: SubmitHandler<TPrescoringSchemaInput> = async (data) => {
     try {
-      const response = await postData('/application', data);
-
-      if (!response) {
-        console.error('Ошибка при отправке');
-        return;
-      }
-
-      console.log('Успешно:', response);
+      const response = await postData(getOffersURL, data);
+      const offers = response.data
+        .slice()
+        .sort((a: IApplicationOffer, b: IApplicationOffer) => b.monthlyPayment - a.monthlyPayment)
+        .map((offer: IApplicationOffer, index: number) => ({
+          ...offer,
+          offerId: index,
+        }));
+      dispatch(setOffers(offers));
+      dispatch(setStatus('PREAPPROVAL'));
     } catch (error) {
-      form.setError('form', { message: 'An error occured. Try again later.' });
-      return;
+      form.setError('form', {
+        message: 'An error occured. Try again later.',
+      });
     }
-  }; // По заданию пока больше не просят, поэтому для удобства сделано так, потом согласно заданию будет изменено
+  };
 
   return (
     <FormProvider {...form}>
@@ -56,16 +63,11 @@ export const Prescoring = () => {
       >
         {form.formState.isSubmitting ? (
           <Spinner />
-        ) : form.formState.isSubmitSuccessful ? (
-          <span>Submitted succesfully</span>
         ) : (
           <>
             <div className={styles.prescoring__top}>
               <div className={styles.prescoring__left}>
-                <div className={styles.prescoring__head}>
-                  <h3 className={styles.prescoring__heading}>Customize your card</h3>
-                  <span className={styles.prescoring__step}>Step 1 of 5</span>
-                </div>
+                <FormLabel labelText="Customize your card" labelInfo="Step 1 of 5" gapWith="lg" />
 
                 <Controller
                   name="amount"
@@ -126,7 +128,7 @@ export const Prescoring = () => {
                           {...props}
                           {...field}
                           errorText={getError(props.name)}
-                          value={field.value || ''}
+                          value={field.value ?? ''}
                           valid={isSubmitted ? !getError(props.name) : undefined}
                           onChange={(
                             e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,

@@ -1,0 +1,28 @@
+.label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  &_sm {
+    gap: 5rem;
+  }
+
+  &_md {
+    gap: 7.5rem;
+  }
+
+  &_lg {
+    justify-content: space-between;
+  }
+
+  &__step {
+    white-space: nowrap;
+  }
+
+  &__heading {
+    font-weight: 700;
+    font-style: bold;
+    font-size: 1.875rem;
+  }
+}

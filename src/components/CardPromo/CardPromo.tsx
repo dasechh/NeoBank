@@ -2,6 +2,7 @@ import styles from './CardPromo.module.scss';
 import { Button, Tooltip } from '@/components';
 import { scrollToElement } from '@/utils';
 import cardImage from '@images/blue-wave-card-large.jpg';
+import { useNavigate } from 'react-router';
 
 interface ICardPromoFeature {
   title: string;
@@ -10,7 +11,18 @@ interface ICardPromoFeature {
   id: number;
 }
 
-export const CardPromo = ({ data }: { data: ICardPromoFeature[] }) => {
+interface ICardPromoProps {
+  items: ICardPromoFeature[];
+  button: {
+    text: string;
+    target: string;
+    type: 'scroll' | 'navigate';
+  };
+}
+
+export const CardPromo = ({ data }: { data: ICardPromoProps }) => {
+  const navigate = useNavigate();
+
   return (
     <section className={styles.cardPromo}>
       <div className={styles.cardPromo__content}>
@@ -20,7 +32,7 @@ export const CardPromo = ({ data }: { data: ICardPromoFeature[] }) => {
           transfers without comission and interest.
         </p>
         <ul className={styles.cardPromo__features}>
-          {data.map((feature) => (
+          {data.items.map((feature) => (
             <li key={feature.id} className={styles.cardPromo__feature}>
               <span className={styles.cardPromo__featureTitle}>{feature.title}</span>
               <span className={styles.cardPromo__featureDescription}>{feature.description}</span>
@@ -30,8 +42,16 @@ export const CardPromo = ({ data }: { data: ICardPromoFeature[] }) => {
             </li>
           ))}
         </ul>
-        <Button variant="primary" size="sm" onClick={() => scrollToElement('prescoring')}>
-          Apply for card
+        <Button
+          variant="primary"
+          size="sm"
+          onClick={
+            data.button.type === 'scroll'
+              ? () => scrollToElement(data.button.target)
+              : () => navigate(data.button.target)
+          }
+        >
+          {data.button.text}
         </Button>
       </div>
       <div className={styles.cardPromo__image}>

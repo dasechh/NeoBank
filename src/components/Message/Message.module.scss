@@ -1,0 +1,31 @@
+@use '@/styles' as *;
+
+.message {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  background: transparent;
+  box-sizing: border-box;
+  border-radius: 10px;
+  text-align: center;
+  padding: 1.5rem;
+  justify-content: center;
+  letter-spacing: $letter-spacing-base;
+
+  &_border {
+    border: 1px solid #5b35d5;
+  }
+
+  &__heading {
+    font-weight: 700;
+    font-style: bold;
+    font-size: 1.875rem;
+    color: #1c1c1e;
+  }
+
+  &__description {
+    line-height: $line-height-small;
+    color: #4f5665;
+  }
+}

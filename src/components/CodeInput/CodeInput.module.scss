@@ -1,0 +1,42 @@
+@use '@/styles' as *;
+
+.input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  &__item {
+    height: 3rem;
+    width: 3rem;
+    border: 1px solid #808080;
+    border-radius: 8px;
+    background-color: transparent;
+    color: black;
+    background-image: url('@/assets/icons/circle.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    letter-spacing: $letter-spacing-base;
+    font-size: 1.25rem;
+    text-align: center;
+
+    &:focus {
+      border: 1px solid #3182ce;
+      background-image: none;
+    }
+
+    &:not(:placeholder-shown) {
+      background-image: none;
+    }
+  }
+
+  &__error {
+    margin-top: 1rem;
+    color: $input-error;
+  }
+}

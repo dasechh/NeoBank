@@ -3,3 +3,8 @@ export const currencyExchangeUrl: string = `https://v6.exchangerate-api.com/v6/$
 export const newsApiKey: string = '3dde56ea9e6c44ddb1bb982a6598b68d';
 export const newsApiUrl: string = 'https://newsapi.org/v2/top-headlines';
 export const apiBaseUrl: string = 'http://localhost:8080';
+export const submitScheduleURL = (id: string | number) => `/document/${id}`;
+export const denyScheduleURL = (id: string | number) => `/application/${id}/deny`;
+export const selectOfferURL = '/application/apply';
+export const getOffersURL = '/application';
+export const submitScoringUrl = (id: string | number) => `/application/registration/${id}`;

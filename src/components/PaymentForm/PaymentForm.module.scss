@@ -1,0 +1,112 @@
+@use '@/styles' as *;
+
+.payment {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-shadow:
+    0px 2px 4px 0px #00000033,
+    0px 0px 8px 0px #00000014;
+  border-radius: 28px;
+  padding: 2rem;
+  gap: 2.75rem;
+
+  &__button {
+    height: 2.5rem;
+    width: 6rem;
+    border-radius: 8px;
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__submisson {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    gap: 2.5rem;
+    align-items: center;
+  }
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+
+  &__wrapper {
+    background: white;
+    width: 28rem;
+    box-sizing: border-box;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    line-height: $line-height-base;
+    letter-spacing: $letter-spacing-base;
+  }
+
+  &__heading {
+    color: #1c1c1e;
+    font-weight: 700;
+    font-style: bold;
+    margin-bottom: 1rem;
+  }
+
+  &__description {
+    color: #1a202c;
+    letter-spacing: normal;
+    min-height: 2lh;
+  }
+
+  &__top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 2.5rem;
+    justify-content: flex-end;
+
+    & button {
+      height: 2.5rem;
+      width: 6rem;
+      border-radius: 8px;
+    }
+
+    &_denied {
+      display: flex;
+      justify-content: flex-end;
+      & button {
+        height: 2.5rem;
+        border-radius: 8px;
+        width: 8rem;
+      }
+    }
+  }
+}
+
+@media #{$tablet} {
+  .payment {
+    &__bottom {
+      align-items: flex-start;
+    }
+
+    &__submisson {
+      flex-direction: column-reverse;
+      align-items: flex-end;
+      width: 50%;
+    }
+  }
+}

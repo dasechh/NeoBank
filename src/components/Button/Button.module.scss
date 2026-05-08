@@ -11,6 +11,13 @@
   flex-direction: row;
   background: transparent;
 
+  &:disabled {
+    cursor: not-allowed;
+    background-color: #7796c0;
+    cursor: not-allowed;
+    color: #ffffff;
+  }
+
   &_primary {
     color: white;
     background-color: #003cff;
@@ -60,6 +67,15 @@
         bottom: -1px;
       }
     }
+  }
+
+  &_deny {
+    background-color: #d93737cc;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: $line-height-small;
+    letter-spacing: $letter-spacing-base;
   }
 
   &_icon {

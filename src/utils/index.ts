@@ -6,3 +6,4 @@ export { formatNumber } from './formatNumber';
 export { scrollToElement } from './scrollToElement';
 export { getAge } from './getAge';
 export { normalizeNumber } from './normalizeNumber';
+export { applicationLoader } from './applicationLoader';

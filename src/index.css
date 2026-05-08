@@ -82,6 +82,10 @@ p {
   font-size: 1rem;
 }
 
+main {
+  min-height: 500px;
+}
+
 .container {
   box-sizing: border-box;
   max-width: 1400px;

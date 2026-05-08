@@ -1,0 +1,33 @@
+@use '@/styles' as *;
+
+.table {
+  letter-spacing: $letter-spacing-base;
+  border-collapse: collapse;
+  text-align: left;
+  font-weight: 500;
+  font-style: medium;
+  font-size: 0.75rem;
+  line-height: $line-height-base;
+
+  & td,
+  th {
+    border-bottom: 1px solid #e2e8f0;
+    height: 2.5rem;
+  }
+
+  &__topItem {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  &__head {
+    color: #4a5568;
+    cursor: pointer;
+  }
+
+  &__body {
+    color: #1a202c;
+  }
+}

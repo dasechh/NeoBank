@@ -32,11 +32,6 @@
     display: flex;
     width: 100%;
     flex-direction: column;
-    gap: 2rem;
-  }
-
-  &__step {
-    white-space: nowrap;
   }
 
   &__right {
@@ -49,18 +44,6 @@
       font-style: bold;
       margin-bottom: 1rem;
     }
-  }
-
-  &__head {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  &__heading {
-    font-weight: 700;
-    font-weight: bold;
   }
 
   &__button {

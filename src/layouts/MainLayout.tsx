@@ -1,5 +1,5 @@
 import { useNavigation, Outlet } from 'react-router';
-import { Spinner, Header, Footer } from '@/components';
+import { Header, Footer, Loader } from '@/components';
 
 export const MainLayout = () => {
   const navigation = useNavigation();
@@ -9,13 +9,7 @@ export const MainLayout = () => {
     <>
       <Header />
 
-      {isNavigating && (
-        <div>
-          <Spinner />
-        </div>
-      )}
-
-      <Outlet />
+      {isNavigating ? <Loader /> : <Outlet />}
 
       <Footer />
     </>

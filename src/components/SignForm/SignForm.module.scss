@@ -1,0 +1,32 @@
+@use '@/styles' as *;
+
+.sign {
+  display: flex;
+  flex-direction: column;
+  line-height: $line-height-small;
+
+  &__description {
+    font-size: 1.25rem;
+    color: #4f5665;
+  }
+
+  &__document {
+    display: inline-flex;
+    align-items: center;
+    margin: 1rem 0 2rem;
+    font-size: 1.25rem;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+    margin-left: auto;
+  }
+
+  &__button {
+    height: 2.5rem;
+    width: 10rem;
+    border-radius: 8px;
+  }
+}

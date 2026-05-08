@@ -23,6 +23,7 @@ export const FormSelect = ({
   valid,
   required,
   children,
+  onChange,
   ...props
 }: IFormSelectProps) => {
   const generatedId = useId();
@@ -47,9 +48,12 @@ export const FormSelect = ({
             errorText && styles.select_error,
             valid && styles.select_valid,
           )}
+          onChange={(e) => {
+            onChange?.(e);
+          }}
         >
           {options.map((opt) => (
-            <option key={opt.id} value={opt.value}>
+            <option key={opt.id} value={opt.value} disabled={!opt.value}>
               {opt.label}
             </option>
           ))}
@@ -61,7 +65,7 @@ export const FormSelect = ({
       </div>
 
       {errorText && (
-        <span className={styles.error_message} role="alert">
+        <span className={styles.select__error_message} role="alert">
           {errorText}
         </span>
       )}

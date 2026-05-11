@@ -23,22 +23,15 @@ export const applicationSlice = createSlice({
       state.status = action.payload;
       localStorage.setItem('status', action.payload);
     },
-    setOffers(state, action: PayloadAction<IApplicationOffer[]>) {
+    setOffers(state, action: PayloadAction<IApplicationOffer[] | null>) {
       state.offers = action.payload;
       localStorage.setItem('offers', JSON.stringify(action.payload));
     },
-    selectOffer(state, action: PayloadAction<IApplicationOffer>) {
+    selectOffer(state, action: PayloadAction<IApplicationOffer | null>) {
       state.selectedOffer = action.payload;
       localStorage.setItem('selectedOffer', JSON.stringify(action.payload));
-    },
-    clearStorage(state) {
-      state.offers = null;
-      state.selectedOffer = null;
-
-      localStorage.removeItem('offers');
-      localStorage.removeItem('selectedOffer');
     },
   },
 });
 
-export const { setStatus, setOffers, selectOffer, clearStorage } = applicationSlice.actions;
+export const { setStatus, setOffers, selectOffer } = applicationSlice.actions;

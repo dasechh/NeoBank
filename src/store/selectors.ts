@@ -1,4 +1,4 @@
-import type { RootState } from '@/store/storeConfig';
+import type { RootState } from '@/store';
 
 export const selectStatus = (state: RootState) => state.application.status;
 

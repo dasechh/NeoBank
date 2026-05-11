@@ -1,8 +1,6 @@
 import styles from './Scoring.module.scss';
-import { ScoringForm } from '@/components';
-import { Message } from '@/components/Message';
-import { useApplication } from '@/hooks/useApplication';
-
+import { ScoringForm, Message } from '@/components';
+import { useApplication } from '@/hooks';
 import { Navigate, useLoaderData, useParams } from 'react-router';
 
 export const Scoring = () => {
@@ -24,15 +22,12 @@ export const Scoring = () => {
     return <Navigate to="NotFound" replace />;
   }
 
+  const showMessage = data.status === 'APPROVED' && status === 'APPROVED';
+
   return (
-    <main>
-      <div className={styles.main + ' container'}>
-        {data.status === 'APPROVED' && status === 'APPROVED' ? (
-          <ScoringForm />
-        ) : (
-          <Message data={messageData} />
-        )}
-      </div>
+    <main className={styles.main + ' container'}>
+      {showMessage && <ScoringForm />}
+      {!showMessage && <Message data={messageData} />}
     </main>
   );
 };

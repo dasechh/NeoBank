@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Button, Checkbox, FormLabel, Table, Spinner } from '@/components';
 import styles from './PaymentForm.module.scss';
-import { postData } from '@/services';
 import { useNavigate } from 'react-router';
 import CloseIcon from '@icons/close_square.svg?react';
 import { useDispatch } from 'react-redux';
@@ -9,49 +8,49 @@ import { setStatus } from '@/store';
 import clsx from 'clsx';
 import { denyScheduleURL, submitScheduleURL } from '@/constants';
 import { paymentColumns, denyModalText, labelProps } from './PaymentForm.config';
-import { useApplication } from '@/hooks';
+import { useApplication, useDataLoader } from '@/hooks';
 
 interface IPaymentFormProps {
   data: Record<string, string | number>[];
 }
 
 export const PaymentForm = ({ data }: IPaymentFormProps) => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [modalLoading, setModalLoading] = useState<boolean>(false);
-  const [denied, setDenied] = useState<boolean>(false);
-  const [signed, setSigned] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [signed, setSigned] = useState(false);
   const { selectedOffer } = useApplication();
-  const applicationId = selectedOffer?.applicationId;
-  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const applicationId = selectedOffer?.applicationId;
   if (!applicationId) {
     throw new Error('No application id');
   }
 
-  const submitSchedule = async () => {
-    setLoading(true);
+  const submitSchedule = useDataLoader<number>({
+    method: 'POST',
+    endpoint: submitScheduleURL(applicationId),
+  });
+
+  const denyApplication = useDataLoader<number>({
+    method: 'POST',
+    endpoint: denyScheduleURL(applicationId),
+  });
+
+  const handleSubmit = async () => {
     try {
-      await postData(submitScheduleURL(applicationId), applicationId);
+      await submitSchedule.serverResponse(applicationId);
       dispatch(setStatus('PREPARE_DOCUMENTS'));
     } catch (error) {
       console.error(error);
-    } finally {
-      setLoading(false);
     }
   };
 
   const handleDeny = async () => {
-    setModalLoading(true);
     try {
-      await postData(denyScheduleURL(applicationId), applicationId);
-      setDenied(true);
+      await denyApplication.serverResponse(applicationId);
       dispatch(setStatus('CLIENT_DENIED'));
     } catch (error) {
       console.error(error);
-    } finally {
-      setModalLoading(false);
     }
   };
 
@@ -60,38 +59,47 @@ export const PaymentForm = ({ data }: IPaymentFormProps) => {
       {isModalOpen && (
         <div className={styles.modal}>
           <div className={styles.modal__wrapper}>
-            {modalLoading ? (
-              <Spinner />
-            ) : (
+            {denyApplication.responseLoading && <Spinner />}
+            {!denyApplication.responseLoading && (
               <>
                 <div className={styles.modal__top}>
                   <h4 className={styles.modal__heading}>{denyModalText.title}</h4>
                   <Button
                     onClick={() => {
-                      !denied ? setIsModalOpen(false) : navigate('/');
+                      !denyApplication.responseData ? setIsModalOpen(false) : navigate('/');
                     }}
                   >
                     <CloseIcon />
                   </Button>
                 </div>
+
                 <p className={styles.modal__description}>
-                  {!denied ? denyModalText.confirmText : denyModalText.successText}
+                  {!denyApplication.responseData
+                    ? denyModalText.confirmText
+                    : denyModalText.successText}
                 </p>
+
                 <div
-                  className={clsx(styles.modal__buttons, denied && styles.modal__buttons_denied)}
+                  className={clsx(
+                    styles.modal__buttons,
+                    denyApplication.responseData && styles.modal__buttons_denied,
+                  )}
                 >
-                  {!denied && (
+                  {!denyApplication.responseData && (
                     <Button onClick={handleDeny} variant="deny">
                       {denyModalText.denyButton}
                     </Button>
                   )}
+
                   <Button
                     onClick={() => {
-                      !denied ? setIsModalOpen(false) : navigate('/');
+                      !denyApplication.responseData ? setIsModalOpen(false) : navigate('/');
                     }}
                     variant="primary"
                   >
-                    {!denied ? denyModalText.cancelButton : denyModalText.goHomeButton}
+                    {!denyApplication.responseData
+                      ? denyModalText.cancelButton
+                      : denyModalText.goHomeButton}
                   </Button>
                 </div>
               </>
@@ -99,10 +107,17 @@ export const PaymentForm = ({ data }: IPaymentFormProps) => {
           </div>
         </div>
       )}
-      <div className={styles.payment}>
-        {loading ? (
-          <Spinner />
-        ) : (
+
+      <form
+        className={styles.payment}
+        noValidate
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit();
+        }}
+      >
+        {submitSchedule.responseLoading && <Spinner />}
+        {!submitSchedule.responseLoading && (
           <>
             <FormLabel
               labelText={labelProps.labelText}
@@ -123,16 +138,13 @@ export const PaymentForm = ({ data }: IPaymentFormProps) => {
                 <Checkbox
                   label="I agree with the payment schedule"
                   required
-                  onChange={(value) => {
-                    setSigned(value);
-                  }}
+                  onChange={(v) => setSigned(v)}
                 />
                 <Button
                   variant="primary"
                   className={styles.payment__button}
                   type="submit"
                   disabled={!signed}
-                  onClick={submitSchedule}
                 >
                   Send
                 </Button>
@@ -140,7 +152,7 @@ export const PaymentForm = ({ data }: IPaymentFormProps) => {
             </div>
           </>
         )}
-      </div>
+      </form>
     </>
   );
 };

@@ -6,17 +6,6 @@ import type { TPrescoringSchemaInput } from './Prescoring.schema';
 export const prescoringFields = [
   {
     component: FormInput,
-    id: 1,
-    props: {
-      name: 'firstName',
-      label: 'Your first name',
-      placeholder: 'For example John',
-      type: 'text',
-      required: true,
-    },
-  },
-  {
-    component: FormInput,
     id: 0,
     props: {
       name: 'lastName',
@@ -26,7 +15,17 @@ export const prescoringFields = [
       required: true,
     },
   },
-
+  {
+    component: FormInput,
+    id: 1,
+    props: {
+      name: 'firstName',
+      label: 'Your first name',
+      placeholder: 'For example John',
+      type: 'text',
+      required: true,
+    },
+  },
   {
     component: FormInput,
     id: 2,

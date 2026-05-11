@@ -82,8 +82,8 @@ export const Table = ({ data, columns }: ITableProps) => {
       </thead>
 
       <tbody className={styles.table__body}>
-        {sortedData.map((row, index) => (
-          <tr key={index}>
+        {sortedData.map((row) => (
+          <tr key={`${row.number}-${row.date}`}>
             {columns.map((column) => (
               <td key={column.key}>{String(row[column.key])}</td>
             ))}

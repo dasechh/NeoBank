@@ -1,12 +1,7 @@
 import { Loader } from '@/components';
 import { MainLayout } from '@/layouts';
-import { Loan, Home, NotFound } from '@/pages';
-import { Code } from '@/pages/Code';
-import { Document } from '@/pages/Document';
-import { Scoring } from '@/pages/Scoring';
-import { Sign } from '@/pages/Sign';
-
-import { applicationLoader } from '@/utils/applicationLoader';
+import { Loan, Home, NotFound, Code, Document, Scoring, Sign } from '@/pages';
+import { applicationLoader } from '@/utils';
 import { createBrowserRouter } from 'react-router';
 
 export const router = createBrowserRouter([

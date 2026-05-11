@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
 import styles from './CodeInput.module.scss';
-import { postData } from '@/services';
 import { useDispatch } from 'react-redux';
 import { setStatus } from '@/store';
 import { Message, Spinner } from '@/components';
+import { useDataLoader } from '@/hooks';
 
 interface ICodeInputProps {
   length: number;
@@ -11,67 +11,75 @@ interface ICodeInputProps {
 }
 
 export const CodeInput = ({ length = 4, submitURL }: ICodeInputProps) => {
-  const [values, setValues] = useState(Array.from({ length }, () => ''));
-  const [loading, setLoading] = useState<Boolean>(false);
-  const inputsRef = useRef<(HTMLInputElement | null)[]>([]);
+  const [values, setValues] = useState(() =>
+    Array.from({ length }, (_, index) => ({
+      id: index,
+      value: '',
+    })),
+  );
   const [error, setError] = useState<null | string>(null);
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
   const dispatch = useDispatch();
+  const { responseLoading, serverResponse } = useDataLoader({
+    method: 'POST',
+    endpoint: submitURL,
+  });
 
   const submitCode = async (code: string) => {
-    setLoading(true);
     try {
-      await postData(submitURL, Number(code));
+      await serverResponse(Number(code));
       setError(null);
       dispatch(setStatus('CREDIT_ISSUED'));
-    } catch (error) {
+    } catch {
       setError('Invalid confirmation code');
-    } finally {
-      setLoading(false);
     }
   };
 
   const handleChange = async (value: string, index: number) => {
     if (!/^\d?$/.test(value)) return;
-    const newValues = [...values];
-    newValues[index] = value;
-    setValues(newValues);
-    const code = newValues.join('');
-
-    if (code.length === length) {
-      await submitCode(code);
-    }
+    const next = [...values];
+    next[index] = {
+      ...next[index],
+      value,
+    };
+    setValues(next);
 
     if (value && index < length - 1) {
-      inputsRef.current[index + 1]?.focus();
+      inputRefs.current[index + 1]?.focus();
+    }
+
+    const code = next.map((i) => i.value).join('');
+
+    if (code.length === length && !next.some((i) => i.value === '')) {
+      await submitCode(code);
     }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
-    if (e.key === 'Backspace' && !values[index] && index > 0) {
-      inputsRef.current[index - 1]?.focus();
+    if (e.key === 'Backspace' && !values[index].value && index > 0) {
+      inputRefs.current[index - 1]?.focus();
     }
   };
 
   return (
     <section className={styles.input}>
       <Message data={{ headingText: 'Please enter your confirmation code' }} />
-      {loading ? (
-        <Spinner />
-      ) : (
+      {responseLoading && <Spinner />}
+      {!responseLoading && (
         <>
           <div className={styles.input__wrapper}>
-            {values.map((value, index) => (
+            {values.map((value) => (
               <input
-                key={index}
-                ref={(element) => {
-                  inputsRef.current[index] = element;
+                key={value.id}
+                ref={(el) => {
+                  inputRefs.current[value.id] = el;
                 }}
                 placeholder=" "
-                value={value}
+                value={value.value}
                 maxLength={1}
                 inputMode="numeric"
-                onChange={(e) => handleChange(e.target.value, index)}
-                onKeyDown={(e) => handleKeyDown(e, index)}
+                onChange={(e) => handleChange(e.target.value, value.id)}
+                onKeyDown={(e) => handleKeyDown(e, value.id)}
                 className={styles.input__item}
               />
             ))}

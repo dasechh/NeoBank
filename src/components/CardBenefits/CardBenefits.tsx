@@ -12,7 +12,7 @@ export const CardBenefits = ({ data }: { data: IBenefitProps[] }) => {
     <div className={styles.benefits}>
       {data.map((item) => (
         <div className={styles.benefit} key={item.id}>
-          <img src={item.iconSrc} className={styles.benefit__icon} aria-hidden="true" />
+          <img src={item.iconSrc} className={styles.benefit__icon} aria-hidden="true" alt="" />
           <span className={styles.benefit__title}>{item.title}</span>
           <p className={styles.benefit__description}>{item.description}</p>
         </div>

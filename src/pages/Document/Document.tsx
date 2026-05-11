@@ -1,10 +1,7 @@
 import styles from './Document.module.scss';
-
-import { useApplication } from '@/hooks/useApplication';
-
+import { useApplication } from '@/hooks';
 import { Navigate, useLoaderData, useParams } from 'react-router';
-import { Message } from '@/components/Message';
-import { PaymentForm } from '@/components/PaymentForm/PaymentForm';
+import { Message, PaymentForm } from '@/components';
 
 export const Document = () => {
   const { applicationId } = useParams();
@@ -25,15 +22,12 @@ export const Document = () => {
     return <Navigate to="NotFound" replace />;
   }
 
+  const showForm = data.status === 'CC_APPROVED' && status !== 'PREPARE_DOCUMENTS';
+  console.log(showForm);
   return (
-    <main>
-      <div className={styles.main + ' container'}>
-        {data.status === 'CC_APPROVED' && status !== 'PREPARE_DOCUMENTS' ? (
-          <PaymentForm data={data.credit.paymentSchedule} />
-        ) : (
-          <Message data={messData} />
-        )}
-      </div>
+    <main className={styles.main + ' container'}>
+      {showForm && <PaymentForm data={data.credit.paymentSchedule} />}
+      {!showForm && <Message data={messData} />}
     </main>
   );
 };

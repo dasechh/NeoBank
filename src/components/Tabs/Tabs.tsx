@@ -10,7 +10,7 @@ export interface ITabsChildren<T extends ElementType = ElementType> {
 }
 
 export const Tabs = ({ data }: { data: ITabsChildren[] }) => {
-  const [activeTab, setActiveTab] = useState<number>(data[0].id);
+  const [activeTab, setActiveTab] = useState<number>(() => data[0]?.id);
   const active = data.find((t) => t.id === activeTab);
   if (!active) return null;
 

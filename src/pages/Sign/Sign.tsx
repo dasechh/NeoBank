@@ -1,10 +1,7 @@
 import styles from './Sign.module.scss';
-
-import { useApplication } from '@/hooks/useApplication';
-
+import { useApplication } from '@/hooks';
 import { Navigate, useLoaderData, useParams } from 'react-router';
-import { Message } from '@/components/Message';
-import { SignForm } from '@/components/SignForm';
+import { Message, SignForm } from '@/components';
 
 export const Sign = () => {
   const { applicationId } = useParams();
@@ -32,15 +29,12 @@ export const Sign = () => {
     return <Navigate to="NotFound" replace />;
   }
 
+  const showForm = data.status === 'DOCUMENT_CREATED' && status !== 'DOCUMENT_SIGNED';
+
   return (
-    <main>
-      <div className={styles.main + ' container'}>
-        {data.status === 'DOCUMENT_CREATED' && status !== 'DOCUMENT_SIGNED' ? (
-          <SignForm />
-        ) : (
-          <Message data={messData} />
-        )}
-      </div>
+    <main className={styles.main + ' container'}>
+      {showForm && <SignForm />}
+      {!showForm && <Message data={messData} />}
     </main>
   );
 };

@@ -1,10 +1,7 @@
 import { cardPromoFeatures, getCardSteps, tabs } from '@/data';
 import styles from './Loan.module.scss';
-import { CardPromo, Tabs, HowToGetCard, Prescoring } from '@/components';
-import { Offers } from '@/components/Offers';
-
-import { useApplication } from '@/hooks/useApplication';
-import { Message } from '@/components/Message';
+import { CardPromo, Tabs, HowToGetCard, Prescoring, Offers, Message } from '@/components';
+import { useApplication } from '@/hooks';
 import { useLoaderData } from 'react-router';
 
 export const Loan = () => {
@@ -91,5 +88,3 @@ export const Loan = () => {
     </main>
   );
 };
-
-export default Loan;

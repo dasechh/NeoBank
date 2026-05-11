@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 
 interface IUseSliderNavigation {
   listRef: React.RefObject<HTMLUListElement | null>;
@@ -23,16 +23,17 @@ export function useSliderNavigation({ listRef }: IUseSliderNavigation) {
     return secondRect.left - firstRect.left;
   };
 
-  const update = useCallback(() => {
+  const update = () => {
     const list = listRef.current;
     if (!list) return;
+
     const maxScroll = list.scrollWidth - list.clientWidth;
     const left = list.scrollLeft;
     const tolerance = 10;
 
     setIsAtStart(left <= tolerance);
     setIsAtEnd(left >= maxScroll - tolerance);
-  }, [listRef]);
+  };
 
   useLayoutEffect(() => {
     const list = listRef.current;

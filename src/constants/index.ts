@@ -1,5 +1,4 @@
 export {
-  currencyExchangeApiKey,
   currencyExchangeUrl,
   newsApiKey,
   newsApiUrl,

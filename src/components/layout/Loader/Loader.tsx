@@ -1,5 +1,5 @@
 import styles from './Loader.module.scss';
-import { Spinner } from '@/components/Spinner';
+import { Spinner } from '@/components';
 
 export const Loader = () => {
   return (

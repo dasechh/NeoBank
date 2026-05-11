@@ -1,1 +1,1 @@
-export { Tabs, type ITabsChildren } from './Tabs';
+export { Tabs } from './Tabs';

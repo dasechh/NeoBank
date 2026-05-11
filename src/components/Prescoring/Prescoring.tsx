@@ -61,9 +61,8 @@ export const Prescoring = () => {
         className={styles.prescoring}
         id="prescoring"
       >
-        {form.formState.isSubmitting ? (
-          <Spinner />
-        ) : (
+        {form.formState.isSubmitting && <Spinner />}
+        {!form.formState.isSubmitting && (
           <>
             <div className={styles.prescoring__top}>
               <div className={styles.prescoring__left}>
@@ -81,7 +80,9 @@ export const Prescoring = () => {
                       step={1}
                       value={field.value || 0}
                       onChange={(e) => {
-                        field.onChange(e.target.valueAsNumber);
+                        const num = e.target.valueAsNumber;
+                        if (Number.isNaN(num)) return;
+                        field.onChange(num);
                       }}
                     />
                   )}
@@ -104,7 +105,7 @@ export const Prescoring = () => {
                       value={field.value}
                       onChange={(e) => {
                         let val = e.target.value;
-                        if (val === '') return field.onChange('');
+                        if (val === '' || val === ' ') return field.onChange('');
                         field.onChange(normalizeNumber(val, 15000, 600000));
                       }}
                     />
@@ -139,6 +140,13 @@ export const Prescoring = () => {
                             } else {
                               field.onChange(val);
                             }
+                          }}
+                          onBlur={(e: React.FocusEvent<HTMLInputElement>) => {
+                            if (props.type === 'text' || props.type === 'email') {
+                              const val = e.currentTarget.value;
+                              field.onChange(val.trim());
+                            }
+                            e.target.value = e.target.value.trim();
                           }}
                         />
                       )}

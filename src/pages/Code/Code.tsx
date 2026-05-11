@@ -1,12 +1,8 @@
 import styles from './Code.module.scss';
-
-import { useApplication } from '@/hooks/useApplication';
-
+import { useApplication } from '@/hooks';
 import { Navigate, useLoaderData, useNavigate, useParams } from 'react-router';
-import { Message } from '@/components/Message';
-import { CodeInput } from '@/components/CodeInput';
+import { Message, CodeInput, Button } from '@/components';
 import doneImgSrc from '@images/surprise.png';
-import { Button } from '@/components';
 
 export const Code = () => {
   const { applicationId } = useParams();
@@ -41,17 +37,15 @@ export const Code = () => {
     return <Navigate to="NotFound" replace />;
   }
 
+  const showInput =
+    data.status === 'DOCUMENT_CREATED' &&
+    status !== 'CREDIT_ISSUED' &&
+    status === 'DOCUMENT_SIGNED';
+
   return (
-    <main>
-      <div className={styles.main + ' container'}>
-        {data.status === 'DOCUMENT_CREATED' &&
-        status !== 'CREDIT_ISSUED' &&
-        status === 'DOCUMENT_SIGNED' ? (
-          <CodeInput length={4} submitURL={`/document/${selectedId}/sign/code`} />
-        ) : (
-          <Message data={messData} />
-        )}
-      </div>
+    <main className={styles.main + ' container'}>
+      {showInput && <CodeInput length={4} submitURL={`/document/${selectedId}/sign/code`} />}
+      {!showInput && <Message data={messData} />}
     </main>
   );
 };

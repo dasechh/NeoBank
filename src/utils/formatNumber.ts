@@ -1,5 +1,7 @@
+const formatter = new Intl.NumberFormat('ru-RU', {
+  maximumFractionDigits: 0,
+});
+
 export function formatNumber(value: number) {
-  return new Intl.NumberFormat('ru-RU', {
-    maximumFractionDigits: 0,
-  }).format(value);
+  return formatter.format(value);
 }

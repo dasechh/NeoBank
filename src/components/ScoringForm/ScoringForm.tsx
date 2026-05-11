@@ -19,11 +19,7 @@ import { submitScoringUrl } from '@/constants';
 
 export const ScoringForm = () => {
   const { selectedOffer } = useApplication();
-
-  if (!selectedOffer) {
-    return;
-  }
-
+  const dispatch = useDispatch();
   const form = useForm<TScoringSchemaInput>({
     resolver: zodResolver(scoringSchema),
     mode: 'onSubmit',
@@ -45,7 +41,10 @@ export const ScoringForm = () => {
     },
   });
 
-  const dispatch = useDispatch();
+  if (!selectedOffer) {
+    return;
+  }
+
   const getError = (name: Path<TScoringSchemaInput>) => {
     return get(form.formState.errors, name)?.message;
   };
@@ -61,9 +60,7 @@ export const ScoringForm = () => {
     }
   };
 
-  return form.formState.isSubmitting ? (
-    <Spinner />
-  ) : (
+  return (
     <FormProvider {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
@@ -71,9 +68,9 @@ export const ScoringForm = () => {
         className={styles.scoring}
         id="scoring"
       >
-        {form.formState.isSubmitting ? (
-          <Spinner />
-        ) : (
+        {form.formState.isSubmitting && <Spinner />}
+
+        {!form.formState.isSubmitting && (
           <>
             <FormLabel
               labelText="Continuation of the application"
@@ -99,6 +96,13 @@ export const ScoringForm = () => {
                           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                             field.onChange(props.onChange?.(e) ?? e.currentTarget.value);
                           }}
+                          onBlur={(e: React.FocusEvent<HTMLInputElement>) => {
+                            if (props.type === 'text') {
+                              const val = e.currentTarget.value;
+                              field.onChange(val.trim());
+                            }
+                            e.target.value = e.target.value.trim();
+                          }}
                         />
                       )}
                     />
@@ -123,6 +127,16 @@ export const ScoringForm = () => {
                           valid={form.formState.isSubmitted ? !getError(props.name) : undefined}
                           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                             field.onChange(props.onChange?.(e) ?? e.currentTarget.value);
+                          }}
+                          onBlur={(e: React.FocusEvent<HTMLInputElement>) => {
+                            if (
+                              'type' in props &&
+                              (props.type === 'text' || props.type === 'email')
+                            ) {
+                              const val = e.currentTarget.value;
+                              field.onChange(val.trim());
+                            }
+                            e.target.value = e.target.value.trim();
                           }}
                         />
                       )}

@@ -16,8 +16,8 @@ export const CardRates = ({ data }: { data: IRate[] }) => {
               {rate.label}
             </th>
             <td className={styles.rates__value}>
-              {rate.value.map((v, index) => (
-                <span key={index}>{v}</span>
+              {rate.value.map((v) => (
+                <span key={`${rate.id}-${v}`}>{v}</span>
               ))}
             </td>
           </tr>

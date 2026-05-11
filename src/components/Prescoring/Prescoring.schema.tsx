@@ -12,12 +12,18 @@ export const prescoringSchema = z.object({
     .min(2, 'Enter your first name')
     .regex(/^[A-Za-z-]+$/, 'Only Latin letters are allowed'),
 
-  middleName: z
-    .string()
-    .nullable()
-    .refine((val) => val === null || /^[A-Za-z-]+$/.test(val), {
-      message: 'Only Latin letters are allowed',
-    }),
+  middleName: z.preprocess(
+    (val) => {
+      if (typeof val !== 'string') return val;
+      return val.trim() === '' ? null : val.trim();
+    },
+    z
+      .string()
+      .nullable()
+      .refine((val) => val === null || /^[A-Za-z-]+$/.test(val), {
+        message: 'Only Latin letters are allowed',
+      }),
+  ),
 
   email: z
     .string()

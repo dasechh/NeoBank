@@ -21,7 +21,7 @@ export { CardBenefits } from './CardBenefits';
 export { CardRates } from './CardRates';
 export { CardCashback } from './CardCashback';
 export { CardFAQ } from './CardFAQ';
-export { Tabs, type ITabsChildren } from './Tabs';
+export { Tabs } from './Tabs';
 export { FormSlider } from './FormSlider';
 export { Prescoring } from './Prescoring';
 export { ScoringForm } from './ScoringForm';

@@ -20,6 +20,10 @@
   align-items: center;
   border-radius: 28px;
 
+  &:hover {
+    outline: 2px solid #003cff;
+  }
+
   &__image {
     margin-bottom: 2rem;
   }

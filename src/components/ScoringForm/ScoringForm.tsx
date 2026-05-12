@@ -9,7 +9,11 @@ import {
 } from 'react-hook-form';
 import { Button, Spinner, FormLabel } from '@/components';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { scoringSchema, type TScoringSchemaInput } from './ScoringForm.schema';
+import {
+  scoringSchema,
+  type TScoringSchemaInput,
+  type TScoringSchemaOutput,
+} from './ScoringForm.schema';
 import { scoringEmployment, scoringPerson } from './ScoringFormFields.constants';
 import { useApplication } from '@/hooks';
 import { putData } from '@/services';
@@ -20,7 +24,7 @@ import { submitScoringUrl } from '@/constants';
 export const ScoringForm = () => {
   const { selectedOffer } = useApplication();
   const dispatch = useDispatch();
-  const form = useForm<TScoringSchemaInput>({
+  const form = useForm<TScoringSchemaInput, unknown, TScoringSchemaOutput>({
     resolver: zodResolver(scoringSchema),
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
@@ -30,11 +34,11 @@ export const ScoringForm = () => {
       dependentAmount: undefined,
       passportIssueDate: undefined,
       passportIssueBranch: undefined,
-      employment: {
-        employmentStatus: undefined,
-        employerINN: undefined,
-        salary: undefined,
-        position: undefined,
+      employmentStatus: undefined,
+      employerINN: undefined,
+      salary: undefined,
+      position: undefined,
+      workExperience: {
         workExperienceTotal: undefined,
         workExperienceCurrent: undefined,
       },
@@ -49,7 +53,7 @@ export const ScoringForm = () => {
     return get(form.formState.errors, name)?.message;
   };
 
-  const onSubmit: SubmitHandler<TScoringSchemaInput> = async (data) => {
+  const onSubmit: SubmitHandler<TScoringSchemaOutput> = async (data) => {
     try {
       await putData(submitScoringUrl(selectedOffer?.applicationId), data);
       dispatch(setStatus('CC_APPROVED'));

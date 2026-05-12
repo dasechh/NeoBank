@@ -93,7 +93,7 @@ export const scoringEmployment = [
     component: FormSelect,
     id: 5,
     props: {
-      name: 'employment.employmentStatus',
+      name: 'employmentStatus',
       label: 'Your employment status',
       placeholder: 'Select employment status',
       required: true,
@@ -109,7 +109,7 @@ export const scoringEmployment = [
     component: FormInput,
     id: 6,
     props: {
-      name: 'employment.employerINN',
+      name: 'employerINN',
       label: 'Your employer INN',
       placeholder: '000000000000',
       inputMode: 'numeric',
@@ -124,7 +124,7 @@ export const scoringEmployment = [
     component: FormInput,
     id: 7,
     props: {
-      name: 'employment.salary',
+      name: 'salary',
       label: 'Your salary',
       placeholder: 'For example 100 000',
       inputMode: 'numeric',
@@ -139,7 +139,7 @@ export const scoringEmployment = [
     component: FormSelect,
     id: 8,
     props: {
-      name: 'employment.position',
+      name: 'position',
       label: 'Your position',
       placeholder: 'Your position',
       required: true,
@@ -155,7 +155,7 @@ export const scoringEmployment = [
     component: FormInput,
     id: 9,
     props: {
-      name: 'employment.workExperienceTotal',
+      name: 'workExperience.workExperienceTotal',
       label: 'Your work experience total',
       placeholder: 'For example 10',
       inputMode: 'numeric',
@@ -170,14 +170,14 @@ export const scoringEmployment = [
     component: FormInput,
     id: 10,
     props: {
-      name: 'employment.workExperienceCurrent',
+      name: 'workExperience.workExperienceCurrent',
       label: 'Your work experience current',
       placeholder: 'For example 2',
       inputMode: 'numeric',
       required: true,
       onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
         const digit = e.target.value.replace(/\D/g, '').slice(0, 2);
-        return Number(digit);
+        return digit ? Number(digit) : '';
       },
     },
   },

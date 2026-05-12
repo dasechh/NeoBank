@@ -1,4 +1,4 @@
-import { redirect, type LoaderFunctionArgs } from 'react-router';
+import { type LoaderFunctionArgs } from 'react-router';
 import { getData } from '@/services';
 import { store } from '@/store/storeConfig';
 
@@ -7,13 +7,10 @@ export const applicationLoader = async ({ params }: LoaderFunctionArgs) => {
   const paramId = params.applicationId;
   const applicationId = paramId || selectedOfferId;
 
-  if (!applicationId) {
+  if (!applicationId || (paramId && selectedOfferId && Number(paramId) !== selectedOfferId)) {
     return null;
   }
 
-  if (paramId && selectedOfferId && Number(paramId) !== selectedOfferId) {
-    throw redirect('/404');
-  }
   try {
     const response = await getData(`/admin/application/${applicationId}`);
     return response.data;

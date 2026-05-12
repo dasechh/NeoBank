@@ -9,6 +9,7 @@ const __dirname = path.dirname(__filename);
 export default defineConfig({
   plugins: [react(), svgr()],
   server: {
+    port: 3000,
     open: true,
     proxy: {
       '/email': {

@@ -14,6 +14,7 @@ interface IFormSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   options: ISelectOption[];
   errorText?: string;
   valid?: boolean;
+  placeholder?: string;
 }
 
 export const FormSelect = ({
@@ -23,6 +24,7 @@ export const FormSelect = ({
   valid,
   required,
   children,
+  placeholder,
   onChange,
   ...props
 }: IFormSelectProps) => {
@@ -52,8 +54,13 @@ export const FormSelect = ({
             onChange?.(e);
           }}
         >
+          {placeholder && (
+            <option value="" disabled hidden className={styles.select__placeholder}>
+              {placeholder}
+            </option>
+          )}
           {options.map((opt) => (
-            <option key={opt.id} value={opt.value} disabled={!opt.value}>
+            <option key={opt.id} value={opt.value}>
               {opt.label}
             </option>
           ))}

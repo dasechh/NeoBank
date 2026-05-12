@@ -8,10 +8,12 @@ export const scoringSchema = z.object({
     'Select one of the options',
   ),
 
-  dependentAmount: z
-    .number({ message: 'Enter your number of dependents' })
-    .min(0, 'Enter your number of dependents')
-    .max(10, 'Enter your number of dependents'),
+  dependentAmount: z.coerce
+    .number({
+      error: 'Select one of the options',
+    })
+    .min(0)
+    .max(10),
 
   passportIssueDate: z.string({ message: 'Incorrect date' }).refine(
     (dateString) => {
@@ -26,38 +28,43 @@ export const scoringSchema = z.object({
   ),
 
   passportIssueBranch: z
-    .string({ message: 'The series must be 6 digits' })
-    .regex(/^\d{3}-\d{3}$/, 'The series must be 6 digits'),
+    .string({ message: 'The division code must be 6 digits' })
+    .regex(/^\d{3}-\d{3}$/, 'The division code must be 6 digits'),
 
-  employment: z.object({
-    employmentStatus: z.enum(
-      ['UNEMPLOYED', 'SELF_EMPLOYED', 'EMPLOYED', 'BUSINESS_OWNER'],
-      'Select one of the options',
-    ),
+  employment: z
+    .object({
+      employmentStatus: z.enum(
+        ['UNEMPLOYED', 'SELF_EMPLOYED', 'EMPLOYED', 'BUSINESS_OWNER'],
+        'Select one of the options',
+      ),
 
-    employerINN: z
-      .number({ message: 'Department code must be 12 digits' })
-      .refine((value) => /^\d{12}$/.test(String(value)), {
-        message: 'Department code must be 12 digits',
+      employerINN: z
+        .number({ message: 'Department code must be 12 digits' })
+        .refine((value) => /^\d{12}$/.test(String(value)), {
+          message: 'Department code must be 12 digits',
+        }),
+
+      salary: z.number({
+        message: 'Enter your salary',
       }),
 
-    salary: z.number({
-      message: 'Enter your salary',
-    }),
+      position: z.enum(
+        ['WORKER', 'MID_MANAGER', 'TOP_MANAGER', 'OWNER'],
+        'Select one of the options',
+      ),
 
-    position: z.enum(
-      ['WORKER', 'MID_MANAGER', 'TOP_MANAGER', 'OWNER'],
-      'Select one of the options',
-    ),
+      workExperienceTotal: z.coerce.number({
+        message: 'Enter your work experience total',
+      }),
 
-    workExperienceTotal: z.number({
-      message: 'Enter your work experience total',
+      workExperienceCurrent: z.coerce.number({
+        message: 'Enter your work experience current',
+      }),
+    })
+    .refine((data) => data.workExperienceTotal >= data.workExperienceCurrent, {
+      message: "Can\'t be greater than total experience",
+      path: ['workExperienceCurrent'],
     }),
-
-    workExperienceCurrent: z.number({
-      message: 'Enter your work experience current',
-    }),
-  }),
 });
 
-export type TScoringSchemaInput = z.infer<typeof scoringSchema>;
+export type TScoringSchemaInput = z.input<typeof scoringSchema>;

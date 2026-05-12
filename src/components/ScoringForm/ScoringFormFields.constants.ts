@@ -10,8 +10,8 @@ export const scoringPerson = [
       name: 'gender',
       label: "What's your gender",
       required: true,
+      placeholder: 'Select gender',
       options: [
-        { value: '', label: '', id: -1 },
         { value: 'MALE', label: 'Male', id: 0 },
         { value: 'FEMALE', label: 'Female', id: 1 },
       ],
@@ -23,9 +23,9 @@ export const scoringPerson = [
     props: {
       name: 'maritalStatus',
       label: 'Your marital status',
+      placeholder: 'Select marital status',
       required: true,
       options: [
-        { value: '', label: '', id: -1 },
         { value: 'MARRIED', label: 'Married', id: 0 },
         { value: 'DIVORCED', label: 'Divorced', id: 1 },
         { value: 'SINGLE', label: 'Single', id: 2 },
@@ -34,18 +34,27 @@ export const scoringPerson = [
     },
   },
   {
-    component: FormInput,
+    component: FormSelect,
     id: 2,
     props: {
       name: 'dependentAmount',
       label: 'Your number of dependents',
-      placeholder: '',
-      inputMode: 'numeric',
+
+      placeholder: 'Select number of dependents',
       required: true,
-      onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
-        const digit = e.target.value.replace(/\D/g, '').slice(0, 1);
-        return digit ? Number(digit) : '';
-      },
+      options: [
+        { value: 0, label: '0', id: 0 },
+        { value: 1, label: '1', id: 1 },
+        { value: 2, label: '2', id: 2 },
+        { value: 3, label: '3', id: 3 },
+        { value: 4, label: '4', id: 4 },
+        { value: 5, label: '5', id: 5 },
+        { value: 6, label: '6', id: 6 },
+        { value: 7, label: '7', id: 7 },
+        { value: 8, label: '8', id: 8 },
+        { value: 9, label: '9', id: 9 },
+        { value: 10, label: '10', id: 10 },
+      ],
     },
   },
   {
@@ -86,9 +95,9 @@ export const scoringEmployment = [
     props: {
       name: 'employment.employmentStatus',
       label: 'Your employment status',
+      placeholder: 'Select employment status',
       required: true,
       options: [
-        { value: '', label: '', id: -1 },
         { value: 'UNEMPLOYED', label: 'Unemployed', id: 0 },
         { value: 'SELF_EMPLOYED', label: 'Self employed', id: 1 },
         { value: 'EMPLOYED', label: 'Employed', id: 2 },
@@ -132,9 +141,9 @@ export const scoringEmployment = [
     props: {
       name: 'employment.position',
       label: 'Your position',
+      placeholder: 'Your position',
       required: true,
       options: [
-        { value: '', label: '', id: -1 },
         { value: 'WORKER', label: 'Worker', id: 1 },
         { value: 'MID_MANAGER', label: 'Mid manager', id: 3 },
         { value: 'TOP_MANAGER', label: 'Top manager', id: 2 },

@@ -37,6 +37,10 @@
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
+
+    &:invalid {
+      color: #808080;
+    }
   }
 
   &__error {

@@ -51,6 +51,7 @@ export const SignForm = () => {
           </p>
           <a
             href="/files/credit-card-offer.pdf"
+            download
             target="_blank"
             rel="noreferrer"
             className={styles.sign__document}

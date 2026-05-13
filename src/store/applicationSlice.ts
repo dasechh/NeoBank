@@ -1,5 +1,5 @@
-import type { IApplicationOffer, IApplicationState, TApplicationStep } from "@/types";
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { IApplicationOffer, IApplicationState, TApplicationStep } from '@/types';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 const initSelectedOffer = localStorage.getItem('selectedOffer');
 const initOffers = localStorage.getItem('offers');
@@ -17,17 +17,14 @@ export const applicationSlice = createSlice({
   reducers: {
     setStep(state, action: PayloadAction<TApplicationStep>) {
       state.step = action.payload;
-      localStorage.setItem('step', String(action.payload));
     },
     setOffers(state, action: PayloadAction<IApplicationOffer[] | null>) {
       state.offers = action.payload;
-      localStorage.setItem('offers', JSON.stringify(action.payload));
     },
     selectOffer(state, action: PayloadAction<IApplicationOffer | null>) {
       state.selectedOffer = action.payload;
-      localStorage.setItem('selectedOffer', JSON.stringify(action.payload));
     },
   },
 });
 
-export const { setStep, setOffers, selectOffer, } = applicationSlice.actions;
+export const { setStep, setOffers, selectOffer } = applicationSlice.actions;

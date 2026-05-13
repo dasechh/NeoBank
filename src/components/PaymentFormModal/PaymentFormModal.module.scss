@@ -1,0 +1,64 @@
+@use '@/styles' as *;
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+
+  &__wrapper {
+    background: white;
+    width: 28rem;
+    box-sizing: border-box;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    line-height: $line-height-base;
+    letter-spacing: $letter-spacing-base;
+  }
+
+  &__heading {
+    color: #1c1c1e;
+    font-weight: 700;
+    font-style: bold;
+    margin-bottom: 1rem;
+  }
+
+  &__description {
+    color: #1a202c;
+    letter-spacing: normal;
+    min-height: 2lh;
+  }
+
+  &__top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 2.5rem;
+    justify-content: flex-end;
+
+    & button {
+      height: 2.5rem;
+      width: 6rem;
+      border-radius: 8px;
+    }
+
+    &_denied {
+      display: flex;
+      justify-content: flex-end;
+      & button {
+        height: 2.5rem;
+        border-radius: 8px;
+        width: 8rem;
+      }
+    }
+  }
+}

@@ -1,11 +1,8 @@
 import { useState } from 'react';
-import { Button, Checkbox, FormLabel, Table, Spinner } from '@/components';
+import { Button, Checkbox, FormLabel, Table, Spinner, PaymentFormModal } from '@/components';
 import styles from './PaymentForm.module.scss';
-import { useNavigate } from 'react-router';
-import CloseIcon from '@icons/close_square.svg?react';
 import { useDispatch } from 'react-redux';
 import { setStep } from '@/store';
-import clsx from 'clsx';
 import { denyScheduleURL, submitScheduleURL } from '@/constants';
 import { paymentColumns, denyModalText, labelProps } from './PaymentForm.config';
 import { useApplication, useDataLoader } from '@/hooks';
@@ -18,7 +15,7 @@ export const PaymentForm = ({ data }: IPaymentFormProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [signed, setSigned] = useState(false);
   const { selectedOffer } = useApplication();
-  const navigate = useNavigate();
+
   const dispatch = useDispatch();
 
   const applicationId = selectedOffer?.applicationId;
@@ -56,57 +53,19 @@ export const PaymentForm = ({ data }: IPaymentFormProps) => {
 
   return (
     <>
-      {isModalOpen && (
-        <div className={styles.modal}>
-          <div className={styles.modal__wrapper}>
-            {denyApplication.responseLoading && <Spinner />}
-            {!denyApplication.responseLoading && (
-              <>
-                <div className={styles.modal__top}>
-                  <h4 className={styles.modal__heading}>{denyModalText.title}</h4>
-                  <Button
-                    onClick={() => {
-                      !denyApplication.responseData ? setIsModalOpen(false) : navigate('/');
-                    }}
-                  >
-                    <CloseIcon />
-                  </Button>
-                </div>
-
-                <p className={styles.modal__description}>
-                  {!denyApplication.responseData
-                    ? denyModalText.confirmText
-                    : denyModalText.successText}
-                </p>
-
-                <div
-                  className={clsx(
-                    styles.modal__buttons,
-                    denyApplication.responseData && styles.modal__buttons_denied,
-                  )}
-                >
-                  {!denyApplication.responseData && (
-                    <Button onClick={handleDeny} variant="deny">
-                      {denyModalText.denyButton}
-                    </Button>
-                  )}
-
-                  <Button
-                    onClick={() => {
-                      !denyApplication.responseData ? setIsModalOpen(false) : navigate('/');
-                    }}
-                    variant="primary"
-                  >
-                    {!denyApplication.responseData
-                      ? denyModalText.cancelButton
-                      : denyModalText.goHomeButton}
-                  </Button>
-                </div>
-              </>
-            )}
-          </div>
-        </div>
-      )}
+      <PaymentFormModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onDeny={handleDeny}
+        loading={denyApplication.responseLoading}
+        success={!!denyApplication.responseData}
+        title={denyModalText.title}
+        confirmText={denyModalText.confirmText}
+        successText={denyModalText.successText}
+        denyButtonText={denyModalText.denyButton}
+        cancelButtonText={denyModalText.cancelButton}
+        goHomeButtonText={denyModalText.goHomeButton}
+      />
 
       <form
         className={styles.payment}

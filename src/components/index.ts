@@ -29,6 +29,7 @@ export { Checkbox } from './Checkbox';
 export { CodeInput } from './CodeInput';
 export { Message } from './Message';
 export { Offers } from './Offers';
+export { PaymentFormModal } from './PaymentFormModal';
 export { PaymentForm } from './PaymentForm';
 export { SignForm } from './SignForm';
 export { Table } from './Table';

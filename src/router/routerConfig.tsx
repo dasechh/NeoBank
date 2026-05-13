@@ -16,8 +16,6 @@ export const router = createBrowserRouter([
           {
             index: true,
             element: <Loan />,
-            loader: applicationLoader,
-            hydrateFallbackElement: <Loader />,
           },
 
           {
@@ -25,9 +23,7 @@ export const router = createBrowserRouter([
             children: [
               {
                 index: true,
-                loader: applicationLoader,
                 element: <Scoring />,
-                hydrateFallbackElement: <Loader />,
               },
               {
                 path: 'document',
@@ -37,15 +33,11 @@ export const router = createBrowserRouter([
               },
               {
                 path: 'document/sign',
-                loader: applicationLoader,
                 element: <Sign />,
-                hydrateFallbackElement: <Loader />,
               },
               {
                 path: 'code',
-                loader: applicationLoader,
                 element: <Code />,
-                hydrateFallbackElement: <Loader />,
               },
             ],
           },
@@ -58,3 +50,4 @@ export const router = createBrowserRouter([
     ],
   },
 ]);
+

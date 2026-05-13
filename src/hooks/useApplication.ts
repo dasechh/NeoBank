@@ -1,16 +1,16 @@
 import { useSelector } from 'react-redux';
 
-import { selectOffers, selectSelectedOffer, selectStatus } from '@/store/selectors';
+import { selectOffers, selectSelectedOffer, selectStep } from '@/store';
 
 export function useApplication() {
-  const status = useSelector(selectStatus);
+  const step = useSelector(selectStep);
 
   const offers = useSelector(selectOffers);
 
   const selectedOffer = useSelector(selectSelectedOffer);
 
   return {
-    status,
+    step,
     offers,
     selectedOffer,
   };

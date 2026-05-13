@@ -2,63 +2,64 @@ import { cardPromoFeatures, getCardSteps, tabs } from '@/data';
 import styles from './Loan.module.scss';
 import { CardPromo, Tabs, HowToGetCard, Prescoring, Offers, Message } from '@/components';
 import { useApplication } from '@/hooks';
-import { useLoaderData } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { selectOffer, setOffers } from '@/store';
+
 
 export const Loan = () => {
-  const data = useLoaderData() ?? {};
-  const { offers, status, selectedOffer } = useApplication();
+  const { offers, selectedOffer, step } = useApplication();
+  const dispatch = useDispatch();
 
-  const hasOffers = Boolean(offers);
-  const isDenied = data?.status === 'CC_DENIED' || status === 'CLIENT_DENIED';
-
-  const showPrescoring = !hasOffers || isDenied || status === 'CREDIT_ISSUED';
-
-  const showOffers = hasOffers && status === 'PREAPPROVAL';
-  const showMessage =
-    Boolean(status) &&
-    status !== 'CC_DENIED' &&
-    status !== 'CLIENT_DENIED' &&
-    !showOffers &&
-    !showPrescoring;
+  if (step === 0 && !offers) {
+    dispatch(selectOffer(null));
+    dispatch(setOffers(null));
+  }
 
   let cardPromoButton;
 
-  if (data?.status === 'DOCUMENT_SIGNED' || status === 'DOCUMENT_SIGNED') {
-    cardPromoButton = {
-      text: 'Continue registration',
-      target: `${selectedOffer?.applicationId}/code`,
-      type: 'navigate' as const,
-    };
-  } else if (data.status === 'DOCUMENT_CREATED') {
-    cardPromoButton = {
-      text: 'Continue registration',
-      target: `${selectedOffer?.applicationId}/document/sign`,
-      type: 'navigate' as const,
-    };
-  } else if (data.status === 'CC_APPROVED' || data.status === 'PREPARE_DOCUMENTS') {
-    cardPromoButton = {
-      text: 'Continue registration',
-      target: `${selectedOffer?.applicationId}/document`,
-      type: 'navigate' as const,
-    };
-  } else if (data?.status === 'APPROVED' || status === 'APPROVED') {
-    cardPromoButton = {
-      text: 'Continue registration',
-      target: `${selectedOffer?.applicationId}`,
-      type: 'navigate' as const,
-    };
-  } else if (data?.status === 'PREAPPROVAL' || status === 'PREAPPROVAL') {
-    cardPromoButton = {
-      text: 'Choose an offer',
-      target: 'offers',
-      type: 'scroll' as const,
-    };
-  } else {
-    cardPromoButton = {
-      text: 'Apply for card',
-      target: 'prescoring',
-      type: 'scroll' as const,
-    };
+  switch (step) {
+    case 5:
+      cardPromoButton = {
+        text: 'Continue registration',
+        target: `${selectedOffer?.applicationId}/code`,
+        type: 'navigate' as const,
+      };
+      break;
+    case 4:
+      cardPromoButton = {
+        text: 'Continue registration',
+        target: `${selectedOffer?.applicationId}/document/sign`,
+        type: 'navigate' as const,
+      };
+      break;
+    case 3:
+      cardPromoButton = {
+        text: 'Continue registration',
+        target: `${selectedOffer?.applicationId}/document`,
+        type: 'navigate' as const,
+      };
+      break;
+    case 2:
+      cardPromoButton = {
+        text: 'Continue registration',
+        target: `${selectedOffer?.applicationId}`,
+        type: 'navigate' as const,
+      };
+      break;
+    case 1:
+      cardPromoButton = {
+        text: 'Choose an offer',
+        target: 'offers',
+        type: 'scroll' as const,
+      };
+      break;
+    default:
+      cardPromoButton = {
+        text: 'Apply for card',
+        target: 'prescoring',
+        type: 'scroll' as const,
+      };
+      break;
   }
 
   return (
@@ -72,9 +73,9 @@ export const Loan = () => {
         />
         <Tabs data={tabs} />
         <HowToGetCard data={getCardSteps} />
-        {showPrescoring && <Prescoring />}
-        {showOffers && offers && <Offers data={offers} />}
-        {showMessage && (
+        {step === 0 && <Prescoring />}
+        {step === 1 && offers && <Offers data={offers} />}
+        {step > 1 && (
           <Message
             data={{
               headingText: 'The preliminary decision has been sent to your email.',

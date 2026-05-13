@@ -4,7 +4,7 @@ import styles from './PaymentForm.module.scss';
 import { useNavigate } from 'react-router';
 import CloseIcon from '@icons/close_square.svg?react';
 import { useDispatch } from 'react-redux';
-import { setStatus } from '@/store';
+import { setStep } from '@/store';
 import clsx from 'clsx';
 import { denyScheduleURL, submitScheduleURL } from '@/constants';
 import { paymentColumns, denyModalText, labelProps } from './PaymentForm.config';
@@ -39,7 +39,7 @@ export const PaymentForm = ({ data }: IPaymentFormProps) => {
   const handleSubmit = async () => {
     try {
       await submitSchedule.serverResponse(applicationId);
-      dispatch(setStatus('PREPARE_DOCUMENTS'));
+      dispatch(setStep(4));
     } catch (error) {
       console.error(error);
     }
@@ -48,7 +48,7 @@ export const PaymentForm = ({ data }: IPaymentFormProps) => {
   const handleDeny = async () => {
     try {
       await denyApplication.serverResponse(applicationId);
-      dispatch(setStatus('CLIENT_DENIED'));
+      dispatch(setStep(0));
     } catch (error) {
       console.error(error);
     }

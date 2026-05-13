@@ -1,16 +1,12 @@
-import type {
-  IApplicationOffer,
-  IApplicationState,
-  TApplicationStatus,
-} from '@/types/application.types';
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import type { IApplicationOffer, IApplicationState, TApplicationStep } from "@/types";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 const initSelectedOffer = localStorage.getItem('selectedOffer');
 const initOffers = localStorage.getItem('offers');
-const initStatus = localStorage.getItem('status') as TApplicationStatus;
+const initStep = Number(localStorage.getItem('step')) as TApplicationStep;
 
 const initialState: IApplicationState = {
-  status: initStatus || null,
+  step: initStep || 0,
   offers: initOffers ? JSON.parse(initOffers) : null,
   selectedOffer: initSelectedOffer ? JSON.parse(initSelectedOffer) : null,
 };
@@ -19,9 +15,9 @@ export const applicationSlice = createSlice({
   name: 'store',
   initialState: initialState,
   reducers: {
-    setStatus(state, action: PayloadAction<TApplicationStatus>) {
-      state.status = action.payload;
-      localStorage.setItem('status', action.payload);
+    setStep(state, action: PayloadAction<TApplicationStep>) {
+      state.step = action.payload;
+      localStorage.setItem('step', String(action.payload));
     },
     setOffers(state, action: PayloadAction<IApplicationOffer[] | null>) {
       state.offers = action.payload;
@@ -34,4 +30,4 @@ export const applicationSlice = createSlice({
   },
 });
 
-export const { setStatus, setOffers, selectOffer } = applicationSlice.actions;
+export const { setStep, setOffers, selectOffer, } = applicationSlice.actions;

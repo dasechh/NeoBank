@@ -5,7 +5,7 @@ import { Message, PaymentForm } from '@/components';
 
 export const Document = () => {
   const { applicationId } = useParams();
-  const { selectedOffer, status } = useApplication();
+  const { selectedOffer, step } = useApplication();
   const selectedId = selectedOffer?.applicationId;
   const data = useLoaderData();
 
@@ -14,20 +14,14 @@ export const Document = () => {
     descriptionText: 'Documents for signing will be sent to your email',
   };
 
-  if (
-    String(selectedId) !== applicationId ||
-    !data.status ||
-    ['PREAPPROVAL', 'REQUEST_DENIED', 'CC_DENIED', 'APPROVED'].includes(data.status)
-  ) {
+  if (String(selectedId) !== applicationId || (step < 3 && step !== 4)) {
     return <Navigate to="NotFound" replace />;
   }
 
-  const showForm = data.status === 'CC_APPROVED' && status !== 'PREPARE_DOCUMENTS';
-  console.log(showForm);
   return (
     <main className={styles.main + ' container'}>
-      {showForm && <PaymentForm data={data.credit.paymentSchedule} />}
-      {!showForm && <Message data={messData} />}
+      {step === 3 && <PaymentForm data={data.credit.paymentSchedule} />}
+      {step !== 3 && <Message data={messData} />}
     </main>
   );
 };

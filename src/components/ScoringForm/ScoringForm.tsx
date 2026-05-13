@@ -18,7 +18,7 @@ import { scoringEmployment, scoringPerson } from './ScoringFormFields.constants'
 import { useApplication } from '@/hooks';
 import { putData } from '@/services';
 import { useDispatch } from 'react-redux';
-import { setStatus } from '@/store';
+import { setStep } from '@/store';
 import { submitScoringUrl } from '@/constants';
 
 export const ScoringForm = () => {
@@ -46,7 +46,7 @@ export const ScoringForm = () => {
   });
 
   if (!selectedOffer) {
-    return;
+    return null;
   }
 
   const getError = (name: Path<TScoringSchemaInput>) => {
@@ -56,7 +56,7 @@ export const ScoringForm = () => {
   const onSubmit: SubmitHandler<TScoringSchemaOutput> = async (data) => {
     try {
       await putData(submitScoringUrl(selectedOffer?.applicationId), data);
-      dispatch(setStatus('CC_APPROVED'));
+      dispatch(setStep(3));
     } catch (error) {
       form.setError('form', {
         message: 'An error occured. Try again later.',

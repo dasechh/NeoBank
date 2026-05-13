@@ -8,8 +8,8 @@ import { prescoringFields } from './prescoringFields.constants';
 import { postData } from '@/services';
 import type { IApplicationOffer } from '@/types';
 import { useDispatch } from 'react-redux';
-import { setOffers, setStatus } from '@/store';
 import { getOffersURL } from '@/constants';
+import { setOffers, setStep } from '@/store';
 
 export const Prescoring = () => {
   const form = useForm<TPrescoringSchemaInput>({
@@ -45,7 +45,7 @@ export const Prescoring = () => {
           offerId: index,
         }));
       dispatch(setOffers(offers));
-      dispatch(setStatus('PREAPPROVAL'));
+      dispatch(setStep(1));
     } catch (error) {
       form.setError('form', {
         message: 'An error occured. Try again later.',

@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { Button, Checkbox, FormLabel, Spinner } from '@/components';
 import FileIcon from '@icons/file_dock_duotone.svg?react';
-
 import { useDispatch } from 'react-redux';
-import { setStatus } from '@/store';
+import { setStep } from '@/store';
 import styles from './SignForm.module.scss';
 import { useApplication, useDataLoader } from '@/hooks';
 
@@ -21,7 +20,7 @@ export const SignForm = () => {
   const signDocument = async () => {
     try {
       await serverResponse(applicationId);
-      dispatch(setStatus('DOCUMENT_SIGNED'));
+      dispatch(setStep(5));
     } catch (error) {
       console.error(error);
     }
@@ -38,6 +37,7 @@ export const SignForm = () => {
             e.preventDefault();
             signDocument();
           }}
+          noValidate
         >
           <FormLabel labelText="Signing of documents" labelInfo="Step 4 of 5" gapWith="md" />
           <p className={styles.sign__description}>

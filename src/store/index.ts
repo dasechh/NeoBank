@@ -1,3 +1,3 @@
 export { store, type RootState } from './storeConfig';
-
-export { setStatus, setOffers, selectOffer } from './applicationSlice';
+export { selectStep, selectOffers, selectSelectedOffer } from './selectors';
+export { setStep, setOffers, selectOffer } from './applicationSlice';

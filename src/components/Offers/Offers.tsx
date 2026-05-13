@@ -6,7 +6,7 @@ import CrossIcon from '@icons/close_fill.svg?react';
 import surpriseIconSrc from '@images/surprise.png';
 import { formatNumber } from '@/utils';
 import { useDispatch } from 'react-redux';
-import { selectOffer, setStatus } from '@/store';
+import { selectOffer, setStep } from '@/store';
 import { selectOfferURL } from '@/constants';
 import { useDataLoader } from '@/hooks';
 
@@ -21,7 +21,7 @@ export const Offers = ({ data }: { data: IApplicationOffer[] }) => {
     try {
       await serverResponse(offer);
       dispatch(selectOffer(offer));
-      dispatch(setStatus('APPROVED'));
+      dispatch(setStep(2));
     } catch (error) {
       console.error(error);
     }

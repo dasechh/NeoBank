@@ -1,14 +1,4 @@
-export type TApplicationStatus =
-  | 'REQUEST_DENIED'
-  | 'PREAPPROVAL'
-  | 'APPROVED'
-  | 'CC_DENIED'
-  | 'CC_APPROVED'
-  | 'PREPARE_DOCUMENTS'
-  | 'DOCUMENT_CREATED'
-  | 'CLIENT_DENIED'
-  | 'DOCUMENT_SIGNED'
-  | 'CREDIT_ISSUED';
+export type TApplicationStep = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 
 export interface IApplicationOffer {
   applicationId: number;
@@ -23,7 +13,7 @@ export interface IApplicationOffer {
 }
 
 export interface IApplicationState {
-  status: TApplicationStatus;
+  step: TApplicationStep;
   offers: IApplicationOffer[] | null;
   selectedOffer: IApplicationOffer | null;
 }

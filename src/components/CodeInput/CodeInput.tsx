@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import styles from './CodeInput.module.scss';
 import { useDispatch } from 'react-redux';
-import { setStatus } from '@/store';
+import { setOffers, setStep } from '@/store';
 import { Message, Spinner } from '@/components';
 import { useDataLoader } from '@/hooks';
 
@@ -29,7 +29,8 @@ export const CodeInput = ({ length = 4, submitURL }: ICodeInputProps) => {
     try {
       await serverResponse(Number(code));
       setError(null);
-      dispatch(setStatus('CREDIT_ISSUED'));
+      dispatch(setStep(0));
+      dispatch(setOffers(null));
     } catch {
       setError('Invalid confirmation code');
     }

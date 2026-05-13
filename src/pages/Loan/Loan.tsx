@@ -2,18 +2,9 @@ import { cardPromoFeatures, getCardSteps, tabs } from '@/data';
 import styles from './Loan.module.scss';
 import { CardPromo, Tabs, HowToGetCard, Prescoring, Offers, Message } from '@/components';
 import { useApplication } from '@/hooks';
-import { useDispatch } from 'react-redux';
-import { selectOffer, setOffers } from '@/store';
-
 
 export const Loan = () => {
   const { offers, selectedOffer, step } = useApplication();
-  const dispatch = useDispatch();
-
-  if (step === 0 && !offers) {
-    dispatch(selectOffer(null));
-    dispatch(setOffers(null));
-  }
 
   let cardPromoButton;
 

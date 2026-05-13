@@ -1,4 +1,4 @@
-export type TNewsCategory =
+type TNewsCategory =
   | 'business'
   | 'entertainment'
   | 'general'

@@ -1,6 +1,7 @@
 import { type LoaderFunctionArgs } from 'react-router';
 import { getData } from '@/services';
 import { store } from '@/store/storeConfig';
+import { getApplicationData } from '@/constants';
 
 export const applicationLoader = async ({ params }: LoaderFunctionArgs) => {
   const selectedOfferId = store.getState().application.selectedOffer?.applicationId;
@@ -12,7 +13,7 @@ export const applicationLoader = async ({ params }: LoaderFunctionArgs) => {
   }
 
   try {
-    const response = await getData(`/admin/application/${applicationId}`);
+    const response = await getData(getApplicationData(applicationId));
     return response.data;
   } catch (e) {
     return null;

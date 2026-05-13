@@ -42,7 +42,7 @@ export function useSliderNavigation({ listRef }: IUseSliderNavigation) {
     const mo = new MutationObserver(update);
     mo.observe(list, { childList: true, subtree: true });
 
-    list.addEventListener('scroll', update);
+    list.addEventListener('scroll', update, { passive: true });
     update();
     return () => {
       list.removeEventListener('scroll', update);

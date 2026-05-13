@@ -12,9 +12,6 @@ if (!root) {
 
 ReactDOM.createRoot(root).render(
   <Provider store={store}>
-
-
-      <RouterProvider router={router} />
-ъ
+    <RouterProvider router={router} />
   </Provider>,
 );

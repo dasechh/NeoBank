@@ -28,6 +28,7 @@
     &:focus {
       border: 1px solid #3182ce;
       background-image: none;
+      outline: none;
     }
 
     &:not(:placeholder-shown) {

@@ -19,7 +19,10 @@ export const Scoring = () => {
     descriptionText: 'The answer will come to your mail within 10 minutes',
   };
 
-  if (String(selectedId) !== applicationId || step < 2 || !selectedOffer) {
+  if (
+    (String(selectedId) !== applicationId || step < 2 || !selectedOffer) &&
+    !(step === 0 && selectedOffer)
+  ) {
     return <Navigate to="NotFound" replace />;
   }
 

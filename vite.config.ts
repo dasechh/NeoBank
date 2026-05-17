@@ -1,5 +1,5 @@
 import path from 'path';
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
 import { apiBaseUrl } from './src/constants';
@@ -29,6 +29,13 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    pool: 'threads',
+    passWithNoTests: true,
+    setupFiles: ['./vitest-setup.ts'],
   },
   resolve: {
     alias: {

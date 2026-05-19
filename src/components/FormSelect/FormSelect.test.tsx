@@ -9,28 +9,28 @@ describe('FormSelect', () => {
     { id: 2, label: 'Option 2', value: '2' },
   ];
 
-  test('Renders label', () => {
+  it('should render label', () => {
     render(<FormSelect label="Select" options={options} />);
     expect(screen.getByText('Select')).toBeInTheDocument();
   });
 
-  test('Renders required star', () => {
+  it('should render required star', () => {
     render(<FormSelect label="Select" options={options} required />);
     expect(screen.getByText('*')).toBeInTheDocument();
   });
 
-  test('Renders options', () => {
+  it('should render options', () => {
     render(<FormSelect options={options} />);
     expect(screen.getByRole('option', { name: 'Option 1' })).toBeInTheDocument();
     expect(screen.getByRole('option', { name: 'Option 2' })).toBeInTheDocument();
   });
 
-  test('Renders placeholder option', () => {
+  it('should render placeholder option', () => {
     render(<FormSelect options={options} placeholder="Choose" />);
     expect(screen.getByText('Choose')).toBeInTheDocument();
   });
 
-  test('Calls onChange when selecting value', async () => {
+  it('should call onChange when selecting value', async () => {
     const user = userEvent.setup();
     const onChange = vi.fn();
     render(<FormSelect options={options} onChange={onChange} />);
@@ -39,19 +39,19 @@ describe('FormSelect', () => {
     expect(onChange).toHaveBeenCalled();
   });
 
-  test('Renders error text', () => {
+  it('should render error text', () => {
     render(<FormSelect options={options} errorText="Error" />);
     expect(screen.getByText('Error')).toBeInTheDocument();
     expect(screen.getByRole('alert')).toBeInTheDocument();
   });
 
-  test('Applies required attribute', () => {
+  it('should apply required attribute', () => {
     render(<FormSelect options={options} required />);
     const select = screen.getByRole('combobox');
     expect(select).toBeRequired();
   });
 
-  test('Select works correctly', async () => {
+  it('should update value when option is selected', async () => {
     const user = userEvent.setup();
     render(<FormSelect options={options} />);
     const select = screen.getByRole('combobox');

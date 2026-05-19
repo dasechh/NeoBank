@@ -8,7 +8,7 @@ vi.mock('@/hooks', () => ({
 }));
 
 describe('Newsletter subscription form', () => {
-  test('Renders on initial state', () => {
+  it('should render on initial state', () => {
     (useNewsletterSubscribe as any).mockReturnValue({
       isSubscribed: false,
       newsletterSubscribeLoading: false,
@@ -20,18 +20,18 @@ describe('Newsletter subscription form', () => {
     expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
-  test('Passes subscription name', () => {
+  it('should pass subscription name', () => {
     (useNewsletterSubscribe as any).mockReturnValue({
       isSubscribed: false,
       newsletterSubscribeLoading: false,
       submitSubscription: vi.fn(),
       subscriptionStatus: null,
     });
-    render(<NewsletterSubscription subscriptionName="meow" />);
-    expect(screen.getByText(/meow/i));
+    render(<NewsletterSubscription subscriptionName="Subscription name" />);
+    expect(screen.getByText(/Subscription name/i));
   });
 
-  test('Shows success message when subscribed', () => {
+  it('should show success message when subscribed', () => {
     (useNewsletterSubscribe as any).mockReturnValue({
       isSubscribed: true,
       newsletterSubscribeLoading: false,
@@ -43,7 +43,7 @@ describe('Newsletter subscription form', () => {
     expect(screen.getByText(/already subscribed/i)).toBeInTheDocument();
   });
 
-  test('Blocks input elements when loading', () => {
+  it('should block input elements when loading', () => {
     (useNewsletterSubscribe as any).mockReturnValue({
       isSubscribed: false,
       newsletterSubscribeLoading: true,
@@ -55,7 +55,7 @@ describe('Newsletter subscription form', () => {
     expect(screen.getByRole('button')).toBeDisabled();
   });
 
-  test('Shows error message when fails', () => {
+  it('should show error message when fails', () => {
     (useNewsletterSubscribe as any).mockReturnValue({
       isSubscribed: false,
       newsletterSubscribeLoading: false,
@@ -66,7 +66,7 @@ describe('Newsletter subscription form', () => {
     expect(screen.getByText(/failed to subscribe/i)).toBeInTheDocument();
   });
 
-  test('Calls submission on submit', async () => {
+  it('should call submission on submit', async () => {
     const submitFn = vi.fn((e) => e.preventDefault());
     const user = userEvent.setup();
     (useNewsletterSubscribe as any).mockReturnValue({
@@ -81,7 +81,7 @@ describe('Newsletter subscription form', () => {
     expect(submitFn).toHaveBeenCalledTimes(1);
   });
 
-  test('Doesnt show form when subscribed', () => {
+  it("shouldn'nt show form when subscribed", () => {
     (useNewsletterSubscribe as any).mockReturnValue({
       isSubscribed: true,
       newsletterSubscribeLoading: false,
@@ -93,7 +93,7 @@ describe('Newsletter subscription form', () => {
     expect(screen.queryByRole('button')).not.toBeInTheDocument();
   });
 
-  test('Shows success text when subscribed', () => {
+  it('should show success text when subscribed', () => {
     (useNewsletterSubscribe as any).mockReturnValue({
       isSubscribed: true,
       newsletterSubscribeLoading: false,

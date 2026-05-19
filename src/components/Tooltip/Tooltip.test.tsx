@@ -2,21 +2,21 @@ import { render, screen } from '@testing-library/react';
 import { Tooltip } from './Tooltip';
 
 describe('Tooltip', () => {
-  test('Renders', () => {
+  it('should render', () => {
     render(<Tooltip text="hello" />);
     const tooltip = screen.getByText('hello');
     expect(tooltip).toBeInTheDocument();
   });
 
-  test('Applies default class', () => {
+  it('should apply default class', () => {
     render(<Tooltip text="hello" />);
     const tooltip = screen.getByText('hello');
     expect(tooltip.className).toMatch(/tooltip/);
   });
 
-  test('Applies custom calss', () => {
-    render(<Tooltip text="hello" className="meow" />);
+  it('should apply custom class', () => {
+    render(<Tooltip text="hello" className="Tooltip classname" />);
     const tooltip = screen.getByText('hello');
-    expect(tooltip).toHaveClass('meow');
+    expect(tooltip).toHaveClass('Tooltip classname');
   });
 });

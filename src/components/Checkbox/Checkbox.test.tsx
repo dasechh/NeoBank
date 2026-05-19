@@ -4,18 +4,18 @@ import { vi } from 'vitest';
 import { Checkbox } from './Checkbox';
 
 describe('Checkbox', () => {
-  test('Renders label', () => {
+  it('should render label', () => {
     render(<Checkbox label="test label" />);
     expect(screen.getByText('test label')).toBeInTheDocument();
   });
 
-  test('Renders input checkbox', () => {
+  it('should render input checkbox', () => {
     render(<Checkbox label="test" />);
     const checkbox = screen.getByRole('checkbox');
     expect(checkbox).toBeInTheDocument();
   });
 
-  test('Calls onChange with true when checked', async () => {
+  it('should call onChange with true when checked', async () => {
     const user = userEvent.setup();
     const onChange = vi.fn();
     render(<Checkbox label="test" onChange={onChange} />);
@@ -24,7 +24,7 @@ describe('Checkbox', () => {
     expect(onChange).toHaveBeenCalledWith(true);
   });
 
-  test('Calls onChange with false when unchecked', async () => {
+  it('should call onChange with false when unchecked', async () => {
     const user = userEvent.setup();
     const onChange = vi.fn();
     render(<Checkbox label="test" onChange={onChange} />);
@@ -34,7 +34,7 @@ describe('Checkbox', () => {
     expect(onChange).toHaveBeenLastCalledWith(false);
   });
 
-  test('Applies required attribute', () => {
+  it('should apply required attribute', () => {
     render(<Checkbox label="test" required />);
     const checkbox = screen.getByRole('checkbox');
     expect(checkbox).toBeRequired();
